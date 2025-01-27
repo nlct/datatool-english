@@ -1,0 +1,258 @@
+% arara: pdflatex
+\documentclass{ltxdoc}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks,
+            bookmarks,
+            hyperindex=false,
+            pdfauthor={Nicola L.C. Talbot},
+            pdftitle={English Localisation Support for datatool.sty}]{hyperref}
+
+
+\CheckSum{0}
+
+\newcommand*{\sty}[1]{\textsf{#1}}
+\newcommand*{\file}[1]{\nolinkurl{#1}}
+\newcommand*{\filemeta}[3]{\nolinkurl{#1}\meta{#2}\nolinkurl{#3}}
+\newcommand*{\opt}[1]{\textsf{#1}}
+
+\RecordChanges
+\PageIndex
+
+\title{English Localisation Support for \sty{datatool} Package}
+\author{Nicola L. C. Talbot}
+%%DATECMD%%
+\maketitle
+
+\begin{document}
+
+\begin{abstract}
+This is the English localisation support for the \sty{datatool}
+package (version 3.0+). This needs to be installed in addition to 
+\sty{datatool}. To ensure regional support, you will also need to
+install \sty{datatool-regions}.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+This bundle provides the English modules for \sty{datatool} v3.0+.
+The files simply need to be installed on \TeX's path.
+The \sty{datatool-base} package (which is automatically loaded by
+\sty{datatool}) uses \sty{tracklang}'s interface for detecting
+localisation settings and finding the appropriate files.
+If you use \sty{babel} or \sty{polyglossia}, make sure that you
+specify the document languages before the first package to load
+\sty{tracklang}.
+
+For example:
+\begin{verbatim}
+\usepackage[british]{babel}
+\usepackage{datatool-base}
+\end{verbatim}
+Alternatively, if you are not using a language package, simply use
+the \opt{locales} option. For example:
+\begin{verbatim}
+\usepackage[locales={en-GB}]{datatool-base}
+\end{verbatim}
+Any option that can be passed to \sty{datatool-base} can also be
+passed to \sty{datatool} but if \sty{datatool-base} has already been
+loaded, it will be too late to use the \opt{locales} option.
+For example:
+\begin{verbatim}
+\usepackage[locales={en-GB}]{datatool}
+\end{verbatim}
+But not:
+\begin{verbatim}
+\usepackage{datatool-base}
+\usepackage[locales={en-GB}]{datatool}% too late to set locales!
+\end{verbatim}
+
+If another package that also loads \sty{tracklang} is loaded first,
+then \sty{datatool-base} can pick up the settings from that. For
+example:
+\begin{verbatim}
+\usepackage[en-GB]{datetime2}
+\usepackage{datatool}
+\end{verbatim}
+
+If the regional file isn't installed or if no region is associated
+with the locale then only the language settings will be implemented.
+For example:
+\begin{verbatim}
+\usepackage[english]{babel}
+\usepackage{datatool-base}
+\end{verbatim}
+In this case there is no region so only \file{datatool-english.ldf}
+will be loaded.
+
+Supplementary packages provided with \sty{datatool} can also have
+the locales provided. For example:
+\begin{verbatim}
+\documentclass{article}
+\usepackage[locales={en}]{datagidx}
+\newgidx{index}{Index}
+\newterm{élan}
+\newterm{elephant}
+\newterm{élite}
+\newterm{elk}
+\begin{document}
+\gls{elk}, \gls{élan} \gls{élite} and \gls{elephant}.
+\printterms
+\end{document}
+\end{verbatim}
+
+The \sty{glossaries} package also loads \sty{datatool-base}
+and as from version 4.55 will check for the new \sty{datatool-base}
+commands. If present, \cs{printnoidxglossary} will switch to this
+new method of sorting otherwise it will fallback on the old method.
+So installing \sty{datatool-english} will not only affect
+\sty{datatool} and its associated packages but also
+\sty{glossaries}. For example:
+\begin{verbatim}
+\documentclass{article}
+\usepackage[locales={en},index]{glossaries}
+\newterm{élan}
+\newterm{elephant}
+\newterm{élite}
+\newterm{elk}
+\begin{document}
+\gls{elk}, \gls{élan} \gls{élite} and \gls{elephant}.
+\printindex
+\end{document}
+\end{verbatim}
+
+\section{Orthography}
+\label{sec:orthography}
+
+The \file{datatool-english.ldf} file provides support for English
+orthography. This deals with how words are sorted according to the
+English alphabet. The way that the new \sty{datatool} v3.0 sorting
+commands work is to use a handler function that converts the
+original content into a byte string. Since there are no byte array
+data types in \TeX, this is implemented by converting the original
+string into an ASCII string in such a way that sorting by character
+code will produce the desired order.
+
+With the newer \cs{DTLsortwordlist}, this is performed once for each
+item in the set to be sorted to allow for a faster character code
+sort of a temporary sequence variable that stores both the original
+and the transformed item. This allows the original item to be
+restored afterwards.
+
+For example:
+\begin{verbatim}
+\documentclass{article}
+\usepackage[locales={en}]{datatool}% v3.0+
+\newcommand{\mylist}{élan,zebra,elephant,ant,élite,elk}
+\begin{document}
+\DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
+Sorted list: \DTLformatlist{\mylist}
+\end{document}
+\end{verbatim}
+If \file{datatool-english.ldf} is installed, then the resulting list
+will be:
+\begin{quote}
+ant, élan, elephant, élite, elk and zebra
+\end{quote}
+However, if \file{datatool-english.ldf} isn't installed (or if
+English support hasn't been requested) the resulting list would be:
+\begin{quote}
+ant, elephant, elk, zebra, élan \& élite
+\end{quote}
+This is because a simple character code has been used.
+(Note also the use of \& instead of ``and''.)
+
+The \cs{DTLsortwordcasehandler} function is for case-sensitive
+sorts. The \cs{DTLsortwordhandler} function is for case-insensitive
+sorts and simply converts each element to lowercase before
+processing using the locale handler. These functions are for word-order
+comparisons.
+There are analogous functions for letter-order comparisons:
+\cs{DTLsortletterhandler} (case-insensitive) and 
+\cs{DTLsortlettercasehandler} (case-sensitive). These strip spaces
+and hyphens before processing.
+
+The \cs{DTLsortdata} command, provided by \sty{datatool}, works in a
+similar way to \cs{DTLsortwordlist} and uses the same handler
+functions. For example:
+\begin{verbatim}
+\documentclass{article}
+\usepackage[locales={en}]{datatool}
+
+\DTLaction{new}
+\DTLaction
+ [
+   assign = { name = Annie, age = 40 }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Ele, age = 80 }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Éleanor, age = 28 }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Zack, age = 47 }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Elva, age = 53 }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Æthelwulf, age = 95 }
+ ]
+{new row}
+
+\DTLsortdata{}{name} % sort according to name column
+\begin{document}
+\DTLaction{display}
+\end{document}
+\end{verbatim}
+If \file{datatool-english.ldf} is installed, then the order will be:
+Æthelwulf, Annie, Ele, Éleanor, Elva, Zack.
+
+Without \file{datatool-english.ldf}, the order will be:
+Annie, Ele, Elva, Zack, Æthelwulf, Éleanor.
+
+If letter groups are required, an extra column can be added to the
+database with the corresponding letter group obtained from sorting:
+\begin{verbatim}
+\DTLsortdata[save-group]{}{name}
+\end{verbatim}
+The letter group is typically the first letter of the sort value
+but this may not be the case for some languages, so the code for
+obtaining the first letter of a word is adjusted by the language
+hook.
+
+\section{Dates and Times}
+\label{sec:temporal}
+
+This is still an experimental feature. As from v3.0, \sty{datatool}
+now has additional data types: date, time and datetime.
+Parsing for these is off by default but may be enabled.
+Without the language support, only ISO dates, times and timestamps
+can be parsed. The order (dmy, mdy, ymd) is usually set by the
+region file (provided with \sty{datatool-regions}).
+For example, \file{datatool-GB.ldf} sets the order to dmy
+whereas \file{datatool-US.ldf} sets the order to mdy.
+The region files only deal with numeric dates and times but
+have a hook to allow supporting language files to extend this to
+parsing temporal values that contain textual content, such as month
+names.
+
+\end{document}
