@@ -48,7 +48,7 @@ installed, then the result will be:
  > Original list: élan, elephant, élite and elk  
  > Sorted list: élan, elephant, élite and elk
 
-The separator of region and language support means that you can mix
+The separation of region and language support means that you can mix
 and match without requiring the exact _lang_`-`_region_ file.
 
 Example:
