@@ -1,0 +1,5 @@
+* text=auto
+*.ldf text
+*.tex text
+*.md text
+*.txt text
