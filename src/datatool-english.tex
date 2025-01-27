@@ -3,12 +3,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[colorlinks,
-            bookmarks,
-            hyperindex=false,
-            pdfauthor={Nicola L.C. Talbot},
-            pdftitle={English Localisation Support for datatool.sty}]{hyperref}
-
+\usepackage{tcolorbox}
 
 \CheckSum{0}
 
@@ -16,6 +11,9 @@
 \newcommand*{\file}[1]{\nolinkurl{#1}}
 \newcommand*{\filemeta}[3]{\nolinkurl{#1}\meta{#2}\nolinkurl{#3}}
 \newcommand*{\opt}[1]{\textsf{#1}}
+
+\definecolor{defbackground}{rgb}{1,1,0.75}
+\newtcolorbox{definition}{colback=defbackground}
 
 \RecordChanges
 \PageIndex
@@ -123,6 +121,12 @@ So installing \sty{datatool-english} will not only affect
 \end{document}
 \end{verbatim}
 
+\DescribeMacro{\DataToolBaseEnglish}
+The \file{datatool-english.ldf} provides an intermediary command
+\cs{DataToolBaseEnglish} that's automatically added to the captions hook.
+This performs all the \sty{datatool-base} English language redefinitions.
+There should be little reason to actually use this command anywhere.
+
 \section{Orthography}
 \label{sec:orthography}
 
@@ -135,11 +139,11 @@ data types in \TeX, this is implemented by converting the original
 string into an ASCII string in such a way that sorting by character
 code will produce the desired order.
 
-With the newer \cs{DTLsortwordlist}, this is performed once for each
-item in the set to be sorted to allow for a faster character code
+With the newer \cs{DTLsortwordlist}, this is processing is performed once for each
+item in the list prior to sorting to allow for a faster character code
 sort of a temporary sequence variable that stores both the original
-and the transformed item. This allows the original item to be
-restored afterwards.
+(actual value) and the transformed (sort value) item. 
+This allows the original item to be restored afterwards.
 
 For example:
 \begin{verbatim}
@@ -239,6 +243,50 @@ but this may not be the case for some languages, so the code for
 obtaining the first letter of a word is adjusted by the language
 hook.
 
+The groups obtained from sorting are letter groups if the sorted
+item starts with an alphabetical character. If the value is
+determined to be a currency, it will be considered part of the
+currency group, if the value is determined to be a number (without a
+currency prefix) then it will be considered part of the number
+group, otherwise it will be in the non-letter group.
+
+The titles for all these groups are obtained with the commands
+\cs{dtllettergroup}, \cs{dtlnonlettergroup}, \cs{dtlnumbergroup}
+and \cs{dtlcurrencygroup} which are all redefined by the language
+hook.
+
+In the case of English, the currency group title simply expands
+to ``Currency'', the number group title simply expands to ``Numbers'',
+the non-letter group title simply expands to ``Symbols''.
+The letter group title expands to its argument converted to
+title case.
+
+If you need to make any adjustments, the following commands are
+provided by \file{datatool-english.ldf} for the handler and 
+groups.
+
+\DescribeMacro{\DTLenLocaleHandler}
+\begin{definition}
+\cs{DTLenLocaleHandler}\marg{tl-var}
+\end{definition}
+Converts the token list variable containing the sort value.
+You may redefine this command to add support for additional
+characters.
+
+\DescribeMacro{\DTLenLocaleGetInitialLetter}
+\begin{definition}
+\cs{DTLenLocaleGetInitialLetter}\marg{word}\marg{tl-var}
+\end{definition}
+Gets the initial letter of \meta{word} and stores it in the given
+token list variable.
+
+\DescribeMacro{\DTLenSetLetterGroups}
+\begin{definition}
+\cs{DTLenSetLetterGroups}
+\end{definition}
+Redefines the group commands. This can be redefined if different
+titles are required.
+
 \section{Dates and Times}
 \label{sec:temporal}
 
@@ -254,5 +302,78 @@ The region files only deal with numeric dates and times but
 have a hook to allow supporting language files to extend this to
 parsing temporal values that contain textual content, such as month
 names.
+
+The following commands are provided. Note that they require
+\LaTeX3 syntax.
+
+\DescribeMacro{\datatool_en_get_monthname_map:n}
+\begin{definition}
+\cs{datatool_en_get_monthname_map:n} \marg{month}
+\end{definition}
+Gets the number associated with the given English month name.
+
+\DescribeMacro{\datatool_en_if_pm:nTF}
+\begin{definition}
+\cs{datatool_en_if_pm:nTF} \marg{text} \marg{true} \marg{false}
+\end{definition}
+Tests if \meta{text} represents afternoon (``pm'', 
+``in the afternoon'', ``in the evening'', ''midnight'').
+This indicates that 12 needs to be added to the hour for 12-hour
+formats.
+
+\DescribeMacro{\datatool_en_monthname:n}
+\begin{definition}
+\cs{datatool_en_monthname:n} \marg{num}
+\end{definition}
+Expands to the month name for \meta{num} (1 for January, etc).
+
+\DescribeMacro{\datatool_en_shortmonthname:n}
+\begin{definition}
+\cs{datatool_en_shortmonthname:n} \marg{num}
+\end{definition}
+Expands to the abbreviated month name. This will be defined to
+\cs{DTMenglishshortmonthname} if that command exists
+(\sty{datetime2-english}) or to:
+\DescribeMacro{\datatool_en_shortmonthname_dotless:n}
+\begin{definition}
+\cs{datatool_en_shortmonthname_dotless:n} \marg{num}
+\end{definition}
+Expands to a three-letter abbreviation without a trailing dot.
+An alternative command is also provided:
+\DescribeMacro{\datatool_en_shortmonthname_dotted:n}
+\begin{definition}
+\cs{datatool_en_shortmonthname_dotted:n} \marg{num}
+\end{definition}
+This expands to a three or four letter abbreviation followed by a
+dot except for short month names, such as May, that aren't
+abbreviated.
+
+\section{Support for \sty{databib}}
+
+The \sty{datatool-english} bundle provides language support for
+the \sty{databib} package. Options may be set with
+\cs{DTLsetLocaleOptions}\marg{en/databib}\marg{key=val list}.
+
+Currently, there is only one option: \opt{short-month-style}
+which may take the value \opt{dotted} (use dotted month
+abbreviations) and \opt{dotless} (use three letter abbreviations
+with no dot). This determines the month name abbreviations for 
+\sty{databib}'s \opt{abbrv} style.
+
+The \file{databib-english.ldf} file defines the
+intermediary command \DescribeMacro{\DataBibEnglish}\cs{DataBibEnglish}
+that redefines all the fixed text commands. This command
+is automatically added to the captions hook if \sty{databib}
+is loaded.
+
+\section{Support for \sty{person}}
+
+The \sty{datatool-english} bundle provides language support for
+the \sty{person} package. There are currently no options.
+The \file{person-english.ldf} file defines the intermediary
+command \DescribeMacro{\DataToolPersonEnglish}\cs{DataToolPersonEnglish}
+that redefines all the fixed text commands. This command
+is automatically added to the captions hook if \sty{person}
+is loaded.
 
 \end{document}
