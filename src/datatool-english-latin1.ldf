@@ -35,7 +35,16 @@
     { [ \x{F9} - \x{FC} ] } { u }
     { [ \x{FD} \x{FF} ] } { y }
     { \x{FE} } { th }
+%    \end{macrocode}
+%Ensure currency symbols are grouped together by prefixing all 
+%currency symbols with \verb|$|.
+%    \begin{macrocode}
     { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24}\1 }
+%    \end{macrocode}
+%Ensure punctuation characters are grouped together by
+%prefixing them with straight double-quote. This ensures that they
+%will all be placed before any alphabetical characters.
+%    \begin{macrocode}
     { ([[:punct:]]+) } { \cO"\1 }
   }
   #1

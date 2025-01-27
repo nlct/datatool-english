@@ -10,6 +10,11 @@
 %    \begin{macrocode}
 \newcommand \DTLenLocaleHandler [ 1 ]
  {
+%    \end{macrocode}
+%Ensure punctuation characters are grouped together by
+%prefixing them with straight double-quote. This ensures that they
+%will all be placed before any alphabetical characters.
+%    \begin{macrocode}
   \regex_replace_all:nnN { ([[:punct:]]+) } { \cO"\1 } #1
  }
 %    \end{macrocode}

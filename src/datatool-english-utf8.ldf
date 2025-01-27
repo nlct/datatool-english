@@ -48,11 +48,35 @@
     {œ} {oe}
     {Ƿ} {W}
     {ƿ} {w}
+%    \end{macrocode}
+%Ensure currency symbols are grouped together by prefixing all 
+%currency symbols with \verb|$|.
+%    \begin{macrocode}
     { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24}\1 }
+%    \end{macrocode}
+%Ensure common punctuation characters are grouped together by
+%prefixing them with straight double-quote. This ensures that they
+%will all be placed before any alphabetical characters.
+%
+%Treat closing quote the same as straight apostrophe.
+%    \begin{macrocode}
     { ’ } { \cO"' }
+%    \end{macrocode}
+%Treat opening quote the same as backtick.
+%    \begin{macrocode}
     { ‘ } { \cO"` }
+%    \end{macrocode}
+%Treat opening and closing double quotes the same as straight
+%double-quote.
+%    \begin{macrocode}
     { (“|”) } { \cO"\cO" }
+%    \end{macrocode}
+%Treat em-dash and en-dash the same as hyphen/minus.
+%    \begin{macrocode}
     { (—|–) } { \cO"- }
+%    \end{macrocode}
+%Any character in the punctuation class:
+%    \begin{macrocode}
     { ([[:punct:]]+) } { \cO"\1 }
   }
   #1
