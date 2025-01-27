@@ -1,0 +1,64 @@
+%\section{Root English (UTF-8) LDF for \sty{datatool-base}}
+%    \begin{macrocode}
+\TrackLangProvidesResource{english-utf8}%%FILEVERSION%%
+%    \end{macrocode}
+%Switch on \LaTeX3 syntax.
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+%
+% Only provide limited support for extended characters to allow for
+% foreign names. The more cases added, the longer the processing
+% time.
+%
+%    \begin{macrocode}
+\newcommand \DTLenLocaleHandler [ 1 ]
+{
+  \regex_replace_case_all:nN
+  {
+    {À|Á|Â|Ã|Ä|Å} {A}
+    {Æ} {AE}
+    {Ç} {C}
+    {È|É|Ê|Ë} {E}
+    {Ì|Í|Î|Ï} {I}
+    {Ð} {D}
+    {Ñ} {N}
+    {Ò|Ó|Ô|Õ|Ö|Ø} {O}
+    {Ù|Ú|Û|Ü} {U}
+    {Ý} {Y}
+    {Þ} {TH}
+    {ß} {ss}
+    {à|á|â|ã|ä|å} {a}
+    {æ} {ae}
+    {ç} {c}
+    {è|é|ê|ë} {e}
+    {ì|í|î|ï} {i}
+    {ð} {d}
+    {ñ} {n}
+    {ò|ó|ô|õ|ö|ø} {o}
+    {ù|ú|û|ü} {u}
+    {ý|ÿ} {y}
+    {þ} {th}
+    {ſ} {s}
+    {Ĳ} {IJ}
+    {ĳ} {ij}
+    {Ł} {L}
+    {ł} {l}
+    {Œ} {OE}
+    {œ} {oe}
+    {Ƿ} {W}
+    {ƿ} {w}
+    { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24}\1 }
+    { ’ } { \cO"' }
+    { ‘ } { \cO"` }
+    { (“|”) } { \cO"\cO" }
+    { (—|–) } { \cO"- }
+    { ([[:punct:]]+) } { \cO"\1 }
+  }
+  #1
+}
+%    \end{macrocode}
+% Switch off \LaTeX3 syntax:
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}

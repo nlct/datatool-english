@@ -1,0 +1,75 @@
+%\section{Root English LDF for \sty{databib}}
+%    \begin{macrocode}
+\TrackLangProvidesResource{english}%%FILEVERSION%%
+%    \end{macrocode}
+% \LaTeX3 commands needed:
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+% Month names used by the "abbrv" style. 
+%    \begin{macrocode}
+\cs_new:Nn \databib_en_shortmonthname:n
+ {
+   \datatool_en_shortmonthname_dotted:n { #1 }
+ }
+%    \end{macrocode}
+% Define \cs{DTLsetLocaleOptions} options for "en/databib". The only option deals with
+% switching the short month names for the "abbrv" style between
+% three-letter dotless names and abbreviated names that end with a
+% dot.
+%    \begin{macrocode}
+\datatool_locale_define_keys:nn { en / databib }
+ {
+   short-month-style .choice: ,
+   short-month-style / dotted .code:n =
+    {
+      \cs_set:Nn \databib_en_shortmonthname:n
+       {
+         \datatool_en_shortmonthname_dotted:n { #1 } 
+       }
+    } ,
+   short-month-style / dotless .code:n =
+    {
+      \cs_set:Nn \databib_en_shortmonthname:n
+       {
+         \datatool_en_shortmonthname_dotless:n { #1 } 
+       }
+    } ,
+ }
+%    \end{macrocode}
+% Fixed text translations.
+%    \begin{macrocode}
+\newcommand \DataBibEnglish
+ {
+   \tl_set:Nn \ofname { of }
+   \tl_set:Nn \inname { in }
+   \tl_set:Nn \etalname { et ~ al. }
+   \tl_set:Nn \editorname { editor }
+   \tl_set:Nn \editorsname { editors }
+   \tl_set:Nn \volumename { volume }
+   \tl_set:Nn \numbername { number }
+   \tl_set:Nn \pagesname { pages }
+   \tl_set:Nn \pagename { page }
+   \tl_set:Nn \editionname { edition }
+   \tl_set:Nn \techreportname { Technical ~ report }
+   \tl_set:Nn \mscthesisname { Master's ~ thesis }
+   \tl_set:Nn \phdthesisname { PhD ~ thesis }
+   \tl_set:Nn \DTLbibaccessedname { accessed }
+   \renewcommand \dtl@monthname [ 1 ]
+    {
+      \datatool_en_monthname:n { ##1 }
+    }
+   \renewcommand \dtl@abbrvmonthname [ 1 ]
+    {
+      \databib_en_shortmonthname:n { ##1 }
+    }
+ }
+%    \end{macrocode}
+% Finished with \LaTeX3 commands.
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+% Add to captions hook.
+%    \begin{macrocode}
+\TrackLangAddToCaptions{\DataBibEnglish}
+%    \end{macrocode}

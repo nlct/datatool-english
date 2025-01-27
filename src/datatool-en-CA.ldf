@@ -1,0 +1,66 @@
+%\section{Canadian English LDF for \sty{datatool-base}}
+%    \begin{macrocode}
+\TrackLangProvidesResource{en-CA}%%FILEVERSION%%
+%    \end{macrocode}
+% Load root language file. Note that \sty{datatool-base} should
+% automatically load the region file datatool-CA.ldf if it is
+% installed.
+%    \begin{macrocode}
+\TrackLangRequireResource{english}
+%    \end{macrocode}
+% Need \LaTeX3 syntax on:
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+% Provide both official and unofficial options for the number group
+% and decimal characters.
+% Official style has a space number group and a decimal dot.
+%    \begin{macrocode}
+\cs_new:Nn \datatool_en_CA_set_numberchars_official:
+ {
+   \DTLsetnumberchars { ~ } { . }
+ }
+%    \end{macrocode}
+% Unofficial style has a comma number group and a decimal dot.
+%    \begin{macrocode}
+\cs_new:Nn \datatool_en_CA_set_numberchars_unofficial:
+ {
+   \DTLsetnumberchars { , } { . }
+ }
+%    \end{macrocode}
+%Provide intermediate command to set the applicable number group and
+%decimal character.
+%    \begin{macrocode}
+\newcommand \datatoolEnglishCASetNumberChars
+ {
+   \datatool_en_CA_set_numberchars_official:
+ }
+%    \end{macrocode}
+%Provide \cs{DTLsetLocaleOptions} "en-CA" option to switch between styles.
+%    \begin{macrocode}
+\datatool_locale_define_keys:nn { en-CA }
+ {
+   number-style .choices:nn =
+    { official , unofficial }
+    { 
+      \tl_set_eq:Nc 
+        \datatoolEnglishCASetNumberChars
+        { datatool_en_CA_set_numberchars_ \l_keys_choice_tl : }
+    } , 
+}
+%    \end{macrocode}
+%Provide intermediary command to add to the captions hook.
+%    \begin{macrocode}
+\newcommand \DataToolBaseEnglishCA
+ {
+   \datatoolEnglishCASetNumberChars
+ }
+%    \end{macrocode}
+% \LaTeX3 syntax no longer needed.
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+% Add to captions hook.
+%    \begin{macrocode}
+\TrackLangAddToCaptions{\DataToolBaseEnglishCA}
+%    \end{macrocode}

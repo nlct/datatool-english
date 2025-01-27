@@ -1,0 +1,73 @@
+%\section{South African English LDF for \sty{datatool-base}}
+%    \begin{macrocode}
+\TrackLangProvidesResource{en-ZA}%%FILEVERSION%%
+%    \end{macrocode}
+% Load root language file. Note that \sty{datatool-base} should
+% automatically load the region file datatool-ZA.ldf if it is
+% installed.
+%    \begin{macrocode}
+\TrackLangRequireResource{english}
+%    \end{macrocode}
+% Need \LaTeX3 syntax on:
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+% Provide both official and unofficial options for the number group
+% and decimal characters.
+% Official style has a space number group and a decimal dot.
+%    \begin{macrocode}
+\cs_new:Npn \datatool_en_ZA_set_numberchars_official:
+ {
+   \DTLsetnumberchars { ~ } { . }
+ }
+%    \end{macrocode}
+% Unofficial style has a comma number group and a decimal dot.
+%    \begin{macrocode}
+\cs_new:Npn \datatool_en_ZA_set_numberchars_unofficial:
+ {
+   \DTLsetnumberchars { , } { . }
+ }
+%    \end{macrocode}
+%Provide intermediate command to set the applicable number group and
+%decimal character.
+%    \begin{macrocode}
+\cs_new:Npn \datatoolEnglishZASetNumberChars
+ {
+   \datatool_en_ZA_set_official_numberchars:
+ }
+%    \end{macrocode}
+%Provide \cs{DTLsetLocaleOptions} "en-ZA" option to switch between styles.
+%    \begin{macrocode}
+\datatool_locale_define_keys:nn { en-ZA }
+ {
+   number-style .choices:nn =
+    { official , unofficial , region }
+    { 
+      \cs_if_exist:cTF 
+       { datatool_en_ZA_set_numberchars_ \l_keys_choice_tl : }
+       {
+         \cs_set_eq:Nc 
+           \datatoolEnglishZASetNumberChars
+           { datatool_en_ZA_set_numberchars_ \l_keys_choice_tl : }
+       }
+       {
+         \renewcommand \datatoolEnglishZASetNumberChars { }
+       }
+    } , 
+ }
+%    \end{macrocode}
+%Provide intermediary command to add to the captions hook.
+%    \begin{macrocode}
+\newcommand \DataToolBaseEnglishZA
+ {
+   \datatoolEnglishZASetNumberChars
+ }
+%    \end{macrocode}
+% \LaTeX3 syntax no longer needed.
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+% Add to captions hook.
+%    \begin{macrocode}
+\TrackLangAddToCaptions{\DataToolBaseEnglishZA}
+%    \end{macrocode}

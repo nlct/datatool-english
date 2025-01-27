@@ -1,0 +1,535 @@
+%\section{Root English LDF for \sty{datatool-base}}
+% Provide support for English (\sty{tracklang} root language
+% "english").
+% NB number group and decimal symbols and currencies should go in
+% region files.
+%    \begin{macrocode}
+\TrackLangProvidesResource{english}%%FILEVERSION%%
+%    \end{macrocode}
+% Try loading \filemeta{datatool-english-}{encoding}{.ldf}
+%    \begin{macrocode}
+\TrackLangRequestResource{english-\TrackLangEncodingName}
+{
+%    \end{macrocode}
+% Not found, fallback on \file{datatool-english-ascii.ldf}
+%    \begin{macrocode}
+  \TrackLangRequireResource{english-ascii}
+}
+%    \end{macrocode}
+% Switch on \LaTeX3 syntax.
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+% Any options may be defined with
+% \begin{verbatim}
+% \datatool_locale_define_keys:nn { en } { ... }
+% \end{verbatim}
+% or
+% \begin{verbatim}
+% \datatool_locale_define_keys:nn { en / subgroup } { ... }
+% \end{verbatim}
+% (Syntax as per \verb|\keys_define:nn| )
+%
+%\subsection{Orthography rules}
+%NB \cs{DTLenLocaleHandler} is defined in the applicable encoding
+%file loaded above.
+%
+%\begin{macro}{\DTLenLocaleGetInitialLetter}
+%Get the first letter of the word according to the locale's alphabet and 
+%store in token list variable.
+%    \begin{macrocode}
+\newcommand \DTLenLocaleGetInitialLetter [ 2 ]
+ {
+   \datatool_get_first_letter:nN { #1 } #2 
+ }
+%    \end{macrocode}
+%\end{macro}
+%
+%Provide intermediary command that defines the letter group
+%commands for English.
+%    \begin{macrocode}
+\newcommand \DTLenSetLetterGroups
+ {
+  \renewcommand \dtllettergroup [ 1 ]
+    { \text_titlecase_first:n { ##1 } }
+  \renewcommand \dtlnonlettergroup [ 1 ] { Symbols }
+  \renewcommand \dtlnumbergroup [ 1 ] { Numbers }
+  \renewcommand \dtlcurrencygroup [ 2 ] { Currency }
+}
+%    \end{macrocode}
+%
+%\subsection{Dates and Times}
+% This section is still experimental.
+%
+% An appropriate region needs to also be specified and loaded to
+% support parsing English dates. (The region determines dmy, mdy or
+% ymd.)
+%
+%Provide a shortcut command to get the month name to number mapping.
+%    \begin{macrocode}
+\cs_new:Nn \datatool_en_get_monthname_map:n
+ {
+   \datatool_region_get_monthname_map:n { en / #1 }
+ }
+%    \end{macrocode}
+%Define month name to number mapping for this language.
+%    \begin{macrocode}
+\datatool_region_set_monthname_map:nn { en / January } { 01 }
+\datatool_region_set_monthname_map:nn { en / Jan } { 01 }
+\datatool_region_set_monthname_map:nn { en / February } { 02 }
+\datatool_region_set_monthname_map:nn { en / Feb } { 02 }
+\datatool_region_set_monthname_map:nn { en / March } { 03 }
+\datatool_region_set_monthname_map:nn { en / Mar } { 03 }
+\datatool_region_set_monthname_map:nn { en / April } { 04 }
+\datatool_region_set_monthname_map:nn { en / Apr } { 04 }
+\datatool_region_set_monthname_map:nn { en / May } { 05 }
+\datatool_region_set_monthname_map:nn { en / June } { 06 }
+\datatool_region_set_monthname_map:nn { en / Jun } { 06 }
+\datatool_region_set_monthname_map:nn { en / July } { 07 }
+\datatool_region_set_monthname_map:nn { en / Jul } { 07 }
+\datatool_region_set_monthname_map:nn { en / August } { 08 }
+\datatool_region_set_monthname_map:nn { en / Aug } { 08 }
+\datatool_region_set_monthname_map:nn { en / September } { 09 }
+\datatool_region_set_monthname_map:nn { en / Sep } { 09 }
+\datatool_region_set_monthname_map:nn { en / Sept } { 09 }
+\datatool_region_set_monthname_map:nn { en / October } { 10 }
+\datatool_region_set_monthname_map:nn { en / Oct } { 10 }
+\datatool_region_set_monthname_map:nn { en / November } { 11 }
+\datatool_region_set_monthname_map:nn { en / Nov } { 11 }
+\datatool_region_set_monthname_map:nn { en / December } { 12 }
+\datatool_region_set_monthname_map:nn { en / Dec } { 12 }
+%    \end{macrocode}
+%
+% This file currently only deals with parsing dates that have month
+% names and possibly weekday names. It does not yet have support for 
+% providing formatting (since that can be done with \sty{datetime2}).
+%
+% The functions below that go from month number to name are mainly just for the
+% benefit of \file{databib-english.ldf} although may be used in a custom
+% definition of \cs{DataToolDateFmt} if required.
+%
+%If \sty{datetime2} has already been loaded, use the command
+%provided by \file{datetime2-english-base.ldf}.
+%    \begin{macrocode}
+\cs_if_exist:NTF \DTMenglishmonthname
+ {
+   \cs_new:Nn \datatool_en_monthname:n
+    {
+      \DTMenglishmonthname { #1 }
+    }
+ }
+ {
+   \cs_new:Nn \datatool_en_monthname:n
+    {
+      \int_case:nn { #1 }
+       {
+         { 1 } { January }
+         { 2 } { February }
+         { 3 } { March }
+         { 4 } { April }
+         { 5 } { May }
+         { 6 } { June }
+         { 7 } { July }
+         { 8 } { August }
+         { 9 } { September }
+         { 10 } { October }
+         { 11 } { November }
+         { 12 } { December }
+       }
+    }
+ }
+%    \end{macrocode}
+% Similarly for short month names.
+%    \begin{macrocode}
+\cs_if_exist:NTF \DTMenglishshortmonthname
+ {
+   \cs_new:Nn \datatool_en_shortmonthname:n
+    {
+      \DTMenglishshortmonthname { #1 }
+    }
+ }
+ {
+   \cs_new:Nn \datatool_en_shortmonthname:n
+    {
+      \datatool_en_shortmonthname_dotless:n { #1 }
+    }
+ }
+%    \end{macrocode}
+%Dotless short month style.
+%    \begin{macrocode}
+\cs_new:Nn \datatool_en_shortmonthname_dotless:n
+ {
+   \int_case:nn { #1 }
+    {
+      { 1 } { Jan }
+      { 2 } { Feb }
+      { 3 } { Mar }
+      { 4 } { Apr }
+      { 5 } { May }
+      { 6 } { Jun }
+      { 7 } { Jul }
+      { 8 } { Aug }
+      { 9 } { Sep }
+      { 10 } { Oct }
+      { 11 } { Nov }
+      { 12 } { Dec }
+    }
+ }
+%    \end{macrocode}
+% Dotted short month style.
+% (Abbreviated month names end with a dot.)
+%    \begin{macrocode}
+\cs_new:Nn \datatool_en_shortmonthname_dotted:n
+ {
+   \int_case:nn { #1 }
+    {
+       { 1 } { Jan. }
+       { 2 } { Feb. }
+       { 3 } { Mar. }
+       { 4 } { Apr. }
+       { 5 } { May }
+       { 6 } { June }
+       { 7 } { July }
+       { 8 } { Aug. }
+       { 9 } { Sept. }
+       { 10 } { Oct. }
+       { 11 } { Nov. }
+       { 12 } { Dec. }
+    }
+ }
+%    \end{macrocode}
+%Regular expression to match week day name.
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_weekday_name_regex
+ {
+   Monday | Mon\.? | Tuesday | Tue\.? | Wednesday | Wed\.?
+  | Thursday | Thur?\.? | Friday | Fri\.?
+  | Saturday | Sat\.? | Sunday | Sun\.?
+ }
+%    \end{macrocode}
+%Regular expression to match month name.
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_month_name_regex
+ {
+   January | Jan\.? | February | Feb\.? | March | Mar\.?
+   | April | Apr\.? | May | June | Jun\.? | July | Jul\.?
+   | August | Aug\.? | September | Sept?\.?
+   | October | Oct\.? | November | Nov\.? | December | Dec\.?
+ }
+%    \end{macrocode}
+%Regular expression to match am/pm identifiers.
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_am_regex
+ {
+   a \.? m \.? | A \.? M \.? | in \s the \s morning | [nN]oon | [Mm]idday
+ }
+%    \end{macrocode}
+% Any match on the following will add 12 to the hour by the
+% pm conditional function:
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_pm_regex
+ {
+   p \.? m \.? | P \.? M \.? | in \s the \s (?: afternoon | evening )
+  | [Mm]idnight
+ }
+%    \end{macrocode}
+% Provide conditional.
+%    \begin{macrocode}
+\prg_new_conditional:Npnn \datatool_en_if_pm:n #1
+   { T, F, TF }
+ {
+   \regex_match:NnTF \c_datatool_en_pm_regex { #1 }
+    { \prg_return_true: }
+    { \prg_return_false: }
+ }
+%    \end{macrocode}
+% Match ordinal suffix.
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_ordinal_suffix_regex
+ {
+   st | nd | rd | th 
+ }
+%    \end{macrocode}
+%
+% The naming scheme for date regex constants needs to be in the form
+% \verb|\c_datatool_|\meta{language}\verb|_|\meta{style}\verb|_date_regex| (non-anchored)
+% and
+% \verb|\c_datatool_|\meta{language}\verb|_anchored_|\meta{style}\verb|_date_regex| (anchored)
+% There should be three captured groups in the order that matches
+% \meta{style}
+% For example, the style "ddmmyyyy" should have the day of month
+% number (1-31) in the first captured group, the month 
+% in the second group, and the year number in the third.
+% Styles with "yyyy" should have the century included in the year.
+% Styles with "yy" need to have the century added to the two-digit year.
+%
+% Note that the "dd" and "mm" don't mean that two digits are required.
+% (In fact, here the month name not number is expected.)
+% The control sequence names are simply designed to match the 
+% naming scheme used by the regionless numeric regex constants
+% provided by \file{datatime-base.sty}.
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_ddmmyyyy_date_regex
+ {
+   (?: \ur{c_datatool_en_weekday_name_regex} \, ? \s+ ) ?
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+   \s+
+   ( \ur{c_datatool_en_month_name_regex}  )
+    \, ? \s+ ( \d+ )
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_anchored_ddmmyyyy_date_regex
+ {
+   \A \s*
+   (?: \ur{c_datatool_en_weekday_name_regex} \, ? \s+ ) ?
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+   \s+
+   ( \ur{c_datatool_en_month_name_regex}  )
+    \, ? \s+ ( \d+ )
+   \s* \Z
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_ddmmyy_date_regex
+ {
+   (?: \ur{c_datatool_en_weekday_name_regex} \, ? \s+ ) ?
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+   \s+
+   ( \ur{c_datatool_en_month_name_regex}  )
+    \, ? \s+ ( \d{2} )
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_anchored_ddmmyy_date_regex
+ {
+   \A \s*
+   (?: \ur{c_datatool_en_weekday_name_regex} \, ? \s+ ) ?
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+   \s+
+   ( \ur{c_datatool_en_month_name_regex}  )
+    \, ? \s+ ( \d{2} )
+   \s* \Z
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_mmddyyyy_date_regex
+ {
+   (?: \ur{c_datatool_en_weekday_name_regex} \, ? \s+ ) ?
+   ( \ur{c_datatool_en_month_name_regex}  )
+   \s+
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+    \, ? \s+ ( \d+ )
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_anchored_mmddyyyy_date_regex
+ {
+   \A \s*
+   (?: \ur{c_datatool_en_weekday_name_regex} \, ? \s+ ) ?
+   ( \ur{c_datatool_en_month_name_regex}  )
+   \s+
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+    \, ? \s+ ( \d+ )
+   \s* \Z
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_mmddyy_date_regex
+ {
+   (?: \ur{c_datatool_en_weekday_name_regex} \, ? \s+ ) ?
+   ( \ur{c_datatool_en_month_name_regex}  )
+   \s+
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+    \, ? \s+ ( \d{2} )
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_anchored_mmddyy_date_regex
+ {
+   \A \s*
+   (?: \ur{c_datatool_en_weekday_name_regex} \, ? \s+ ) ?
+   ( \ur{c_datatool_en_month_name_regex}  )
+   \s+
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+    \, ? \s+ ( \d{2} )
+   \s* \Z
+ }
+%    \end{macrocode}
+%
+% Year first formats are a bit unlikely with month names but
+% provided for completeness.
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_yyyymmdd_date_regex
+ {
+   ( \d+ ) \s+ 
+   ( \ur{c_datatool_en_month_name_regex}  )
+   \s+
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+   (?: \, ? \s+ \ur{c_datatool_en_weekday_name_regex} ) ?
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_anchored_yyyymmdd_date_regex
+ {
+   \A \s*
+   ( \d+ ) \s+ 
+   ( \ur{c_datatool_en_month_name_regex}  )
+   \s+
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+   (?: \, ? \s+ \ur{c_datatool_en_weekday_name_regex} ) ?
+   \s* \Z
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_yymmdd_date_regex
+ {
+   ( \d{2} ) \s+ 
+   ( \ur{c_datatool_en_month_name_regex}  )
+   \s+
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+   (?: \, ? \s+ \ur{c_datatool_en_weekday_name_regex} ) ?
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_anchored_yymmdd_date_regex
+ {
+   \A \s*
+   ( \d{2} ) \s+ 
+   ( \ur{c_datatool_en_month_name_regex}  )
+   \s+
+   ( \ur{c_datatool_day_of_month_regex} )
+   \ur{c_datatool_en_ordinal_suffix_regex} ?
+   (?: \, ? \s+ \ur{c_datatool_en_weekday_name_regex} ) ?
+   \s* \Z
+ }
+%    \end{macrocode}
+%
+% The naming scheme for time regex constants needs to be in the form
+% \verb|\c_datatool_|\meta{language}\verb|_|\meta{variant}\verb|_hhmmss_time_regex| (non-anchored)
+% and
+% \verb|\c_datatool_|\meta{language}\verb|_|\meta{variant}\verb|_anchored_hhmmss_time_regex| (anchored)
+% Both the minutes and seconds are optional here.
+% These will default to 00 if omitted.
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_colon_hhmmss_time_regex
+ {   
+   ( \ur{c_datatool_hour_regex} )
+   (?: \: ( \ur{c_datatool_minsec_regex} ) ) ?
+   (?: \: ( \ur{c_datatool_minsec_regex} ) ) ?
+   (?: \s*
+     ( 
+         \ur{c_datatool_en_am_regex}
+       | \ur{c_datatool_en_pm_regex}
+     )
+   ) ?
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_colon_anchored_hhmmss_time_regex
+ {   
+   \A \s*
+   ( \ur{c_datatool_hour_regex} )
+   (?: \: ( \ur{c_datatool_minsec_regex} ) ) ?
+   (?: \: ( \ur{c_datatool_minsec_regex} ) ) ?
+   (?: \s*
+     ( 
+         \ur{c_datatool_en_am_regex}
+       | \ur{c_datatool_en_pm_regex}
+     )
+    ) ?
+   \s* \Z
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_dot_hhmmss_time_regex
+ {   
+   ( \ur{c_datatool_hour_regex} )
+   (?: \. ( \ur{c_datatool_minsec_regex} ) ) ?
+   (?: \. ( \ur{c_datatool_minsec_regex} ) ) ?
+   (?: \s*
+     ( 
+         \ur{c_datatool_en_am_regex}
+       | \ur{c_datatool_en_pm_regex}
+     )
+    ) ?
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\regex_const:Nn \c_datatool_en_dot_anchored_hhmmss_time_regex
+ {   
+   \A \s*
+   ( \ur{c_datatool_hour_regex} )
+   (?: \. ( \ur{c_datatool_minsec_regex} ) ) ?
+   (?: \. ( \ur{c_datatool_minsec_regex} ) ) ?
+   (?: \s*
+     ( 
+         \ur{c_datatool_en_am_regex}
+       | \ur{c_datatool_en_pm_regex}
+     )
+    ) ?
+   \s* \Z
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\newcommand \DataToolBaseEnglish
+ {
+  \let
+    \DTLCurrentLocaleWordHandler
+    \DTLenLocaleHandler
+  \let
+    \DTLCurrentLocaleGetInitialLetter
+    \DTLenLocaleGetInitialLetter
+  \DTLenSetLetterGroups
+  \let
+   \DTLCurrentLocaleGetMonthNameMap
+   \datatool_en_get_monthname_map:n
+  \let
+   \DTLCurrentLocaleIfpmTF
+   \datatool_en_if_pm:nTF
+%    \end{macrocode}
+% Allow region files to construct control sequence names based on
+% this naming scheme:
+%    \begin{macrocode}
+  \tl_set:Nn \l_datatool_current_language_tl { en }
+%    \end{macrocode}
+% Textual commands:
+%    \begin{macrocode}
+  \renewcommand \DTLandname { and }
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\TrackLangAddToCaptions{\DataToolBaseEnglish}
+%    \end{macrocode}

@@ -1,0 +1,148 @@
+%\section{Root English LDF for \sty{person}}
+%    \begin{macrocode}
+\TrackLangProvidesResource{english}%%FILEVERSION%%
+%    \end{macrocode}
+% If \cs{DTLsetLocaleOptions} options need to be provided, the sub-module should be
+% \qt{person}.  For example, 
+%\begin{verbatim}
+%\datatool_locale_define_keys:nn { en / person }
+% {
+% }
+%\end{verbatim}
+%Provide intermediate command to add to captions hook.
+%    \begin{macrocode}
+\newcommand{\DataToolPersonEnglish}{%
+%    \end{macrocode}
+% Third person pronouns
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{pronoun}{he}%
+  \PersonSetLocalisation{female}{pronoun}{she}%
+  \PersonSetLocalisation{nonbinary}{pronoun}{they}%
+  \PersonSetLocalisation{unknown}{pronoun}{they}%
+  \PersonSetLocalisation{male}{pluralpronoun}{they}%
+  \PersonSetLocalisation{female}{pluralpronoun}{they}%
+  \PersonSetLocalisation{nonbinary}{pluralpronoun}{they}%
+  \PersonSetLocalisation{unknown}{pluralpronoun}{they}%
+%    \end{macrocode}
+% Third person objective pronouns
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{objpronoun}{him}%
+  \PersonSetLocalisation{female}{objpronoun}{her}%
+  \PersonSetLocalisation{nonbinary}{objpronoun}{them}%
+  \PersonSetLocalisation{unknown}{objpronoun}{them}%
+  \PersonSetLocalisation{male}{pluralobjpronoun}{them}%
+  \PersonSetLocalisation{female}{pluralobjpronoun}{them}%
+  \PersonSetLocalisation{nonbinary}{pluralobjpronoun}{them}%
+  \PersonSetLocalisation{unknown}{pluralobjpronoun}{them}%
+%    \end{macrocode}
+% Third person possessive adjectives
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{possadj}{his}%
+  \PersonSetLocalisation{female}{possadj}{her}%
+  \PersonSetLocalisation{nonbinary}{possadj}{their}%
+  \PersonSetLocalisation{unknown}{possadj}{their}%
+  \PersonSetLocalisation{male}{pluralpossadj}{their}%
+  \PersonSetLocalisation{female}{pluralpossadj}{their}%
+  \PersonSetLocalisation{nonbinary}{pluralpossadj}{their}%
+  \PersonSetLocalisation{unknown}{pluralpossadj}{their}%
+%    \end{macrocode}
+% Third person possessive pronouns
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{posspronoun}{his}%
+  \PersonSetLocalisation{female}{posspronoun}{hers}%
+  \PersonSetLocalisation{nonbinary}{posspronoun}{theirs}%
+  \PersonSetLocalisation{unknown}{posspronoun}{theirs}%
+  \PersonSetLocalisation{male}{pluralposspronoun}{theirs}%
+  \PersonSetLocalisation{female}{pluralposspronoun}{theirs}%
+  \PersonSetLocalisation{nonbinary}{pluralposspronoun}{theirs}%
+  \PersonSetLocalisation{unknown}{pluralposspronoun}{theirs}%
+%    \end{macrocode}
+% Second person pronouns
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{pronoun2}{you}%
+  \PersonSetLocalisation{female}{pronoun2}{you}%
+  \PersonSetLocalisation{nonbinary}{pronoun2}{you}%
+  \PersonSetLocalisation{unknown}{pronoun2}{you}%
+  \PersonSetLocalisation{male}{pluralpronoun2}{you}%
+  \PersonSetLocalisation{female}{pluralpronoun2}{you}%
+  \PersonSetLocalisation{nonbinary}{pluralpronoun2}{you}%
+  \PersonSetLocalisation{unknown}{pluralpronoun2}{you}%
+%    \end{macrocode}
+% Second person objective pronouns
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{objpronoun2}{you}%
+  \PersonSetLocalisation{female}{objpronoun2}{you}%
+  \PersonSetLocalisation{nonbinary}{objpronoun2}{you}%
+  \PersonSetLocalisation{unknown}{objpronoun2}{you}%
+  \PersonSetLocalisation{male}{pluralobjpronoun2}{you}%
+  \PersonSetLocalisation{female}{pluralobjpronoun2}{you}%
+  \PersonSetLocalisation{nonbinary}{pluralobjpronoun2}{you}%
+  \PersonSetLocalisation{unknown}{pluralobjpronoun2}{you}%
+%    \end{macrocode}
+% Second person possessive adjective
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{possadj2}{your}%
+  \PersonSetLocalisation{female}{possadj2}{your}%
+  \PersonSetLocalisation{nonbinary}{possadj2}{your}%
+  \PersonSetLocalisation{unknown}{possadj2}{your}%
+  \PersonSetLocalisation{male}{pluralpossadj2}{your}%
+  \PersonSetLocalisation{female}{pluralpossadj2}{your}%
+  \PersonSetLocalisation{nonbinary}{pluralpossadj2}{your}%
+  \PersonSetLocalisation{unknown}{pluralpossadj2}{your}%
+%    \end{macrocode}
+% Second person possessive pronoun
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{posspronoun2}{yours}%
+  \PersonSetLocalisation{female}{posspronoun2}{yours}%
+  \PersonSetLocalisation{nonbinary}{posspronoun2}{yours}%
+  \PersonSetLocalisation{unknown}{posspronoun2}{yours}%
+  \PersonSetLocalisation{male}{pluralposspronoun2}{yours}%
+  \PersonSetLocalisation{female}{pluralposspronoun2}{yours}%
+  \PersonSetLocalisation{nonbinary}{pluralposspronoun2}{yours}%
+  \PersonSetLocalisation{unknown}{pluralposspronoun2}{yours}%
+%    \end{macrocode}
+% Relationships
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{child}{son}%
+  \PersonSetLocalisation{female}{child}{daughter}%
+  \PersonSetLocalisation{nonbinary}{child}{child}%
+  \PersonSetLocalisation{unknown}{child}{child}%
+  \PersonSetLocalisation{male}{pluralchild}{sons}%
+  \PersonSetLocalisation{female}{pluralchild}{daughters}%
+  \PersonSetLocalisation{nonbinary}{pluralchild}{children}%
+  \PersonSetLocalisation{unknown}{pluralchild}{children}%
+  \PersonSetLocalisation{male}{parent}{father}%
+  \PersonSetLocalisation{female}{parent}{mother}%
+  \PersonSetLocalisation{nonbinary}{parent}{parent}%
+  \PersonSetLocalisation{unknown}{parent}{parent}%
+  \PersonSetLocalisation{male}{pluralparent}{fathers}%
+  \PersonSetLocalisation{female}{pluralparent}{mothers}%
+  \PersonSetLocalisation{nonbinary}{pluralparent}{parents}%
+  \PersonSetLocalisation{unknown}{pluralparent}{parents}%
+  \PersonSetLocalisation{male}{sibling}{brother}%
+  \PersonSetLocalisation{female}{sibling}{sister}%
+  \PersonSetLocalisation{nonbinary}{sibling}{sibling}%
+  \PersonSetLocalisation{unknown}{sibling}{sibling}%
+  \PersonSetLocalisation{male}{pluralsibling}{brothers}%
+  \PersonSetLocalisation{female}{pluralsibling}{sisters}%
+  \PersonSetLocalisation{nonbinary}{pluralsibling}{siblings}%
+  \PersonSetLocalisation{unknown}{pluralsibling}{siblings}%
+%    \end{macrocode}
+% Gender translations
+%    \begin{macrocode}
+  \PersonSetLocalisation{male}{gender}{male}%
+  \PersonSetLocalisation{female}{gender}{female}%
+  \PersonSetLocalisation{nonbinary}{gender}{non-binary}%
+  \PersonSetLocalisation{unknown}{gender}{unknown}%
+%    \end{macrocode}
+% Gender identification labels for \cs{newperson}
+%    \begin{macrocode}
+  \PersonSetMaleLabels{Male,MALE,M,m}%
+  \PersonSetFemaleLabels{Female,FEMALE,F,f}%
+  \PersonSetNonBinaryLabels{non-binary,Nonbinary,Non-Binary,NONBINARY,NON-BINARY,N,n}%
+}
+%    \end{macrocode}
+% Add to captions hook.
+%    \begin{macrocode}
+\TrackLangAddToCaptions{\DataToolPersonEnglish}
+%    \end{macrocode}

@@ -1,0 +1,47 @@
+%\section{Root English (ISO 8859-1) LDF for \sty{datatool-base}}
+%    \begin{macrocode}
+\TrackLangProvidesResource{english-latin1}%%FILEVERSION%%
+%    \end{macrocode}
+%Switch on \LaTeX3 syntax.
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+% Provide Latin-1 version of \cs{DTLenLocaleHandler}.
+%    \begin{macrocode}
+\newcommand \DTLenLocaleHandler [ 1 ]
+{
+  \regex_replace_case_all:nN
+  {
+    { [ \x{C0} - \x{C5} ] } { A }
+    { \x{C6} } { AE }
+    { \x{C7} } { C }
+    { [ \x{C8} - \x{CB} ] } { E }
+    { [ \x{CC} - \x{CF} ] } { I }
+    { \x{D0} } { D }
+    { \x{D1} } { N }
+    { [ \x{D2} - \x{D6} \x{D8} ] } { O }
+    { [ \x{D9} - \x{DC} ]} { U }
+    { \x{DD} } { Y }
+    { \x{DE} } { TH }
+    { \x{DF} } { ss }
+    { [ \x{E0} - \x{E5} ] } { a }
+    { \x{E6} } { ae }
+    { \x{E7} } { c }
+    { [ \x{E8} - \x{EB} ] } { e }
+    { [ \x{EC} - \x{EF} ] } { i }
+    { \x{F0} } { d }
+    { \x{F1} } { n }
+    { [ \x{F2} - \x{F6} \x{F8} ] } { o }
+    { [ \x{F9} - \x{FC} ] } { u }
+    { [ \x{FD} \x{FF} ] } { y }
+    { \x{FE} } { th }
+    { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24}\1 }
+    { ([[:punct:]]+) } { \cO"\1 }
+  }
+  #1
+}
+%    \end{macrocode}
+%Switch off \LaTeX3 syntax.
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}

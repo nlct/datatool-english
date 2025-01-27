@@ -1,0 +1,19 @@
+%\section{Root English (US-ASCII) LDF for \sty{datatool-base}}
+%    \begin{macrocode}
+\TrackLangProvidesResource{english-ascii}%%FILEVERSION%%
+%    \end{macrocode}
+%Switch on \LaTeX3 syntax.
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+%Minimal support for \cs{DTLenLocaleHandler}.
+%    \begin{macrocode}
+\newcommand \DTLenLocaleHandler [ 1 ]
+ {
+  \regex_replace_all:nnN { ([[:punct:]]+) } { \cO"\1 } #1
+ }
+%    \end{macrocode}
+%Switch off \LaTeX3 syntax.
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
