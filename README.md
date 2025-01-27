@@ -30,15 +30,15 @@ Sorted list: \DTLformatlist{\mylist}
 If `datatool-english` and `datatool-regions` are correctly installed, 
 the result will be:
 
- > Currency: £1,234.56  .
- > Original list: élan, elephant, élite and el  k
+ > Currency: £1,234.56.  
+ > Original list: élan, elephant, élite and elk  
  > Sorted list: élan, elephant, élite and elk
 
 If `datatool-regions` is installed but `datatool-english` isn't
 installed, then the result will be:
 
- > Currency: £1,234.56  .
- > Original list: élan, elephant, élite & el  k
+ > Currency: £1,234.56.  
+ > Original list: élan, elephant, élite & elk  
  > Sorted list: elephant, elk, élan & élite
 
 If `datatool-regions` isn't installed but `datatool-english` is
