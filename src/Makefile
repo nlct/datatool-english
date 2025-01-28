@@ -7,10 +7,13 @@ datatool-en-ZA.ldf \
 databib-english.ldf \
 person-english.ldf 
 
-all	: test-english.pdf
+all	: test-english.pdf test-datatool.pdf
 
 test-english.pdf	: test-english.tex $(ldfs)
 	pdflatex test-english.tex
+
+test-datatool.pdf	: test-datatool.tex $(ldfs)
+	pdflatex test-datatool.tex
 
 clean	:
 	\rm -f *.out *.pdf *.log *.aux

@@ -4,17 +4,29 @@
 \usepackage[T1]{fontenc}
 \usepackage{datatool-base}
 
-\newcommand{\animallist}{
+\newcommand{\wordlist}{
  zebra,
  elephant,
  zebu,
  aardvark,
+ sealant,
  élite,
  albatross,
  élan,
+ off,
+ seal,
  ant,
+ off break,
+ sea,
+ œsophagus,
  zander,
- elk
+ odyssey,
+ offcut,
+ elk,
+ æsthetic,
+ off-colour,
+ sea lion,
+ offbeat
 }
 
 \newcommand{\namelist}{
@@ -27,23 +39,58 @@
   Elva,
   Æthelwulf,
   Zoba,
+  Elßbeth,
+  Jarosław,
+  Œthelwald,
   Alberic,
   Zoë,
+  Oakley,
   Adie,
-  Zora
+  Octavia,
+  Zora,
+  Oscar,
+  Zandar,
+  Ó Brien
 }
 
 \begin{document}
 Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
+Code: \DTLCurrencyCode.
 
-Original animal list: \DTLformatlist{\animallist}.
+Original word list: \DTLformatlist{\wordlist}.
 
-\DTLsortwordlist{\animallist}{\DTLsortwordcasehandler}
-Sorted animal list: \DTLformatlist{\animallist}.
+{% localise
+\DTLsortwordlist{\wordlist}{\DTLsortwordcasehandler}
+Sorted word list (word sort): \DTLformatlist{\wordlist}.
+
+}
+
+{% localise
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted word list (letter sort): \DTLformatlist{\wordlist}.
+
+}
 
 Original name list: \DTLformatlist{\namelist}.
 
+{% localise
 \DTLsortwordlist{\namelist}{\DTLsortwordcasehandler}
 Sorted name list: \DTLformatlist{\namelist}.
 
+}
+
+Combined list:
+\edef\combinedlist{\wordlist,\namelist}
+
+{% localise
+\DTLsortwordlist{\combinedlist}{\DTLsortwordcasehandler}
+Case-sensitive: \DTLformatlist{\combinedlist}.
+
+}
+
+{% localise
+\DTLsortwordlist{\combinedlist}{\DTLsortwordhandler}
+Case-insensitive: \DTLformatlist{\combinedlist}.
+
+}
 \end{document}

@@ -1,0 +1,189 @@
+% arara: pdflatex
+\documentclass[english]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,landscape,twocolumn]{geometry}
+\usepackage{datatool}
+
+\DTLaction{new}
+\DTLaction
+ [
+   assign = { name = Annie, word = zebra }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Ele, word = elephant }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Aart, word = zebu }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Éleanor, word = aardvark }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Zack, word = albatross }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Æðelþryð, word = élite } % Æthelthryth
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Elva, word = ant}
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Æthelwulf, word = élan}
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Zoba, word = elk}
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Alberic, word = zander}
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Annie, word = sealant }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Zoë, word = aardvark}
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Adie, word = zebu}
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Zora, word = elk}
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Zander, word = sea}
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Elva, word = sea lion}
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Oakley, word = off }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Jarosław, word = off break }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Œthelwald, word = œsophagus }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Oscar, word = odyssey }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Zander, word = offcut }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Ó Brien, word = æsthetic }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Octavia, word = off-colour }
+ ]
+{new row}
+
+\DTLaction
+ [
+   assign = { name = Elßbeth, word = offbeat }
+ ]
+{new row}
+
+\begin{document}
+Sort by name then word (word sort).
+\DTLsortdata{}{name,word}
+
+\DTLaction{display}
+
+\newpage
+Sort by name then word (letter sort).
+\DTLsortdata[function=\DTLsortletterhandler]{}{name,word}
+
+\DTLaction{display}
+
+\newpage
+Sort by word (word order), and save letter groups.
+\DTLsortdata[save-group]{}{word}
+
+\DTLaction[options={omit-keys=name}]{display}
+
+\newpage
+Sort by word (letter order), and save letter groups.
+\DTLsortdata[save-group,function=\DTLsortletterhandler]{}{word}
+
+\DTLaction[options={omit-keys=name}]{display}
+
+\newpage
+Sort by name (word order) and save letter groups.
+\DTLsortdata[save-group]{}{name}
+
+\DTLaction[options={omit-keys=word}]{display}
+
+\newpage
+Sort by name (letter order) and save letter groups.
+\DTLsortdata[save-group,function=\DTLsortletterhandler]{}{name}
+
+\DTLaction[options={omit-keys=word}]{display}
+\end{document}
+
