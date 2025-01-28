@@ -1,0 +1,150 @@
+#!/usr/bin/env perl
+
+use strict;
+use Getopt::Long;
+
+my %optctl = ();
+
+&GetOptions(\%optctl, "v", "f=s");
+
+if ($#ARGV < 1)
+{
+  die "$0 <source files> <destination>\n";
+}
+
+my $outfile = pop @ARGV;
+
+# If more than one source file is given the destination 
+# must be a directory
+
+if ($#ARGV > 0 and not -d $outfile)
+{
+  die "Multiple sources files must have a directory as the target\n";
+}
+
+my $outdir = '';
+
+if (-d $outfile)
+{
+  $outdir = $outfile;
+
+  unless ($outdir=~m/\/$/)
+  {
+    $outdir.='/';
+  }
+}
+
+my $versionFile = "version.txt";
+
+if ($optctl{'f'})
+{
+  $versionFile = $optctl{'f'};
+}
+
+my $date;
+my $year;
+my $month;
+my $mday;
+my $version;
+my $filever='';
+my $datecmd='';
+
+open my $fh, $versionFile or die "Can't read '$versionFile' $!\n";
+
+$_ = <$fh>;
+chomp;
+
+my @fields = split /\t/;
+
+close $fh;
+
+if ($#fields < 0)
+{
+   die "No date found\n";
+}
+
+$date = $fields[0];
+
+if ($date=~/^(\d{4}+)-(\d{2})-(\d{2})/)
+{
+   $year = $1;
+   $month = $2;
+   $mday = $3;
+}
+else
+{
+   die "Invalid version date '$date'\n";
+}
+
+if ($#fields < 1)
+{
+   die "No version found\n";
+}
+
+$version = $fields[1];
+
+if ($#fields > 1)
+{
+   $filever = "[$year/$month/$mday v$version $fields[2]]";
+}
+else
+{
+   $filever = "[$year/$month/$mday v$version]";
+}
+
+$datecmd = "\\date{$date version $version}";
+
+foreach my $infile (@ARGV)
+{
+  if ($outdir)
+  {
+     $infile=~m/([^\/]+)$/;
+
+     my $base = $1;
+
+     $outfile = $outdir.$base;
+  }
+
+  # Make sure the source and target aren't the same file.
+
+  my ($inDev, $inIno, $outDev, $outIno);
+
+  ($inDev, $inIno) = stat $infile;
+  ($outDev, $outIno) = stat $outfile;
+
+  if ($inDev eq $outDev and $inIno eq $outIno)
+  {
+     die "Source and target file must be different ('$infile')\n";
+  }
+
+  open INFD, $infile or die "Can't read '$infile' $!\n";
+
+  open OUTFD, ">$outfile" or die "Can't open '$outfile' $!\n";
+
+  &message("$infile -> $outfile\n");
+
+  while (<INFD>)
+  {
+     s/%%VERSION%%/$version/g;
+     s/%%DATE%%/$date/g;
+     s/%%DATECMD%%/$datecmd/g;
+     s/%%YEAR%%/$year/g;
+     s/%%FILEVERSION%%/$filever/g;
+
+     print OUTFD;
+  }
+
+  close OUTFD;
+
+  close INFD;
+}
+
+sub message{
+  my $mess = shift;
+
+  if ($optctl{'v'})
+  {
+     print $mess;
+  }
+}
+1;
