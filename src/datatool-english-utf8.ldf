@@ -17,10 +17,6 @@
   \regex_replace_case_all:nN
   {
     {À|Á|Â|Ã|Ä|Å} {A}
-%    \end{macrocode}
-%NB mapping Æ to ``AE'' would create an ``AE'' letter group.
-%Mapping to ``Ae'' puts it in the ``A'' letter group.
-%    \begin{macrocode}
     {Æ} {Ae}
     {Ç} {C}
     {È|É|Ê|Ë} {E}
@@ -30,10 +26,6 @@
     {Ò|Ó|Ô|Õ|Ö|Ø} {O}
     {Ù|Ú|Û|Ü} {U}
     {Ý} {Y}
-%    \end{macrocode}
-%NB mapping Þ to ``TH'' would create a ``TH'' letter group.
-%Mapping to ``Th'' puts it in the ``T'' letter group.
-%    \begin{macrocode}
     {Þ} {Th}
     {ß} {ss}
     {à|á|â|ã|ä|å} {a}
@@ -48,19 +40,10 @@
     {ý|ÿ} {y}
     {þ} {th}
     {ſ} {s}
-%    \end{macrocode}
-%NB mapping Ĳ to ``IJ'' would create an ``IJ'' letter group.
-%Mapping to ``Ij'' puts it in the ``I'' letter group,
-%which is more appropriate for English.
-%    \begin{macrocode}
     {Ĳ} {Ij}
     {ĳ} {ij}
     {Ł} {L}
     {ł} {l}
-%    \end{macrocode}
-%NB mapping Œ to ``OE'' would create an ``OE'' letter group.
-%Mapping to ``Oe'' puts it in the ``O'' letter group.
-%    \begin{macrocode}
     {Œ} {Oe}
     {œ} {oe}
     {Ƿ} {W}

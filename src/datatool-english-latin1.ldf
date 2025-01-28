@@ -13,11 +13,7 @@
   \regex_replace_case_all:nN
   {
     { [ \x{C0} - \x{C5} ] } { A }
-%    \end{macrocode}
-%NB mapping \AE\ to ``AE'' would create an ``AE'' letter group.
-%Mapping to ``Ae'' puts it in the ``A'' letter group.
-%    \begin{macrocode}
-    { \x{C6} } { AE }
+    { \x{C6} } { Ae }
     { \x{C7} } { C }
     { [ \x{C8} - \x{CB} ] } { E }
     { [ \x{CC} - \x{CF} ] } { I }
@@ -26,10 +22,6 @@
     { [ \x{D2} - \x{D6} \x{D8} ] } { O }
     { [ \x{D9} - \x{DC} ]} { U }
     { \x{DD} } { Y }
-%    \end{macrocode}
-%NB mapping thorn to ``TH'' would create a ``TH'' letter group.
-%Mapping to ``Th'' puts it in the ``T'' letter group.
-%    \begin{macrocode}
     { \x{DE} } { Th }
     { \x{DF} } { ss }
     { [ \x{E0} - \x{E5} ] } { a }

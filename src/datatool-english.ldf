@@ -41,6 +41,11 @@
 \newcommand \DTLenLocaleGetInitialLetter [ 2 ]
  {
    \datatool_get_first_letter:nN { #1 } #2 
+   \DTLenLocaleHandler #2
+   \int_compare:nNnT { \tl_count:N #2 } > { \c_one_int }
+    {
+      \exp_args:NV \datatool_get_first_letter:nN #2 #2 
+    }
  }
 %    \end{macrocode}
 %\end{macro}
