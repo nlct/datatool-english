@@ -7,15 +7,10 @@ datatool-en-ZA.ldf \
 databib-english.ldf \
 person-english.ldf 
 
-../dist/datatool-english.dtx	: datatool-english.tex version.txt $(ldfs)
-	makedtx -author "Nicola Talbot" \
-	-src "(datatool-english*.ldf)\Z=>\1" \
-	-src "(datatool-en-*.ldf)\Z=>\1" \
-	-src "(databib-english.ldf)\Z=>\1" \
-	-src "(person-english.ldf)\Z=>\1" \
-	-doc datatool-english.tex datatool-english
-	cp2dist -f version.txt datatool-english.{dtx,ins} ../dist
-	rm -f datatool-english.{dtx,ins}
+all	: test-english.pdf
+
+test-english.pdf	: test-english.tex $(ldfs)
+	pdflatex test-english.tex
 
 clean	:
-	\rm -f datatool-english.{dtx,ins}
+	\rm -f *.out *.pdf *.log *.aux

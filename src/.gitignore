@@ -1,0 +1,9 @@
+*.def
+*.sty
+*.aux
+*.out
+*.log
+*.pdf
+datatool-undetermined.ldf
+datatool-utf8.ldf
+datatool-latin1.ldf

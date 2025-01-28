@@ -1,0 +1,49 @@
+% arara: pdflatex
+\documentclass[english]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{datatool-base}
+
+\newcommand{\animallist}{
+ zebra,
+ elephant,
+ zebu,
+ aardvark,
+ élite,
+ albatross,
+ élan,
+ ant,
+ zander,
+ elk
+}
+
+\newcommand{\namelist}{
+  Annie,
+  Ele,
+  Aart,
+  Éleanor,
+  Zack,
+  Æðelþryð, % Æthelthryth
+  Elva,
+  Æthelwulf,
+  Zoba,
+  Alberic,
+  Zoë,
+  Adie,
+  Zora
+}
+
+\begin{document}
+Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
+
+Original animal list: \DTLformatlist{\animallist}.
+
+\DTLsortwordlist{\animallist}{\DTLsortwordcasehandler}
+Sorted animal list: \DTLformatlist{\animallist}.
+
+Original name list: \DTLformatlist{\namelist}.
+
+\DTLsortwordlist{\namelist}{\DTLsortwordcasehandler}
+Sorted name list: \DTLformatlist{\namelist}.
+
+\end{document}
