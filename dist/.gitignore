@@ -2,5 +2,15 @@
 *.ins
 *.ldf
 *.out
+*.aux
 *.pdf
 *.log
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.hd
+*.zip
+README.md
+datatool-english

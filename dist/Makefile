@@ -40,4 +40,5 @@ README.md	: ../src/README.md
 	cp2dist -f ../src/version.txt ../src/README.md .
 
 clean	:
-	\rm -f *.ldf *.out *.log *.pdf *.dtx *.ins *.glo *.idx README.md
+	\rm -f *.ldf *.out *.log *.aux *.pdf *.dtx *.ins *.ind *.idx *.ilg *.glo *.gls *.glg *.hd README.md
+	\rm -f datatool-english.zip
