@@ -1,0 +1,40 @@
+% arara: lualatex
+\documentclass{article}
+
+\usepackage{fontspec}
+\usepackage[locales={ang-Runr}]{datatool-base}
+
+\setromanfont{Noto Serif}
+\setsansfont{Noto Sans}
+\setmonofont{Noto Sans Mono}
+\newfontfamily\runefont{Noto Sans Runic}
+\NewDocumentCommand{\textrune}{m}{{\runefont #1}}
+
+\newcommand{\wordlist}{
+\textrune{ᚱᚢᚾᚪ},
+\textrune{ᚠᚢᚦᚩᚱᚳ},
+\textrune{ᛗ},
+\textrune{ᛠ},
+\textrune{ᛒ},
+\textrune{ᚫ},
+\textrune{ᚣ},
+\textrune{ᛇᛋ}
+}
+
+\begin{document}
+Original list: \DTLformatlist{\wordlist}.
+
+Shuffle:
+\DTLshufflelist{\wordlist}
+
+{% localise
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\wordlist}.
+
+}
+
+\DTLsetLocaleOptions{ang-Runr}{order=poem}
+
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\wordlist}.
+\end{document}

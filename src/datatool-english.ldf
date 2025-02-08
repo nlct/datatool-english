@@ -13,6 +13,12 @@
 %    \end{macrocode}
 % Not found, fallback on \file{datatool-english-ascii.ldf}
 %    \begin{macrocode}
+  \PackageWarning{datatool-english}%
+   {%
+     No support for `english' with 
+     encoding `\TrackLangEncodingName'
+     (falling back on US-ASCII)%
+   }%
   \TrackLangRequireResource{english-ascii}
 }
 %    \end{macrocode}
@@ -46,6 +52,18 @@
     {
       \exp_args:NV \datatool_get_first_letter:nN #2 #2 
     }
+ }
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\DTLenLocaleGetGroupString}
+%\begin{definition}
+%\cs{DTLenLocaleGetGroupString}\marg{actual}\marg{sort value}\marg{tl}
+%\end{definition}
+%    \begin{macrocode}
+\newcommand \DTLenLocaleGetGroupString [ 3 ]
+ {
+  \tl_set:Nn #3 { #1 }
  }
 %    \end{macrocode}
 %\end{macro}
@@ -512,6 +530,9 @@
   \let
     \DTLCurrentLocaleGetInitialLetter
     \DTLenLocaleGetInitialLetter
+  \let
+    \DTLCurrentLocaleGetGroupString
+    \DTLenLocaleGetGroupString
   \DTLenSetLetterGroups
   \let
    \DTLCurrentLocaleGetMonthNameMap

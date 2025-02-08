@@ -11,6 +11,7 @@
 *.ilg
 *.ind
 *.hd
+*.tcbtemp
 *.zip
 README.md
 datatool-english

@@ -5,7 +5,12 @@ ldfs=../src/datatool-english.ldf \
 ../src/datatool-en-CA.ldf \
 ../src/datatool-en-ZA.ldf \
 ../src/databib-english.ldf \
-../src/person-english.ldf 
+../src/person-english.ldf \
+../src/datatool-anglosaxon.ldf \
+../src/datatool-ang-Latn.ldf \
+../src/datatool-ang-Latn-utf8.ldf \
+../src/datatool-ang-Runr.ldf \
+../src/datatool-ang-Runr-utf8.ldf 
 
 datatool-english.zip	: datatool-english.dtx datatool-english.ins \
 	datatool-english.pdf README.md DEPENDS.txt
@@ -32,6 +37,11 @@ datatool-english.dtx	: ../src/datatool-english.tex ../src/version.txt $(ldfs)
 	-src "(datatool-en-.*\.ldf)\Z=>\1" \
 	-src "(databib-english\.ldf)\Z=>\1" \
 	-src "(person-english\.ldf)\Z=>\1" \
+	-src "(datatool-anglosaxon\.ldf)\Z=>\1" \
+	-src "(datatool-ang-Latn\.ldf)\Z=>\1" \
+	-src "(datatool-ang-Latn-.*\.ldf)\Z=>\1" \
+	-src "(datatool-ang-Runr\.ldf)\Z=>\1" \
+	-src "(datatool-ang-Runr-.*\.ldf)\Z=>\1" \
 	-doc datatool-english.tex datatool-english
 	cp2dist -f ../src/version.txt ../src/datatool-english.{dtx,ins} .
 	rm -f ../src/datatool-english.{dtx,ins}

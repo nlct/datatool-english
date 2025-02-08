@@ -72,6 +72,11 @@ the result will be:
  > Original list: élan, elephant, élite and elk  
  > Sorted list: élan, elephant, élite and elk
 
+This bundle also includes limited support for Old English
+(Anglo-Saxon) mainly to provide an example for a language that has
+multiple scripts (in this case, Latin and Runic). The language codes
+are `ang-Latn` for Anglo-Saxon Latin Script and `ang-Runr`
+for Anglo-Saxon Runic Script. There's only support for UTF-8.
 
 Further reading: [Localisation with datatool v3.0+](https://www.dickimaw-books.com/latex/tracklang/datatool-locale.shtml)
 

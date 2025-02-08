@@ -4,20 +4,28 @@
 \usepackage{fontspec}
 \usepackage{tcolorbox}
 
-\setromanfont{FreeSerif}
-\setsansfont{FreeSans}
-\setmonofont{FreeMono}
+\setromanfont{Noto Serif}
+\setsansfont{Noto Sans}
+\setmonofont{Noto Sans Mono}
+\newfontfamily\runefont{Noto Sans Runic}
+\NewDocumentCommand{\textrune}{m}{{\runefont #1}}
 
 \CheckSum{0}
 
 \newcommand*{\sty}[1]{\textsf{#1}}
 \newcommand*{\file}[1]{\nolinkurl{#1}}
 \newcommand*{\filemeta}[3]{\nolinkurl{#1}\meta{#2}\nolinkurl{#3}}
+\newcommand*{\filemetameta}[5]{%
+ \nolinkurl{#1}\meta{#2}\nolinkurl{#3}\meta{#4}\nolinkurl{#5}}
 \newcommand*{\opt}[1]{\textsf{#1}}
 \newcommand*{\qt}[1]{``#1''}
 
 \definecolor{defbackground}{rgb}{1,1,0.75}
 \newtcolorbox{definition}{colback=defbackground}
+\newtcolorbox{important}{colback=red!5!white,colframe=red}
+
+\tcbuselibrary{documentation}
+\tcbset{verbatim ignore percent}
 
 \RecordChanges
 \PageIndex
@@ -49,49 +57,49 @@ specify the document languages before the first package to load
 \sty{tracklang}.
 
 For example:
-\begin{verbatim}
+\begin{dispListing}
 \usepackage[british]{babel}
 \usepackage{datatool-base}
-\end{verbatim}
+\end{dispListing}
 Alternatively, if you are not using a language package, simply use
 the \opt{locales} option. For example:
-\begin{verbatim}
+\begin{dispListing}
 \usepackage[locales={en-GB}]{datatool-base}
-\end{verbatim}
+\end{dispListing}
 Any option that can be passed to \sty{datatool-base} can also be
 passed to \sty{datatool} but if \sty{datatool-base} has already been
 loaded, it will be too late to use the \opt{locales} option.
 For example:
-\begin{verbatim}
+\begin{dispListing}
 \usepackage[locales={en-GB}]{datatool}
-\end{verbatim}
+\end{dispListing}
 But not:
-\begin{verbatim}
+\begin{dispListing*}{title={Incorrect!},colframe=red}
 \usepackage{datatool-base}
-\usepackage[locales={en-GB}]{datatool}% too late to set locales!
-\end{verbatim}
+\usepackage[locales={en-GB}]{datatool}
+\end{dispListing*}
 
 If another package that also loads \sty{tracklang} is loaded first,
 then \sty{datatool-base} can pick up the settings from that. For
 example:
-\begin{verbatim}
+\begin{dispListing}
 \usepackage[en-GB]{datetime2}
 \usepackage{datatool}
-\end{verbatim}
+\end{dispListing}
 
 If the regional file isn't installed or if no region is associated
 with the locale then only the language settings will be implemented.
 For example:
-\begin{verbatim}
+\begin{dispListing}
 \usepackage[english]{babel}
 \usepackage{datatool-base}
-\end{verbatim}
+\end{dispListing}
 In this case there is no region so only \file{datatool-english.ldf}
 will be loaded.
 
 Supplementary packages provided with \sty{datatool} can also have
 the locales provided. For example:
-\begin{verbatim}
+\begin{dispListing}
 \documentclass{article}
 \usepackage[locales={en}]{datagidx}
 \newgidx{index}{Index}
@@ -103,7 +111,7 @@ the locales provided. For example:
 \gls{elk}, \gls{élan} \gls{élite} and \gls{elephant}.
 \printterms
 \end{document}
-\end{verbatim}
+\end{dispListing}
 
 The \sty{glossaries} package also loads \sty{datatool-base}
 and as from version 4.55 will check for the new \sty{datatool-base}
@@ -112,7 +120,7 @@ new method of sorting otherwise it will fallback on the old method.
 So installing \sty{datatool-english} will not only affect
 \sty{datatool} and its associated packages but also
 \sty{glossaries}. For example:
-\begin{verbatim}
+\begin{dispListing}
 \documentclass{article}
 \usepackage[locales={en},index]{glossaries}
 \newterm{élan}
@@ -123,13 +131,14 @@ So installing \sty{datatool-english} will not only affect
 \gls{elk}, \gls{élan} \gls{élite} and \gls{elephant}.
 \printindex
 \end{document}
-\end{verbatim}
+\end{dispListing}
 
-\DescribeMacro{\DataToolBaseEnglish}
-The \file{datatool-english.ldf} provides an intermediary command
+\begin{docCommand}{DataToolBaseEnglish}{}
+The \file{datatool-english.ldf} file provides an intermediary command
 \cs{DataToolBaseEnglish} that's automatically added to the captions hook.
 This performs all the \sty{datatool-base} English language redefinitions.
 There should be little reason to actually use this command anywhere.
+\end{docCommand}
 
 \section{Orthography}
 \label{sec:orthography}
@@ -150,15 +159,15 @@ sort of a temporary sequence variable that stores both the original
 This allows the original item to be restored afterwards.
 
 For example:
-\begin{verbatim}
+\begin{dispListing*}{title={\sty{datatool} v3.0+}}
 \documentclass{article}
-\usepackage[locales={en}]{datatool}% v3.0+
+\usepackage[locales={en}]{datatool}
 \newcommand{\mylist}{élan,zebra,elephant,ant,élite,elk}
 \begin{document}
 \DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
 Sorted list: \DTLformatlist{\mylist}
 \end{document}
-\end{verbatim}
+\end{dispListing*}
 If \file{datatool-english.ldf} is installed, then the resulting list
 will be:
 \begin{quote}
@@ -185,7 +194,7 @@ and hyphens before processing.
 The \cs{DTLsortdata} command, provided by \sty{datatool}, works in a
 similar way to \cs{DTLsortwordlist} and uses the same handler
 functions. For example:
-\begin{verbatim}
+\begin{dispListing}
 \documentclass{article}
 \usepackage[locales={en}]{datatool}
 
@@ -226,11 +235,11 @@ functions. For example:
  ]
 {new row}
 
-\DTLsortdata{}{name} % sort according to name column
+\DTLsortdata{}{name}
 \begin{document}
 \DTLaction{display}
 \end{document}
-\end{verbatim}
+\end{dispListing}
 If \file{datatool-english.ldf} is installed, then the order will be:
 Æthelwulf, Annie, Ele, Éleanor, Elva, Zack.
 
@@ -239,9 +248,9 @@ Annie, Ele, Elva, Zack, Æthelwulf, Éleanor.
 
 If letter groups are required, an extra column can be added to the
 database with the corresponding letter group obtained from sorting:
-\begin{verbatim}
+\begin{dispListing}
 \DTLsortdata[save-group]{}{name}
-\end{verbatim}
+\end{dispListing}
 The letter group is typically the first letter of the sort value
 but this may not be the case for some languages, so the code for
 obtaining the first letter of a word is adjusted by the language
@@ -259,37 +268,31 @@ The titles for all these groups are obtained with the commands
 and \cs{dtlcurrencygroup} which are all redefined by the language
 hook.
 
-In the case of English, the currency group title simply expands
-to ``Currency'', the number group title simply expands to ``Numbers'',
-the non-letter group title simply expands to ``Symbols''.
-The letter group title expands to its argument converted to
-title case.
+In the case of English, the currency group title simply expands to
+\qt{Currency}, the number group title simply expands to
+\qt{Numbers}, the non-letter group title simply expands to
+\qt{Symbols}.  The letter group title expands to its argument
+converted to title case.
 
 If you need to make any adjustments, the following commands are
 provided by \file{datatool-english.ldf} for the handler and 
 groups.
 
-\DescribeMacro{\DTLenLocaleHandler}
-\begin{definition}
-\cs{DTLenLocaleHandler}\marg{tl-var}
-\end{definition}
+\begin{docCommand}{DTLenLocaleHandler}{\marg{tl-var}}
 Converts the token list variable containing the sort value.
 You may redefine this command to add support for additional
 characters.
+\end{docCommand}
 
-\DescribeMacro{\DTLenLocaleGetInitialLetter}
-\begin{definition}
-\cs{DTLenLocaleGetInitialLetter}\marg{word}\marg{tl-var}
-\end{definition}
+\begin{docCommand}{DTLenLocaleGetInitialLetter}{\marg{word}\marg{tl-var}}
 Gets the initial letter of \meta{word} and stores it in the given
 token list variable.
+\end{docCommand}
 
-\DescribeMacro{\DTLenSetLetterGroups}
-\begin{definition}
-\cs{DTLenSetLetterGroups}
-\end{definition}
+\begin{docCommand}{DTLenSetLetterGroups}{}
 Redefines the group commands. This can be redefined if different
 titles are required.
+\end{docCommand}
 
 \section{Dates and Times}
 \label{sec:temporal}
@@ -310,53 +313,42 @@ names.
 The following commands are provided. Note that they require
 \LaTeX3 syntax.
 
-\DescribeMacro{\datatool\_en\_get\_monthname\_map:n}
-\begin{definition}
-\cs{datatool\_en\_get\_monthname\_map:n} \marg{month}
-\end{definition}
+\begin{docCommand*}{datatool_en_get_monthname_map:n}{ \marg{month}}
 Gets the number associated with the given English month name.
+\end{docCommand*}
 
-\DescribeMacro{\datatool\_en\_if\_pm:nTF}
-\begin{definition}
-\cs{datatool\_en\_if\_pm:nTF} \marg{text} \marg{true} \marg{false}
-\end{definition}
-Tests if \meta{text} represents afternoon (``pm'', 
-``in the afternoon'', ``in the evening'', ''midnight'').
+\begin{docCommand*}{datatool_en_if_pm:nTF}{ \marg{text} \marg{true} \marg{false}}
+Tests if \meta{text} represents afternoon (\qt{pm}, 
+\qt{in the afternoon}, \qt{in the evening}, \qt{midnight}).
 This indicates that 12 needs to be added to the hour for 12-hour
 formats.
+\end{docCommand*}
 
-\DescribeMacro{\datatool\_en\_monthname:n}
-\begin{definition}
-\cs{datatool\_en\_monthname:n} \marg{num}
-\end{definition}
+\begin{docCommand*}{datatool_en_monthname:n}{ \marg{num}}
 Expands to the month name for \meta{num} (1 for January, etc).
+\end{docCommand*}
 
-\DescribeMacro{\datatool\_en\_shortmonthname:n}
-\begin{definition}
-\cs{datatool\_en\_shortmonthname:n} \marg{num}
-\end{definition}
+\begin{docCommand*}{datatool_en_shortmonthname:n}{ \marg{num}}
 Expands to the abbreviated month name. This will be defined to
 \cs{DTMenglishshortmonthname} if that command exists
-(\sty{datetime2-english}) or to:
-\DescribeMacro{\datatool\_en\_shortmonthname\_dotless:n}
-\begin{definition}
-\cs{datatool\_en\_shortmonthname\_dotless:n} \marg{num}
-\end{definition}
+(\sty{datetime2-english})
+or to:
+\end{docCommand*}
+\begin{docCommand*}{datatool_en_shortmonthname_dotless:n}{ \marg{num}}
 Expands to a three-letter abbreviation without a trailing dot.
+\end{docCommand*}
 An alternative command is also provided:
-\DescribeMacro{\datatool\_en\_shortmonthname\_dotted:n}
-\begin{definition}
-\cs{datatool\_en\_shortmonthname\_dotted:n} \marg{num}
-\end{definition}
+\begin{docCommand*}{datatool_en_shortmonthname_dotted:n}{ \marg{num}}
 This expands to a three or four letter abbreviation followed by a
 dot except for short month names, such as May, that aren't
 abbreviated.
+\end{docCommand*}
 
 \section{Support for \sty{databib}}
 
 The \sty{datatool-english} bundle provides language support for
 the \sty{databib} package. Options may be set with
-\cs{DTLsetLocaleOptions}\marg{en/databib}\marg{key=val list}.
+\cs{DTLsetLocaleOptions}\verb|{en/databib}|\marg{key=val list}.
 
 Currently, there is only one option: \opt{short-month-style}
 which may take the value \opt{dotted} (use dotted month
@@ -364,21 +356,32 @@ abbreviations) and \opt{dotless} (use three letter abbreviations
 with no dot). This determines the month name abbreviations for 
 \sty{databib}'s \opt{abbrv} style.
 
+\begin{docCommand}{DataBibEnglish}{}
 The \file{databib-english.ldf} file defines the
-intermediary command \DescribeMacro{\DataBibEnglish}\cs{DataBibEnglish}
+intermediary command \cs{DataBibEnglish}
 that redefines all the fixed text commands. This command
 is automatically added to the captions hook if \sty{databib}
 is loaded.
+\end{docCommand}
 
 \section{Support for \sty{person}}
 
+\begin{docCommand}{DataToolPersonEnglish}{}
 The \sty{datatool-english} bundle provides language support for
 the \sty{person} package. There are currently no options.
 The \file{person-english.ldf} file defines the intermediary
-command \DescribeMacro{\DataToolPersonEnglish}\cs{DataToolPersonEnglish}
+command \cs{DataToolPersonEnglish}
 that redefines all the fixed text commands. This command
 is automatically added to the captions hook if \sty{person}
 is loaded.
+\end{docCommand}
+
+\section{Old English (Anglo-Saxon)}
+
+This bundle also supplies very limited support for Old English
+(Anglo-Saxon). This is primarily to provide an example of how to
+support a language with multiple scripts (or simply a language with
+a non-Latin script).
 
 \StopEventually{%
   \PrintChanges

@@ -1,0 +1,105 @@
+%\section{Root Old English (Anglo Saxon) Runic Script LDF for \sty{datatool-base}}
+% Provide support for Old English (\sty{tracklang} root language
+% "anxglosaxon") using Runic script.
+%
+% This is mainly provided as an example for dealing with languages
+% that have multiple scripts and non-ASCII letters.
+% As such, it doesn't provide any translations (except for \qt{and}) or date/time
+% formatting.
+%
+%\begin{important}
+% Identifying \qt{Runr} as the script indicates that the text source uses
+% Runic characters. If a package, such as \sty{allrunes}, is used
+% that maps Latin characters to runes (for example, \verb|\textarm{fuÞark}|)
+% then the script should be set to \qt{Latn}.
+%\end{important}
+%
+%    \begin{macrocode}
+\TrackLangProvidesResource{ang-Runr}%%FILEVERSION%%
+%    \end{macrocode}
+% Try loading \filemeta{datatool-ang-Runr-}{encoding}{.ldf}
+%    \begin{macrocode}
+\TrackLangRequestResource{ang-Runr-\TrackLangEncodingName}
+{%
+%    \end{macrocode}
+% Not found.
+%    \begin{macrocode}
+  \PackageWarning{datatool-ang-Runr}%
+   {%
+     No support for `anglosaxon' with script `Runr'
+     and encoding `\TrackLangEncodingName'.%
+   }%
+  \endinput
+}
+%    \end{macrocode}
+% Switch on \LaTeX3 syntax.
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+% Any options may be defined with
+% \begin{verbatim}
+% \datatool_locale_define_keys:nn { ang-Runr } { ... }
+% \end{verbatim}
+% or
+% \begin{verbatim}
+% \datatool_locale_define_keys:nn { ang-Runr / subgroup } { ... }
+% \end{verbatim}
+% (Syntax as per \verb|\keys_define:nn| )
+%
+%\subsection{Orthography rules}
+%NB \cs{DTLangRunrLocaleHandler} is defined in the applicable encoding
+%file loaded above.
+%
+%\begin{macro}{\DTLangRunrLocaleGetInitialLetter}
+%Get the first letter of the word according to the locale's alphabet and 
+%store in token list variable.
+%    \begin{macrocode}
+\newcommand \DTLangRunrLocaleGetInitialLetter [ 2 ]
+ {
+   \datatool_get_first_grapheme:nN { #1 } #2
+ }
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\DTLangRunrLocaleGetGroupChar}
+%\begin{definition}
+%\cs{DTLangRunrLocaleGetGroupString}\marg{actual}\marg{sort value}\marg{tl}
+%\end{definition}
+%Get the first character of the string (from the actual value not the sort
+%value).
+%    \begin{macrocode}
+\newcommand \DTLangRunrLocaleGetGroupString [ 3 ]
+ {
+   \tl_set:Nn #3 { #1 }
+ }
+%    \end{macrocode}
+%\end{macro}
+%
+%    \begin{macrocode}
+\newcommand \DataToolBaseAngloSaxonRunic
+ {
+  \renewcommand
+    \DTLCurrentLocaleWordHandler
+    { \DTLangRunrLocaleHandler }
+  \renewcommand
+    \DTLCurrentLocaleGetInitialLetter
+    { \DTLangRunrLocaleGetInitialLetter }
+  \renewcommand
+    \DTLCurrentLocaleGetGroupString
+    { \DTLangRunrLocaleGetGroupString }
+  \DTLangRunrTranslations
+%    \end{macrocode}
+% Allow region files to construct control sequence names based on
+% this naming scheme:
+%    \begin{macrocode}
+  \tl_set:Nn \l_datatool_current_language_tl { angRunr }
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\TrackLangAddToCaptions{\DataToolBaseAngloSaxonRunic}
+%    \end{macrocode}

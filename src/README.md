@@ -84,6 +84,12 @@ the result will be:
 See also "Localisation with tracklang.tex"
 https://www.dickimaw-books.com/latex/tracklang
 
+This bundle also includes limited support for Old English
+(Anglo-Saxon) mainly to provide an example for a language that has
+multiple scripts (in this case, Latin and Runic). The language codes
+are `ang-Latn` for Anglo-Saxon Latin Script and `ang-Runr`
+for Anglo-Saxon Runic Script. There's only support for UTF-8.
+
 This material is subject to the LaTeX Project Public License.
 See http://www.ctan.org/license/lppl1.3 for the details of that
 license.

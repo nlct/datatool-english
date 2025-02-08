@@ -1,0 +1,93 @@
+% arara: lualatex
+\documentclass{article}
+
+\usepackage{fontspec}
+\usepackage[locales={ang-Latn}]{datatool-base}
+
+\setromanfont{Noto Serif}
+\setsansfont{Noto Sans}
+\setmonofont{Noto Sans Mono}
+
+\newcommand{\wordlist}{
+% from Bosworth/Toller
+ ealdorlíc,
+ eáster,
+ eáster-ǽfen,
+ eáster-dæg,
+ eáster-fæsten,
+ eáster-feorm,
+ eáster-líc,
+ eáster-mónaþ,
+ eást-ern,
+ eáster-niht,
+ eáster-þénug,
+ eáster-tíd,
+ eáster-wuce,
+ eá-step,
+ eásteweard,
+ eást-folc,
+ Eást-Francana,
+ eást-healf,
+ Eást-land,
+ eást-lang,
+ eástran,
+ eá-stream,
+ eást-ródor,
+ eástron,
+ eást-sǽ,
+ Eást-Seaxe,
+ eást-weg,
+ eáþ,
+ eáðelic,
+ eaþ-fere,
+ eaþ-fynde,
+ ýÞung,
+% some words starting with wynn, eth, thorn, ash and ethel
+ eðel,
+ ðæt,
+ ƿenne,
+ ƿēana,
+ ƿiges,
+ ƿarne,
+ þorn,
+ Æðelþryð,
+ æsċ,
+ Œthelwald,
+ Oswine,
+ Olaf,
+ oaf
+}
+
+\begin{document}
+%Original word list: \DTLformatlist{\wordlist}.
+
+%Shuffle:
+\DTLshufflelist{\wordlist}
+%\DTLformatlist{\wordlist}.
+
+\section{Harley (Ƿ, Ð, Æ, Þ)}
+
+{% localise
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\wordlist}.
+
+}
+
+\section{Stowe (Ƿ, Ð, Þ)}
+\DTLsetLocaleOptions{ang-Latn}{order=stowe}
+
+{% localise
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\wordlist}.
+
+}
+
+\section{Titus (Ƿ–Þ–Ð)}
+\DTLsetLocaleOptions{ang-Latn}{order=titus}
+
+{% localise
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\wordlist}.
+
+}
+\end{document}

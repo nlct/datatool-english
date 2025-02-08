@@ -1,0 +1,28 @@
+%\section{Root Old English (Anglo Saxon) LDF for \sty{datatool-base}}
+% Provide support for Old English (\sty{tracklang} root language
+% "anxglosaxon").
+% This is mainly provided as an example for dealing with languages
+% that have multiple scripts and non-ASCII letters.
+% As such, it doesn't provide an translations or date/time
+% formatting.
+%
+% The file \filemeta{datatool-ang-}{script}{.ldf} should already
+% have been found if installed correctly. This is a fallback
+% to catch an unrecognised script and encoding combination.
+%    \begin{macrocode}
+\TrackLangProvidesResource{anglosaxon}%%FILEVERSION%%
+%    \end{macrocode}
+% Try loading \filemetameta{datatool-ang-}{script}{-}{encoding}{.ldf}
+%    \begin{macrocode}
+\TrackLangRequestResource{ang-\CurrentTrackedDialectScript-\TrackLangEncodingName}
+{%
+%    \end{macrocode}
+% Not found.
+%    \begin{macrocode}
+  \PackageWarning{datatool-anglosaxon}%
+   {%
+     No support for `anglosaxon' with script `\CurrentTrackedDialectScript'
+     and encoding `\TrackLangEncodingName'%
+   }%
+}
+%    \end{macrocode}

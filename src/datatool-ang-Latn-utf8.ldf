@@ -1,0 +1,200 @@
+%\section{Root Anglo Saxon Latin (UTF-8) LDF for \sty{datatool-base}}
+%    \begin{macrocode}
+\TrackLangProvidesResource{ang-Latn-utf8}%%FILEVERSION%%
+%    \end{macrocode}
+%Switch on \LaTeX3 syntax.
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+%
+% Only provide limited support for additional characters to allow for
+% foreign names. The more cases added, the longer the processing
+% time.
+%
+% The extended Latin characters and characters derived from Runic
+% are multi-byte which means that with
+% \sty{inputenc} they will be treated as multiple tokens.
+% This means that the characters need to be converted into
+% single-byte characters such that the character code of those
+% single-byte characters have the same ordering (numerically)
+% as the Latin characters. Remember that the result isn't intended
+% for typesetting but is just intended for a character code
+% comparison.
+%    \begin{macrocode}
+\newcommand \DTLangLatnLocaleHandler [ 1 ]
+{
+  \datatool_angLatn_order_harley:n { #1 }
+}
+%    \end{macrocode}
+%Harley order: A-Z, Ƿ, Ð, Æ, Þ
+%    \begin{macrocode}
+\cs_new:Nn \datatool_angLatn_order_harley:n
+ {
+  \regex_replace_case_all:nN
+  {
+    {À|Á|Â|Ã|Ä|Ā} {A}
+    {Ç|Ċ} {C}
+    {È|É|Ê|Ë|Ē} {E}
+    {Ì|Í|Î|Ï|Ī} {I}
+    {Ñ} {N}
+    {Ò|Ó|Ô|Õ|Ö} {O}
+    {Œ} {OE}
+    {Ù|Ú|Û|Ü|Ū} {U}
+    {Ý} {Y}
+    {Ƿ|Ꝩ} {\x{5B}}
+    {Ð} {\cL\x{5C}}
+    {Æ|Ǣ|Ǽ|Æ̀|Æ̂} {\cL\x{5D}}
+    {Þ|Ꝥ} {\cL\x{5E}}
+    {à|á|â|ã|ä|ā} {a}
+    {ç|ċ} {c}
+    {è|é|ê|ë|ē} {e}
+    {ì|í|î|ï|ī} {i}
+    {ñ} {n}
+    {ò|ó|ô|õ|ö} {o}
+    {œ} {oe}
+    {ſ} {s}
+    {ß} {ss}
+    {ù|ú|û|ü|ū} {u}
+    {ý} {y}
+    {ƿ|ꝩ} {\cL\x{7B}}
+    {ð} {\cL\x{7C}}
+    {æ|ǣ|ǽ|æ̀|æ̂} {\cL\x{7D}}
+    {þ|ꝥ} {\cL\x{7E}}
+%    \end{macrocode}
+%Any character in the punctuation class:
+%    \begin{macrocode}
+    { ([[:punct:]]+) } { \cO"\1 }
+  }
+  #1
+ }
+%    \end{macrocode}
+%
+% Stowe order has A-Z, Ƿ, Ð, Þ (not sure where Æ goes so I've made it
+% equivalent to AE for now).
+%    \begin{macrocode}
+\cs_new:Nn \datatool_angLatn_order_stowe:n
+ {
+  \regex_replace_case_all:nN
+  {
+    {À|Á|Â|Ã|Ä|Ą} {A}
+    {Æ|Ǣ|Ǽ|Æ̀|Æ̂} {AE}
+    {Ç|Ċ} {C}
+    {È|É|Ê|Ë|Ę} {E}
+    {Ì|Í|Î|Ï} {I}
+    {Ñ} {N}
+    {Ò|Ó|Ô|Õ|Ö} {O}
+    {Œ} {OE}
+    {Ꞇ|Ꞇ̃} {T}
+    {Ù|Ú|Û|Ü} {U}
+    {Ý} {Y}
+    {Ƿ|Ꝩ} {\cL\x{5B}}
+    {Ð} {\cL\x{5C}}
+    {Þ|Ꝥ} {\cL\x{5D}}
+    {à|á|â|ã|ä|ą} {a}
+    {æ|ǣ|ǽ|æ̀|æ̂} {ae}
+    {ç|ċ} {c}
+    {è|é|ê|ë|ę} {e}
+    {ì|í|î|ï|ı} {i}
+    {ñ} {n}
+    {ò|ó|ô|õ|ö} {o}
+    {œ} {oe}
+    {ꞇ|ꞇ̃} {t}
+    {ù|ú|û|ü} {u}
+    {ý} {y}
+    {ƿ|ꝩ} {\cL\x{7B}}
+    {ð} {\cL\x{7C}}
+    {þ|ꝥ} {\cL\x{7D}}
+    {⁊} {\cL\x{7E}}
+%    \end{macrocode}
+%Any character in the punctuation class:
+%    \begin{macrocode}
+    { ([[:punct:]]+) } { \cO"\1 }
+  }
+  #1
+ }
+%    \end{macrocode}
+%
+% Titus has order A-Z, Ƿ–Þ–Ð (again, not sure where Æ goes).
+%    \begin{macrocode}
+\cs_new:Nn \datatool_angLatn_order_titus:n
+ {
+  \regex_replace_case_all:nN
+  {
+    {À|Á|Â|Ã|Ä|Ą} {A}
+    {Æ|Ǣ|Ǽ|Æ̀|Æ̂} {AE}
+    {Ç|Ċ} {C}
+    {È|É|Ê|Ë|Ę} {E}
+    {Ì|Í|Î|Ï} {I}
+    {Ñ} {N}
+    {Ò|Ó|Ô|Õ|Ö} {O}
+    {Œ} {OE}
+    {Ꞇ|Ꞇ̃} {T}
+    {Ù|Ú|Û|Ü} {U}
+    {Ý} {Y}
+    {Ƿ|Ꝩ} {\cL\x{5B}}
+    {Ð} {\cL\x{5D}}
+    {Þ|Ꝥ} {\cL\x{5C}}
+    {à|á|â|ã|ä|ą} {a}
+    {æ|ǣ|ǽ|æ̀|æ̂} {ae}
+    {ç|ċ} {c}
+    {è|é|ê|ë|ę} {e}
+    {ì|í|î|ï|ı} {i}
+    {ñ} {n}
+    {ò|ó|ô|õ|ö} {o}
+    {œ} {oe}
+    {ꞇ|ꞇ̃} {t}
+    {ù|ú|û|ü} {u}
+    {ý} {y}
+    {ƿ|ꝩ} {\cL\x{7B}}
+    {ð} {\cL\x{7D}}
+    {þ|ꝥ} {\cL\x{7C}}
+    {⁊} {\cL\x{7E}}
+%    \end{macrocode}
+%Any character in the punctuation class:
+%    \begin{macrocode}
+    { ([[:punct:]]+) } { \cO"\1 }
+  }
+  #1
+ }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\datatool_locale_define_keys:nn { ang-Latn }
+ {
+    order .choice:,
+    order / harley .code:n = 
+     {
+       \renewcommand \DTLangLatnLocaleHandler [1]
+        {
+          \datatool_angLatn_order_harley:n { ##1 }
+        }
+     },
+    order / stowe .code:n = 
+     {
+       \renewcommand \DTLangLatnLocaleHandler [1]
+        {
+          \datatool_angLatn_order_stowe:n { ##1 }
+        }
+     },
+    order / titus .code:n = 
+     {
+       \renewcommand \DTLangLatnLocaleHandler [1]
+        {
+          \datatool_angLatn_order_titus:n { ##1 }
+        }
+     },
+ }
+%    \end{macrocode}
+%
+%Translations: only providing \qt{and} (Tironian et)
+%    \begin{macrocode}
+\newcommand \DTLangLatnTranslations
+{
+  \tl_set:Nn \DTLandname { ⁊ }
+}
+%    \end{macrocode}
+%
+%Switch off \LaTeX3 syntax.
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
