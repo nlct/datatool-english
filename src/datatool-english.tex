@@ -1,9 +1,12 @@
 % arara: pdflatex
 \documentclass{ltxdoc}
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
 \usepackage{tcolorbox}
+
+\setromanfont{FreeSerif}
+\setsansfont{FreeSans}
+\setmonofont{FreeMono}
 
 \CheckSum{0}
 
@@ -11,6 +14,7 @@
 \newcommand*{\file}[1]{\nolinkurl{#1}}
 \newcommand*{\filemeta}[3]{\nolinkurl{#1}\meta{#2}\nolinkurl{#3}}
 \newcommand*{\opt}[1]{\textsf{#1}}
+\newcommand*{\qt}[1]{``#1''}
 
 \definecolor{defbackground}{rgb}{1,1,0.75}
 \newtcolorbox{definition}{colback=defbackground}
@@ -21,9 +25,9 @@
 \title{English Localisation Support for \sty{datatool} Package}
 \author{Nicola L. C. Talbot}
 %%DATECMD%%
-\maketitle
 
 \begin{document}
+\maketitle
 
 \begin{abstract}
 This is the English localisation support for the \sty{datatool}
@@ -306,43 +310,43 @@ names.
 The following commands are provided. Note that they require
 \LaTeX3 syntax.
 
-\DescribeMacro{\datatool_en_get_monthname_map:n}
+\DescribeMacro{\datatool\_en\_get\_monthname\_map:n}
 \begin{definition}
-\cs{datatool_en_get_monthname_map:n} \marg{month}
+\cs{datatool\_en\_get\_monthname\_map:n} \marg{month}
 \end{definition}
 Gets the number associated with the given English month name.
 
-\DescribeMacro{\datatool_en_if_pm:nTF}
+\DescribeMacro{\datatool\_en\_if\_pm:nTF}
 \begin{definition}
-\cs{datatool_en_if_pm:nTF} \marg{text} \marg{true} \marg{false}
+\cs{datatool\_en\_if\_pm:nTF} \marg{text} \marg{true} \marg{false}
 \end{definition}
 Tests if \meta{text} represents afternoon (``pm'', 
 ``in the afternoon'', ``in the evening'', ''midnight'').
 This indicates that 12 needs to be added to the hour for 12-hour
 formats.
 
-\DescribeMacro{\datatool_en_monthname:n}
+\DescribeMacro{\datatool\_en\_monthname:n}
 \begin{definition}
-\cs{datatool_en_monthname:n} \marg{num}
+\cs{datatool\_en\_monthname:n} \marg{num}
 \end{definition}
 Expands to the month name for \meta{num} (1 for January, etc).
 
-\DescribeMacro{\datatool_en_shortmonthname:n}
+\DescribeMacro{\datatool\_en\_shortmonthname:n}
 \begin{definition}
-\cs{datatool_en_shortmonthname:n} \marg{num}
+\cs{datatool\_en\_shortmonthname:n} \marg{num}
 \end{definition}
 Expands to the abbreviated month name. This will be defined to
 \cs{DTMenglishshortmonthname} if that command exists
 (\sty{datetime2-english}) or to:
-\DescribeMacro{\datatool_en_shortmonthname_dotless:n}
+\DescribeMacro{\datatool\_en\_shortmonthname\_dotless:n}
 \begin{definition}
-\cs{datatool_en_shortmonthname_dotless:n} \marg{num}
+\cs{datatool\_en\_shortmonthname\_dotless:n} \marg{num}
 \end{definition}
 Expands to a three-letter abbreviation without a trailing dot.
 An alternative command is also provided:
-\DescribeMacro{\datatool_en_shortmonthname_dotted:n}
+\DescribeMacro{\datatool\_en\_shortmonthname\_dotted:n}
 \begin{definition}
-\cs{datatool_en_shortmonthname_dotted:n} \marg{num}
+\cs{datatool\_en\_shortmonthname\_dotted:n} \marg{num}
 \end{definition}
 This expands to a three or four letter abbreviation followed by a
 dot except for short month names, such as May, that aren't
