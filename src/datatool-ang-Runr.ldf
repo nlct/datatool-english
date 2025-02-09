@@ -78,6 +78,7 @@
 %    \begin{macrocode}
 \newcommand \DataToolBaseAngloSaxonRunic
  {
+  \DTLresetLanguage
   \renewcommand
     \DTLCurrentLocaleWordHandler
     { \DTLangRunrLocaleHandler }
