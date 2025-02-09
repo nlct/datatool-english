@@ -78,7 +78,42 @@
   \renewcommand \dtlnonlettergroup [ 1 ] { Symbols }
   \renewcommand \dtlnumbergroup [ 1 ] { Numbers }
   \renewcommand \dtlcurrencygroup [ 2 ] { Currency }
+  \renewcommand \dtldatetimegroup [ 1 ] { Timestamps }
+  \renewcommand \dtldategroup [ 1 ] { Dates }
+  \renewcommand \dtltimegroup [ 1 ] { Times }
 }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\newcommand \DTLenTranslations
+ {
+  \renewcommand \DTLandname { and }
+ }
+%    \end{macrocode}
+%Provide options
+%    \begin{macrocode}
+\datatool_locale_define_keys:nn { en }
+ {
+    and .choice:,
+    and / word .code:n = 
+     {
+      \renewcommand \DTLenTranslations
+       {
+         \renewcommand \DTLandname { and }
+       }
+      \tl_if_eq:NnT \l_datatool_current_language_tl { en }
+       { \DTLenTranslations }
+     } ,
+    and / amp .code:n = 
+     {
+      \renewcommand \DTLenTranslations
+       {
+         \renewcommand \DTLandname { \& }
+       }
+      \tl_if_eq:NnT \l_datatool_current_language_tl { en }
+       { \DTLenTranslations }
+     } ,
+ }
 %    \end{macrocode}
 %
 %\subsection{Dates and Times}
@@ -548,7 +583,7 @@
 %    \end{macrocode}
 % Textual commands:
 %    \begin{macrocode}
-  \renewcommand \DTLandname { and }
+  \DTLenTranslations
  }
 %    \end{macrocode}
 %
