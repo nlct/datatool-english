@@ -60,6 +60,13 @@
 \newcommand \DTLangLatnLocaleGetGroupString [ 3 ]
  {
    \tl_set:Nn #3 { #1 }
+   \datatool_angLatn_process_letter_group:N #3
+   \bool_lazy_and:nnT
+     { \tl_if_head_eq_charcode_p:nN { #1 } - }
+     { \bool_not_p:n { \tl_if_head_eq_charcode_p:nN { #2 } " } }
+    {
+      \exp_args:NNe \tl_set:Nn #3 { \tl_tail:N #3 }
+    }
  }
 %    \end{macrocode}
 %\end{macro}

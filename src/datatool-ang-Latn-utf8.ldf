@@ -23,12 +23,12 @@
 %    \begin{macrocode}
 \newcommand \DTLangLatnLocaleHandler [ 1 ]
 {
-  \datatool_angLatn_order_harley:n { #1 }
+  \datatool_angLatn_order_harley:N #1
 }
 %    \end{macrocode}
 %Harley order: A-Z, Ƿ, Ð, Æ, Þ
 %    \begin{macrocode}
-\cs_new:Nn \datatool_angLatn_order_harley:n
+\cs_new:Nn \datatool_angLatn_order_harley:N
  {
   \regex_replace_case_all:nN
   {
@@ -72,7 +72,7 @@
 % Stowe order has A-Z, Ƿ, Ð, Þ (not sure where Æ goes so I've made it
 % equivalent to AE for now).
 %    \begin{macrocode}
-\cs_new:Nn \datatool_angLatn_order_stowe:n
+\cs_new:Nn \datatool_angLatn_order_stowe:N
  {
   \regex_replace_case_all:nN
   {
@@ -116,7 +116,7 @@
 %
 % Titus has order A-Z, Ƿ–Þ–Ð (again, not sure where Æ goes).
 %    \begin{macrocode}
-\cs_new:Nn \datatool_angLatn_order_titus:n
+\cs_new:Nn \datatool_angLatn_order_titus:N
  {
   \regex_replace_case_all:nN
   {
@@ -158,6 +158,45 @@
  }
 %    \end{macrocode}
 %
+%We also need to merge accented characters for the letter groups.
+%Note that since we're only concerned with the first letter, 
+%we only need a single replace not replace all.
+%    \begin{macrocode}
+\cs_new:Nn \datatool_angLatn_process_letter_group:N
+ {
+  \regex_replace_case_once:nN
+  {
+    {À|Á|Â|Ã|Ä|Ā} {A}
+    {Ç|Ċ} {C}
+    {È|É|Ê|Ë|Ē} {E}
+    {Ì|Í|Î|Ï|Ī} {I}
+    {Ñ} {N}
+    {Ò|Ó|Ô|Õ|Ö} {O}
+    {Œ} {OE}
+    {Ù|Ú|Û|Ü|Ū} {U}
+    {Ý} {Y}
+    {Æ|Ǣ|Ǽ|Æ̀|Æ̂} {Æ}
+    {Ƿ|Ꝩ} {Ƿ}
+    {Þ|Ꝥ} {Þ}
+    {à|á|â|ã|ä|ā} {a}
+    {ç|ċ} {c}
+    {è|é|ê|ë|ē} {e}
+    {ì|í|î|ï|ī} {i}
+    {ñ} {n}
+    {ò|ó|ô|õ|ö} {o}
+    {œ} {oe}
+    {ſ} {s}
+    {ß} {ss}
+    {ù|ú|û|ü|ū} {u}
+    {ý} {y}
+    {ƿ|ꝩ} {ƿ}
+    {æ|ǣ|ǽ|æ̀|æ̂} {æ}
+    {þ|ꝥ} {þ}
+  }
+  #1
+ }
+%    \end{macrocode}
+%
 %    \begin{macrocode}
 \datatool_locale_define_keys:nn { ang-Latn }
  {
@@ -166,21 +205,21 @@
      {
        \renewcommand \DTLangLatnLocaleHandler [1]
         {
-          \datatool_angLatn_order_harley:n { ##1 }
+          \datatool_angLatn_order_harley:N ##1 
         }
      },
     order / stowe .code:n = 
      {
        \renewcommand \DTLangLatnLocaleHandler [1]
         {
-          \datatool_angLatn_order_stowe:n { ##1 }
+          \datatool_angLatn_order_stowe:N ##1
         }
      },
     order / titus .code:n = 
      {
        \renewcommand \DTLangLatnLocaleHandler [1]
         {
-          \datatool_angLatn_order_titus:n { ##1 }
+          \datatool_angLatn_order_titus:N ##1
         }
      },
  }

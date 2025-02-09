@@ -47,11 +47,6 @@
 \newcommand \DTLenLocaleGetInitialLetter [ 2 ]
  {
    \datatool_get_first_letter:nN { #1 } #2 
-   \DTLenLocaleHandler #2
-   \int_compare:nNnT { \tl_count:N #2 } > { \c_one_int }
-    {
-      \exp_args:NV \datatool_get_first_letter:nN #2 #2 
-    }
  }
 %    \end{macrocode}
 %\end{macro}
@@ -60,10 +55,15 @@
 %\begin{definition}
 %\cs{DTLenLocaleGetGroupString}\marg{actual}\marg{sort value}\marg{tl}
 %\end{definition}
+%Use the sort value rather than the actual value.
+%This ensures that the accents are stripped, but it will mean that
+%the currency and punctuation marks will have their initial marker.
+%Bear in mind that this is only used for values that have been
+%identified as strings. It's not used by other data types.
 %    \begin{macrocode}
 \newcommand \DTLenLocaleGetGroupString [ 3 ]
  {
-  \tl_set:Nn #3 { #1 }
+   \tl_set:Nn #3 { #2 }
  }
 %    \end{macrocode}
 %\end{macro}
@@ -524,15 +524,15 @@
 %    \begin{macrocode}
 \newcommand \DataToolBaseEnglish
  {
-  \let
+  \renewcommand
     \DTLCurrentLocaleWordHandler
-    \DTLenLocaleHandler
-  \let
+    { \DTLenLocaleHandler }
+  \renewcommand
     \DTLCurrentLocaleGetInitialLetter
-    \DTLenLocaleGetInitialLetter
-  \let
+    { \DTLenLocaleGetInitialLetter }
+  \renewcommand
     \DTLCurrentLocaleGetGroupString
-    \DTLenLocaleGetGroupString
+    { \DTLenLocaleGetGroupString }
   \DTLenSetLetterGroups
   \let
    \DTLCurrentLocaleGetMonthNameMap

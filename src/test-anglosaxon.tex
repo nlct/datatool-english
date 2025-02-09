@@ -10,6 +10,8 @@
 
 \newcommand{\wordlist}{
 % from Bosworth/Toller
+ áǽðan,
+ a-bacan,
  ealdorlíc,
  eáster,
  eáster-ǽfen,
@@ -55,7 +57,9 @@
  Œthelwald,
  Oswine,
  Olaf,
- oaf
+ oaf,
+% and something starting with a hyphen
+ -brægd
 }
 
 \begin{document}
@@ -69,7 +73,13 @@
 
 {% localise
 \DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
-Sorted list: \DTLformatlist{\wordlist}.
+Sorted list (letter handler): \DTLformatlist{\wordlist}.
+
+}
+
+{% localise
+\DTLsortwordlist{\wordlist}{\DTLsortwordhandler}
+Sorted list (word handler): \DTLformatlist{\wordlist}.
 
 }
 
