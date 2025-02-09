@@ -13,6 +13,7 @@ datatool-ang-Runr.ldf \
 datatool-ang-Runr-utf8.ldf 
 
 all	: test-english.pdf test-datatool.pdf \
+	test-datagidx.pdf test-glossarynoidx.pdf \
 	test-anglosaxon.pdf test-runes.pdf
 
 test-english.pdf	: test-english.tex $(ldfs)

@@ -1,0 +1,14 @@
+% arara: pdflatex
+% arara: pdflatex
+\documentclass{article}
+\usepackage[locales={en}]{datagidx}
+\newgidx{index}{Index}
+\newterm{élan}
+\newterm{elephant}
+\newterm{élite}
+\newterm{elk}
+\begin{document}
+\gls{elk}, \gls{élan} \gls{élite} and \gls{elephant}.
+\printterms
+\end{document}
+

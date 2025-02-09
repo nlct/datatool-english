@@ -1,8 +1,11 @@
 % arara: pdflatex
+\PassOptionsToPackage{noprint}{doc}% command names are too long
 \documentclass{ltxdoc}
 
 \usepackage{fontspec}
 \usepackage{tcolorbox}
+\usepackage[left=2.5cm,right=2.5cm]{geometry}
+\usepackage[locales={ang-Runr,ang-Latn,en}]{datatool-base}
 
 \setromanfont{Noto Serif}
 \setsansfont{Noto Sans}
@@ -19,6 +22,11 @@
  \nolinkurl{#1}\meta{#2}\nolinkurl{#3}\meta{#4}\nolinkurl{#5}}
 \newcommand*{\opt}[1]{\textsf{#1}}
 \newcommand*{\qt}[1]{``#1''}
+\newcommand*{\setlocaleopts}[1]{%
+ \cs{DTLsetLocaleOptions}\allowbreak
+ \texttt{\brackets{\strong{#1}}}\allowbreak
+ \marg{key=val list}%
+}
 
 \definecolor{defbackground}{rgb}{1,1,0.75}
 \newtcolorbox{definition}{colback=defbackground}
@@ -30,7 +38,19 @@
 \RecordChanges
 \PageIndex
 
-\title{English Localisation Support for \sty{datatool} Package}
+\newcommand{\myLatnList}{f, u, þ, o, r, c}
+\newcommand{\myRunrList}{
+ \textrune{ᚠ},
+ \textrune{ᚢ},
+ \textrune{ᚦ},
+ \textrune{ᚩ}, 
+ \textrune{ᚱ}, 
+ \textrune{ᚳ}
+}
+\DTLshufflelist\myLatnList
+\DTLshufflelist\myRunrList
+
+\title{English and Old English Localisation Support for \sty{datatool} Package}
 \author{Nicola L. C. Talbot}
 %%DATECMD%%
 
@@ -38,7 +58,7 @@
 \maketitle
 
 \begin{abstract}
-This is the English localisation support for the \sty{datatool}
+This is the English and Old English localisation support for the \sty{datatool}
 package (version 3.0+). This needs to be installed in addition to 
 \sty{datatool}. To ensure regional support, you will also need to
 install \sty{datatool-regions}.
@@ -47,7 +67,7 @@ install \sty{datatool-regions}.
 \section{Introduction}
 \label{sec:intro}
 
-This bundle provides the English modules for \sty{datatool} v3.0+.
+This bundle provides the English and Old English modules for \sty{datatool} v3.0+.
 The files simply need to be installed on \TeX's path.
 The \sty{datatool-base} package (which is automatically loaded by
 \sty{datatool}) uses \sty{tracklang}'s interface for detecting
@@ -87,6 +107,13 @@ example:
 \usepackage{datatool}
 \end{dispListing}
 
+For Old English (Anglo-Saxon), you need the three letter language
+code \qt{ang} and the four letter script code: \qt{Latn}
+(Latin) or \qt{Runr} (Runic). Old English support is very limited
+and mainly provided as an example of how to support extended Latin
+and non-Latin languages. See section~\ref{sec:anglosaxon} for
+further information.
+
 If the regional file isn't installed or if no region is associated
 with the locale then only the language settings will be implemented.
 For example:
@@ -115,21 +142,22 @@ the locales provided. For example:
 
 The \sty{glossaries} package also loads \sty{datatool-base}
 and as from version 4.55 will check for the new \sty{datatool-base}
-commands. If present, \cs{printnoidxglossary} will switch to this
+commands. If they are defined then \cs{printnoidxglossary} will switch to this
 new method of sorting otherwise it will fallback on the old method.
 So installing \sty{datatool-english} will not only affect
 \sty{datatool} and its associated packages but also
 \sty{glossaries}. For example:
 \begin{dispListing}
 \documentclass{article}
-\usepackage[locales={en},index]{glossaries}
+\usepackage[locales={en},index,style=indexgroup]{glossaries}
+\makenoidxglossaries
 \newterm{élan}
 \newterm{elephant}
 \newterm{élite}
 \newterm{elk}
 \begin{document}
 \gls{elk}, \gls{élan} \gls{élite} and \gls{elephant}.
-\printindex
+\printnoidxglossary[type=index]
 \end{document}
 \end{dispListing}
 
@@ -137,10 +165,42 @@ So installing \sty{datatool-english} will not only affect
 The \file{datatool-english.ldf} file provides an intermediary command
 \cs{DataToolBaseEnglish} that's automatically added to the captions hook.
 This performs all the \sty{datatool-base} English language redefinitions.
-There should be little reason to actually use this command anywhere.
+There should be little reason to actually use this command anywhere
+unless you're not using a language package with caption hooks.
 \end{docCommand}
 
-\section{Orthography}
+\section{English (\qt{en})}
+
+The \file{datatool-english.ldf} file provides support for English
+orthography (section~\ref{sec:orthography}), parsing
+dates and times (experimental, see section~\ref{sec:temporal}),
+and for providing fixed text translations.
+
+Aside from the letter group commands, described in
+section~\ref{sec:orthography}, the only fixed text for 
+\sty{datatool-base} is \cs{DTLandname}. This is redefined implicitly
+via the command \cs{DTLenTranslations}, which allows an alternative
+definition to be provided without having to add anything to the
+caption hook.
+
+Options provided by \file{datatool-english.ldf} may be set with
+\setlocaleopts{en}.  Currently, there is only one option.
+
+\begin{docKey}{and}{=\meta{setting}}{initial \opt{word}}
+This determines the definition of \cs{DTLandname} within
+\cs{DTLenTranslations}. The value may be:
+\docValue{word} (define \cs{DTLandname} to expand to
+\qt{and}) or \docValue{amp} (define \cs{DTLandname}
+to expand to \cs{\&}).
+\end{docKey}
+
+Aside from \file{datatool-english.ldf}, there is also
+\file{databib-english.ldf} to provide localisation support
+for \sty{databib} (see section~\ref{sec:databib})
+and \file{person-english.ldf} to provide localisation support
+for the \sty{person} package (see section~\ref{sec:person}).
+
+\subsection{Orthography}
 \label{sec:orthography}
 
 The \file{datatool-english.ldf} file provides support for English
@@ -152,88 +212,61 @@ data types in \TeX, this is implemented by converting the original
 string into an ASCII string in such a way that sorting by character
 code will produce the desired order.
 
-With the newer \cs{DTLsortwordlist}, this is processing is performed once for each
+With the newer \cs{DTLsortwordlist}, this processing is performed once for each
 item in the list prior to sorting to allow for a faster character code
 sort of a temporary sequence variable that stores both the original
 (actual value) and the transformed (sort value) item. 
 This allows the original item to be restored afterwards.
+(You can use \cs{show} on the comma-separate list command afterwards
+to double-check this information.)
 
-For example:
+For example, suppose the document starts with:
 \begin{dispListing*}{title={\sty{datatool} v3.0+}}
 \documentclass{article}
 \usepackage[locales={en}]{datatool}
+\end{dispListing*}
+\DataToolBaseEnglish
+If \file{datatool-english.ldf} is installed:
+\begin{dispExample*}{title={With Localisation}}
 \newcommand{\mylist}{élan,zebra,elephant,ant,élite,elk}
-\begin{document}
 \DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
 Sorted list: \DTLformatlist{\mylist}
-\end{document}
-\end{dispListing*}
-If \file{datatool-english.ldf} is installed, then the resulting list
-will be:
-\begin{quote}
-ant, élan, elephant, élite, elk and zebra
-\end{quote}
+\end{dispExample*}
 However, if \file{datatool-english.ldf} isn't installed (or if
 English support hasn't been requested) the resulting list would be:
-\begin{quote}
-ant, elephant, elk, zebra, élan \& élite
-\end{quote}
+\begingroup
+\DTLresetLanguage
+\begin{dispExample*}{title={No Localisation}}
+\newcommand{\mylist}{élan,zebra,elephant,ant,élite,elk}
+\DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
+Sorted list: \DTLformatlist{\mylist}
+\end{dispExample*}
+\endgroup
 This is because a simple character code has been used.
-(Note also the use of \& instead of ``and''.)
+(Note also the use of \& instead of \qt{and}.)
 
-The \cs{DTLsortwordcasehandler} function is for case-sensitive
-sorts. The \cs{DTLsortwordhandler} function is for case-insensitive
-sorts and simply converts each element to lowercase before
-processing using the locale handler. These functions are for word-order
-comparisons.
-There are analogous functions for letter-order comparisons:
-\cs{DTLsortletterhandler} (case-insensitive) and 
-\cs{DTLsortlettercasehandler} (case-sensitive). These strip spaces
-and hyphens before processing.
+The \cs{DTLsortwordcasehandler} function is for case-sensitive word
+sorting, whereas the \cs{DTLsortwordhandler} function is for
+case-insensitive word sorting and simply converts each element to
+lowercase before processing using the locale handler.  There are
+analogous functions for letter-order comparisons which strip spaces
+and hyphens before processing (see the \sty{datatool} manual for
+further details).
 
-The \cs{DTLsortdata} command, provided by \sty{datatool}, works in a
-similar way to \cs{DTLsortwordlist} and uses the same handler
-functions. For example:
+The \cs{DTLsortdata} command, provided by \sty{datatool} v3.0+ for
+sorting databases, works in a similar way to \cs{DTLsortwordlist} 
+and uses the same handler functions. For example:
 \begin{dispListing}
 \documentclass{article}
 \usepackage[locales={en}]{datatool}
 
 \DTLaction{new}
-\DTLaction
- [
-   assign = { name = Annie, age = 40 }
- ]
-{new row}
-
-\DTLaction
- [
-   assign = { name = Ele, age = 80 }
- ]
-{new row}
-
-\DTLaction
- [
-   assign = { name = Éleanor, age = 28 }
- ]
-{new row}
-
-\DTLaction
- [
-   assign = { name = Zack, age = 47 }
- ]
-{new row}
-
-\DTLaction
- [
-   assign = { name = Elva, age = 53 }
- ]
-{new row}
-
-\DTLaction
- [
-   assign = { name = Æthelwulf, age = 95 }
- ]
-{new row}
+\DTLaction[ assign = { name = Annie, age = 40 } ]{new row}
+\DTLaction[ assign = { name = Ele, age = 80 } ]{new row}
+\DTLaction[ assign = { name = Éleanor, age = 28 } ]{new row}
+\DTLaction[ assign = { name = Zack, age = 47 } ]{new row}
+\DTLaction[ assign = { name = Elva, age = 53 } ]{new row}
+\DTLaction[ assign = { name = Æthelwulf, age = 95 } ]{new row}
 
 \DTLsortdata{}{name}
 \begin{document}
@@ -252,9 +285,9 @@ database with the corresponding letter group obtained from sorting:
 \DTLsortdata[save-group]{}{name}
 \end{dispListing}
 The letter group is typically the first letter of the sort value
-but this may not be the case for some languages, so the code for
-obtaining the first letter of a word is adjusted by the language
-hook.
+or the actual value but this may not be the case for some languages,
+so the code for obtaining the first letter of a word is adjusted by
+the language hook.
 
 The groups obtained from sorting are letter groups if the sorted
 item starts with an alphabetical character. If the value is
@@ -263,7 +296,8 @@ currency group, if the value is determined to be a number (without a
 currency prefix) then it will be considered part of the number
 group, otherwise it will be in the non-letter group.
 
-The titles for all these groups are obtained with the commands
+The titles for all these groups are obtained with the
+\sty{datatool-base} commands
 \cs{dtllettergroup}, \cs{dtlnonlettergroup}, \cs{dtlnumbergroup}
 and \cs{dtlcurrencygroup} which are all redefined by the language
 hook.
@@ -281,7 +315,22 @@ groups.
 \begin{docCommand}{DTLenLocaleHandler}{\marg{tl-var}}
 Converts the token list variable containing the sort value.
 You may redefine this command to add support for additional
-characters.
+characters, but bear in mind that the more complex the regular
+expression the longer the document build.
+\end{docCommand}
+
+\begin{docCommand}{DTLenLocaleGetGroupString}{\marg{actual}\marg{sort}\marg{tl-var}}
+Sets \meta{tl-var} to the applicable content in preparation for
+extracting the initial letter, where \meta{actual} is the original
+value and \meta{sort} is the sort value obtained after processing 
+by the handler. (Afterwards, the expansion of \meta{tl-var} will
+then be passed as the \meta{word} argument of \cs{DTLenLocaleGetInitialLetter}.)
+
+For English, this is straight-forward
+as the sort value is usually appropriate for this.
+If you redefine this command to set \meta{tl-var} to the actual
+value then accented characters will be considered separate letter
+groups. This can lead to odd results.
 \end{docCommand}
 
 \begin{docCommand}{DTLenLocaleGetInitialLetter}{\marg{word}\marg{tl-var}}
@@ -294,12 +343,12 @@ Redefines the group commands. This can be redefined if different
 titles are required.
 \end{docCommand}
 
-\section{Dates and Times}
+\subsection{Dates and Times}
 \label{sec:temporal}
 
 This is still an experimental feature. As from v3.0, \sty{datatool}
 now has additional data types: date, time and datetime.
-Parsing for these is off by default but may be enabled.
+\emph{Parsing for these is \strong{off} by default but may be enabled.}
 Without the language support, only ISO dates, times and timestamps
 can be parsed. The order (dmy, mdy, ymd) is usually set by the
 region file (provided with \sty{datatool-regions}).
@@ -315,13 +364,17 @@ The following commands are provided. Note that they require
 
 \begin{docCommand*}{datatool_en_get_monthname_map:n}{ \marg{month}}
 Gets the number associated with the given English month name.
+For example, January or Jan should result in 1.
 \end{docCommand*}
 
 \begin{docCommand*}{datatool_en_if_pm:nTF}{ \marg{text} \marg{true} \marg{false}}
 Tests if \meta{text} represents afternoon (\qt{pm}, 
 \qt{in the afternoon}, \qt{in the evening}, \qt{midnight}).
 This indicates that 12 needs to be added to the hour for 12-hour
-formats.
+formats. Not that \qt{noon} is not \emph{after} noon (12 noon +12 would
+result in 24, which is incorrect for noon) and
+\qt{midnight} would need to have the hour as 12 not 0 (0 midnight +12 would
+result in 12, which is incorrect for midnight).
 \end{docCommand*}
 
 \begin{docCommand*}{datatool_en_monthname:n}{ \marg{num}}
@@ -344,17 +397,21 @@ dot except for short month names, such as May, that aren't
 abbreviated.
 \end{docCommand*}
 
-\section{Support for \sty{databib}}
+\subsection{Support for \sty{databib}}
+\label{sec:databib}
 
-The \sty{datatool-english} bundle provides language support for
+The \sty{datatool-english} bundle provides English language support for
 the \sty{databib} package. Options may be set with
-\cs{DTLsetLocaleOptions}\verb|{en/databib}|\marg{key=val list}.
+\setlocaleopts{en/databib}.
 
-Currently, there is only one option: \opt{short-month-style}
-which may take the value \opt{dotted} (use dotted month
-abbreviations) and \opt{dotless} (use three letter abbreviations
-with no dot). This determines the month name abbreviations for 
+Currently, there is only one option:
+\begin{docKey}{short-month-style}{=\meta{style}}{initial \opt{dotted}}
+This determines the month name abbreviations for 
 \sty{databib}'s \opt{abbrv} style.
+The value may be \docValue{dotted} (use dotted month
+abbreviations) or \docValue{dotless} (use three letter abbreviations
+with no dot). 
+\end{docKey}
 
 \begin{docCommand}{DataBibEnglish}{}
 The \file{databib-english.ldf} file defines the
@@ -364,24 +421,146 @@ is automatically added to the captions hook if \sty{databib}
 is loaded.
 \end{docCommand}
 
-\section{Support for \sty{person}}
+\subsection{Support for \sty{person}}
+\label{sec:person}
 
 \begin{docCommand}{DataToolPersonEnglish}{}
-The \sty{datatool-english} bundle provides language support for
+The \sty{datatool-english} bundle provides English language support for
 the \sty{person} package. There are currently no options.
 The \file{person-english.ldf} file defines the intermediary
 command \cs{DataToolPersonEnglish}
 that redefines all the fixed text commands. This command
-is automatically added to the captions hook if \sty{person}
-is loaded.
+is automatically added to the captions hook if the \sty{person}
+package is loaded.
 \end{docCommand}
 
 \section{Old English (Anglo-Saxon)}
+\label{sec:anglosaxon}
 
 This bundle also supplies very limited support for Old English
-(Anglo-Saxon). This is primarily to provide an example of how to
+(Anglo-Saxon). Only UTF-8 encoding is supported. 
+This is primarily to provide an example of how to
 support a language with multiple scripts (or simply a language with
-a non-Latin script).
+a non-Latin script). You will need to identify the script as well as
+the language. For the Latin script:
+\begin{dispListing}
+\usepackage[locales={ang-Latn}]{datatool-base}
+\end{dispListing}
+For the Runic script:
+\begin{dispListing}
+\usepackage[locales={ang-Runr}]{datatool-base}
+\end{dispListing}
+Note that the script indicates the script of the input or source
+text. That is, the text used in the document source code, which
+may not correspond to the glyphs visible in the PDF file.
+
+For example, suppose a package provides a command called, say \cs{runic},
+which expects Latin characters in the argument but the font encoding
+ensures that those characters appear as runes in the PDF (for
+example, the hypothetical command
+\texttt{\cs{runic}\brackets{fuþorc}} in the source code would be
+rendered as \textrune{ᚠᚢᚦᚩᚱᚳ} in the PDF). In this case, the source
+is Latin and so \qt{ang-Latn} is needed when specifying the locale.
+
+If, however, the source code actually contains characters from  
+the Runic Unicode block (with an appropriate font that supports
+those characters), then the source is Runic and so \qt{ang-Runr}
+is needed when specifying the locale.
+
+If there is no captions hook, the last locale to be tracked is the
+one that will be in effect. You can switch using the following:
+\begin{docCommand}{DataToolBaseAngloSaxonLatin}{}
+Switch to \qt{ang-Latn} (if \file{datatool-ang-Latn.ldf} has been
+loaded, undefined otherwise).
+\end{docCommand}
+\begin{docCommand}{DataToolBaseAngloSaxonRunic}{}
+Switch to \qt{ang-Runr} (if \file{datatool-ang-Runr.ldf} has been
+loaded, undefined otherwise).
+\end{docCommand}
+
+The \qt{ang-Latn} localisation support provides the following
+option, which may be set using
+\setlocaleopts{ang-Latn}.
+
+\begin{docKey}{order}{=\meta{setting}}{initially \opt{harley}}
+Determines the letter order. The \meta{setting} may be:
+\texttt{harley} (A-Z, Ƿ, Ð, Æ, Þ), \texttt{stowe}
+(ending with Ƿ, Ð, Þ) or \texttt{titus}
+(ending with Ƿ, Þ, Ð).
+\end{docKey}
+
+The \qt{ang-Runr} localisation support provides the following
+option, which may be set using
+\setlocaleopts{ang-Runr}.
+
+\begin{docKey}{order}{=\meta{setting}}{initially \opt{unicode}}
+Determines the rune order. The \meta{setting} may be:
+\texttt{unicode} (approximate Unicode order) or
+\texttt{poem} (Old English Rune Poem order).
+Note that the \qt{unicode} order puts the punctuation first,
+followed by the other runes, even though the punctuation runes
+actually come towards the end of the Runic block.
+The \qt{poem} order is fuþorc order, with punctuation runes at the
+start (before feof), and the additional non-poem runes appended at the end.
+\end{docKey}
+
+Both ang-Latn and ang-Runr define \cs{DTLandname} to the Tironian
+et (⁊).
+This is done via the following hooks:
+\begin{docCommand}{DTLangLatnTranslations}{}
+This is defined in \file{datatool-ang-Latn.ldf} to update the
+definition of \cs{DTLandname} and is implemented by
+\cs{DataToolBaseAngloSaxonLatn}.
+\end{docCommand}
+\begin{docCommand}{DTLangRunrTranslations}{}
+This is defined in \file{datatool-ang-Runr.ldf} to update the
+definition of \cs{DTLandname} and is implemented by
+\cs{DataToolBaseAngloSaxonRunic}.
+\end{docCommand}
+
+There is no other localisation support (that is, no other
+fixed text or date/time support). The remaining language-sensitive
+commands are reset with \cs{DTLresetLanguage} back to their initial
+definitions.
+
+Suppose the document uses \sty{fontspec} with fonts that support
+the required characters, as follows:
+\begin{dispListing}
+\usepackage{fontspec}
+\setromanfont{Noto Serif}
+\setsansfont{Noto Sans}
+\setmonofont{Noto Sans Mono}
+\newfontfamily\runefont{Noto Sans Runic}
+\NewDocumentCommand{\textrune}{m}{{\runefont #1}}
+\end{dispListing}
+and \sty{datatool-base} has been loaded with support for
+both Latin and Runic Anglo-Saxon:
+\begin{dispListing}
+\usepackage[locales={ang-Runr,ang-Latn}]{datatool-base}
+\end{dispListing}
+and suppose the command \cs{myLatnList}
+is defined to expand to the comma-separated list
+\texttt{\myLatnList}
+and \cs{myRunrList} 
+is defined to expand to the comma-separated list
+\texttt{\def\textrune#1{\allowbreak\cs{textrune}\brackets{{\runefont #1}}}\myRunrList}
+then these lists can be sorted in the document
+as follows:
+\begin{dispExample}
+\DataToolBaseAngloSaxonLatin
+\DTLsetLocaleOptions{ang-Latn}{order=harley}
+\DTLsortwordlist{\myLatnList}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\myLatnList}.
+
+\DataToolBaseAngloSaxonRunic
+\DTLsetLocaleOptions{ang-Runr}{order=poem}
+\DTLsortwordlist{\myRunrList}{\DTLsortwordhandler}
+Sorted list: \DTLformatlist{\myRunrList}.
+\end{dispExample}
+Note that the letter handler is best with \qt{ang-Latn} as there are
+many Anglo-Saxon words with hyphens. (Bosworth Toller's Anglo-Saxon
+dictionary ignores hyphens in the order. For example,
+\qt{á-ǽlan} comes between \qt{aad} and \qt{áǽðan}.)
 
 \StopEventually{%
   \PrintChanges
