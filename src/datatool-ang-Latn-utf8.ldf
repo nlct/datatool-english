@@ -158,6 +158,58 @@
  }
 %    \end{macrocode}
 %
+% Fuþorc order.
+%    \begin{macrocode}
+\cs_new:Nn \datatool_angLatn_order_futhorc:N
+ {
+  \regex_replace_case_all:nN
+  {
+    {f} {\cL\x{31}}
+    {u} {\cL\x{32}}
+    {þ} {\cL\x{33}}
+    {o} {\cL\x{34}}
+    {r} {\cL\x{35}}
+    {c} {\cL\x{36}}
+    {g} {\cL\x{37}}
+    {w} {\cL\x{38}}
+    {h} {\cL\x{39}}
+    {n} {\cL\x{3A}}
+    {i} {\cL\x{3B}}
+    {j} {\cL\x{3C}}
+    {ï} {\cL\x{3D}}
+    {p} {\cL\x{3E}}
+    {x} {\cL\x{40}}
+    {st} {\cL\x{51}}
+    {s} {\cL\x{41}}
+    {t} {\cL\x{42}}
+    {b} {\cL\x{43}}
+    {ea} {\cL\x{4C}}
+    {e} {\cL\x{44}}
+    {m} {\cL\x{45}}
+    {l} {\cL\x{46}}
+    {ŋ} {\cL\x{47}}
+    {œ} {\cL\x{48}}
+    {d} {\cL\x{49}}
+    {a} {\cL\x{4A}}
+    {æ} {\cL\x{4B}}
+    {y} {\cL\x{4D}}
+    {k} {\cL\x{4E}}
+    {ḡ} {\cL\x{4F}}
+    {q} {\cL\x{50}}
+    {ę|ᴇ} {\cL\x{52}}
+    {į} {\cL\x{53}}
+    {ī} {\cL\x{54}}
+    {c̄|k̄} {\cL\x{55}}
+    {⁊} {\cL\x{7E}}
+%    \end{macrocode}
+%Any character in the punctuation class:
+%    \begin{macrocode}
+    { ([[:punct:]]+) } { \cO"\1 }
+  }
+  #1
+ }
+%    \end{macrocode}
+%
 %We also need to merge accented characters for the letter groups.
 %Note that since we're only concerned with the first letter, 
 %we only need a single replace not replace all.
@@ -220,6 +272,13 @@
        \renewcommand \DTLangLatnLocaleHandler [1]
         {
           \datatool_angLatn_order_titus:N ##1
+        }
+     },
+    order / futhorc .code:n = 
+     {
+       \renewcommand \DTLangLatnLocaleHandler [1]
+        {
+          \datatool_angLatn_order_futhorc:N ##1
         }
      },
  }
