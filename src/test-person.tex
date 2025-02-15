@@ -1,0 +1,109 @@
+% arara: pdflatex
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[base-only,locales=en]{person}
+
+\newperson*[johnsmith]
+ {
+   name={John},
+   surname={Smith},
+   title={Mr},
+   gender=m
+ }
+
+\newperson*[janedoe]
+ {
+   name={Jane},
+   surname={Doe},
+   title={Mrs},
+   gender=f
+ }
+
+\newperson*[juliesmith]
+ {
+   name={Julie},
+   surname={Smith},
+   title={Ms},
+   gender=f
+ }
+
+\newperson*[evelynbrown]
+ {
+   name={Evelyn},
+   surname={Brown}
+ }
+
+\newperson*[lougreen]
+ {
+   name={Lou},
+   surname={Green},
+   gender=n
+ }
+
+\ExplSyntaxOn
+\NewDocumentCommand \personsee { O{anon} }
+ {
+   \person_language_text:nn { #1 } { see }
+ }
+\NewDocumentCommand \Personsee { O{anon} }
+ {
+   \person_Language_text:nn { #1 } { see }
+ }
+\NewDocumentCommand \peoplesee { }
+ {
+   \person_language_all_text:n { see }
+ }
+\NewDocumentCommand \Peoplesee { }
+ {
+   \person_Language_all_text:n { see }
+ }
+\PersonSetLocalisation{male}{see}{sees}
+\PersonSetLocalisation{female}{see}{sees}
+\PersonSetLocalisation{nonbinary}{see}{see}
+\PersonSetLocalisation{unknown}{see}{see}
+\PersonSetLocalisation{male}{pluralsee}{see}
+\PersonSetLocalisation{female}{pluralsee}{see}
+\PersonSetLocalisation{nonbinary}{pluralsee}{see}
+\PersonSetLocalisation{unknown}{pluralsee}{see}
+\ExplSyntaxOff
+
+\begin{document}
+People: \peoplefullname.
+\Peoplepronoun\ \peoplesee\ a duck.
+
+\forallpeople{\personlabel}{%
+ Name: \personfullname[\personlabel].
+ (Gender: \persongender{\personlabel}.)
+ \Personpronoun[\personlabel] \personsee[\personlabel] the duck.
+ The duck sees \personobjpronoun[\personlabel].
+ The duck says, I see \personobjpronounii[\personlabel].
+ The duck eats \personpossadj[\personlabel] corn.
+ The duck says, I ate \personpossadjii[\personlabel] corn.
+ That corn is \personposspronoun[\personlabel].
+ The duck says, the corn was \personposspronounii[\personlabel].
+\par
+ {% scope
+  \newperson*{name={Alice},gender=f}%
+  \personname[\personlabel] is \personname's \personchild[\personlabel].
+  \personname\ is \personpossadj[\personlabel] \personparent.
+  \par
+ }
+ {% scope
+  \newperson*{name={Bob},gender=m}%
+  \personname[\personlabel] is \personname's \personchild[\personlabel].
+  \personname\ is \personpossadj[\personlabel] \personparent.
+  \par
+ }
+}
+
+\personname[juliesmith] is \personname[janedoe]'s
+\personsibling[juliesmith].
+
+\personname[johnsmith] is \personname[janedoe]'s
+\personsibling[johnsmith].
+
+\personname[evelynbrown] is \personname[lougreen]'s
+\personsibling[evelynbrown].
+
+\end{document}
