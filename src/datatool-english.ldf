@@ -27,13 +27,13 @@
 \ExplSyntaxOn
 %    \end{macrocode}
 % Any options may be defined with
-% \begin{verbatim}
-% \datatool_locale_define_keys:nn { en } { ... }
-% \end{verbatim}
+%\begin{dispListing}
+%\datatool_locale_define_keys:nn { en } { ... }
+%\end{dispListing}
 % or
-% \begin{verbatim}
-% \datatool_locale_define_keys:nn { en / subgroup } { ... }
-% \end{verbatim}
+%\begin{dispListing}
+%\datatool_locale_define_keys:nn { en / subgroup } { ... }
+%\end{dispListing}
 % (Syntax as per \verb|\keys_define:nn| )
 %
 %\subsection{Orthography rules}
