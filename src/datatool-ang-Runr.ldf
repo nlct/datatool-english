@@ -1,6 +1,7 @@
-%\section{Root Old English (Anglo Saxon) Runic Script LDF for \sty{datatool-base}}
+%\subsection{Root Old English (Anglo Saxon) Runic Script LDF for
+%\sty{datatool-base} (\file{datatool-ang-Runr.ldf})}
 % Provide support for Old English (\sty{tracklang} root language
-% "anxglosaxon") using Runic script.
+% \qt{anglosaxon}) using Runic script.
 %
 % This is mainly provided as an example for dealing with languages
 % that have multiple scripts and non-ASCII letters.
@@ -46,7 +47,7 @@
 %\end{dispListing}
 % (Syntax as per \verb|\keys_define:nn| )
 %
-%\subsection{Orthography rules}
+%\subsubsection{Orthography rules}
 %NB \cs{DTLangRunrLocaleHandler} is defined in the applicable encoding
 %file loaded above.
 %

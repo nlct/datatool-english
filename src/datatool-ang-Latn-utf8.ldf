@@ -1,4 +1,5 @@
-%\section{Root Anglo Saxon Latin (UTF-8) LDF for \sty{datatool-base}}
+%\subsection{Root Anglo Saxon Latin Script UTF-8 LDF for \sty{datatool-base}
+%(\file{datatool-ang-Latn-utf8.ldf})}
 %    \begin{macrocode}
 \TrackLangProvidesResource{ang-Latn-utf8}%%FILEVERSION%%
 %    \end{macrocode}

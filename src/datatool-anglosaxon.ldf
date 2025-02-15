@@ -1,6 +1,7 @@
-%\section{Root Old English (Anglo Saxon) LDF for \sty{datatool-base}}
+%\subsection{Root Old English (Anglo Saxon) LDF for \sty{datatool-base}
+%(\file{datatool-anglosaxon.ldf})}
 % Provide support for Old English (\sty{tracklang} root language
-% "anxglosaxon").
+% \qt{anglosaxon}).
 % This is mainly provided as an example for dealing with languages
 % that have multiple scripts and non-ASCII letters.
 % As such, it doesn't provide an translations or date/time

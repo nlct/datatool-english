@@ -1,4 +1,5 @@
-%\section{Root English LDF for \sty{databib}}
+%\subsection{Root English LDF for \sty{databib}
+%(\file{databib-english.ldf})}
 %    \begin{macrocode}
 \TrackLangProvidesResource{english}%%FILEVERSION%%
 %    \end{macrocode}
@@ -6,15 +7,15 @@
 %    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
-% Month names used by the "abbrv" style. 
+% Month names used by the \opt{abbrv} style. 
 %    \begin{macrocode}
 \cs_new:Nn \databib_en_shortmonthname:n
  {
    \datatool_en_shortmonthname_dotted:n { #1 }
  }
 %    \end{macrocode}
-% Define \cs{DTLsetLocaleOptions} options for "en/databib". The only option deals with
-% switching the short month names for the "abbrv" style between
+% Define \cs{DTLsetLocaleOptions} options for \opt{en/databib}. The only option deals with
+% switching the short month names for the \opt{abbrv} style between
 % three-letter dotless names and abbreviated names that end with a
 % dot.
 %    \begin{macrocode}

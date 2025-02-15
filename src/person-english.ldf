@@ -1,12 +1,13 @@
-%\section{Root English LDF for \sty{person}}
+%\subsection{Root English LDF for \sty{person}
+%(\file{person-english.ldf})}
 %    \begin{macrocode}
 \TrackLangProvidesResource{english}%%FILEVERSION%%
 %    \end{macrocode}
 % If \cs{DTLsetLocaleOptions} options need to be provided, the sub-module should be
 % \qt{person}.  For example, 
-%\begin{dispListing}
-%\datatool_locale_define_keys:nn { en / person } { ... }
-%\end{dispListing}
+%\begin{definition}
+%\verb|datatool_locale_define_keys:nn| \marg{ en / person } \meta{key-value list}
+%\end{definition}
 %Provide intermediate command to add to captions hook.
 %    \begin{macrocode}
 \newcommand{\DataToolPersonEnglish}{%

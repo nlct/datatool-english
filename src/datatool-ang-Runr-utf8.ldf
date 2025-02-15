@@ -1,4 +1,5 @@
-%\section{Root Anglo Saxon Runic (UTF-8) LDF for \sty{datatool-base}}
+%\subsection{Root Anglo Saxon Runic Script UTF-8 LDF for \sty{datatool-base}
+%(\file{datatool-ang-Runr-utf8.ldf})}
 %    \begin{macrocode}
 \TrackLangProvidesResource{ang-Runr-utf8}%%FILEVERSION%%
 %    \end{macrocode}

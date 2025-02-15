@@ -1,10 +1,12 @@
-%\section{Canadian English LDF for \sty{datatool-base}}
+%\subsection{Canadian English LDF for \sty{datatool-base}
+%(\file{datatool-en-CA.ldf})}
 %    \begin{macrocode}
 \TrackLangProvidesResource{en-CA}%%FILEVERSION%%
 %    \end{macrocode}
 % Load root language file. Note that \sty{datatool-base} should
-% automatically load the region file datatool-CA.ldf if it is
-% installed.
+% automatically load the region file \file{datatool-CA.ldf} if it is
+% installed, so only \file{datatool-english.ldf} needs to be loaded
+% (if not already done so).
 %    \begin{macrocode}
 \TrackLangRequireResource{english}
 %    \end{macrocode}
@@ -36,7 +38,7 @@
    \datatool_en_CA_set_numberchars_official:
  }
 %    \end{macrocode}
-%Provide \cs{DTLsetLocaleOptions} "en-CA" option to switch between styles.
+%Provide \cs{DTLsetLocaleOptions} \opt{en-CA} option to switch between styles.
 %    \begin{macrocode}
 \datatool_locale_define_keys:nn { en-CA }
  {

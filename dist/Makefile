@@ -33,7 +33,8 @@ datatool-english.ldf	: datatool-english.dtx datatool-english.ins
 
 datatool-english.dtx	: ../src/datatool-english.tex ../src/version.txt $(ldfs)
 	cd ../src; makedtx -author "Nicola Talbot" \
-	-src "(datatool-english.*\.ldf)\Z=>\1" \
+	-src "(datatool-english\.ldf)\Z=>\1" \
+	-src "(datatool-english-.*\.ldf)\Z=>\1" \
 	-src "(datatool-en-.*\.ldf)\Z=>\1" \
 	-src "(databib-english\.ldf)\Z=>\1" \
 	-src "(person-english\.ldf)\Z=>\1" \

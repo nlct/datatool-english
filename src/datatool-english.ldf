@@ -1,6 +1,7 @@
-%\section{Root English LDF for \sty{datatool-base}}
+%\subsection{Root English LDF for \sty{datatool-base}
+%(\file{datatool-english.ldf})}
 % Provide support for English (\sty{tracklang} root language
-% "english").
+% \qt{english}).
 % NB number group and decimal symbols and currencies should go in
 % region files.
 %    \begin{macrocode}
@@ -36,7 +37,7 @@
 %\end{dispListing}
 % (Syntax as per \verb|\keys_define:nn| )
 %
-%\subsection{Orthography rules}
+%\subsubsection{Orthography rules}
 %NB \cs{DTLenLocaleHandler} is defined in the applicable encoding
 %file loaded above.
 %
@@ -53,7 +54,7 @@
 %
 %\begin{macro}{\DTLenLocaleGetGroupString}
 %\begin{definition}
-%\cs{DTLenLocaleGetGroupString}\marg{actual}\marg{sort value}\marg{tl}
+%\cs{DTLenLocaleGetGroupString}\marg{actual}\marg{sort value}\marg{tl-var}
 %\end{definition}
 %Use the sort value rather than the actual value.
 %This ensures that the accents are stripped, but it will mean that
@@ -116,7 +117,7 @@
  }
 %    \end{macrocode}
 %
-%\subsection{Dates and Times}
+%\subsubsection{Dates and Times}
 % This section is still experimental.
 %
 % An appropriate region needs to also be specified and loaded to
@@ -260,7 +261,7 @@
 %    \begin{macrocode}
 \regex_const:Nn \c_datatool_en_weekday_name_regex
  {
-   Monday | Mon\.? | Tuesday | Tue\.? | Wednesday | Wed\.?
+   Monday | Mon\.? | Tuesday | Tues?\.? | Wednesday | Wed\.?
   | Thursday | Thur?\.? | Friday | Fri\.?
   | Saturday | Sat\.? | Sunday | Sun\.?
  }
@@ -310,18 +311,22 @@
 %    \end{macrocode}
 %
 % The naming scheme for date regex constants needs to be in the form
+%\begin{definition}
 % \verb|\c_datatool_|\meta{language}\verb|_|\meta{style}\verb|_date_regex| (non-anchored)
+%\end{definition}
 % and
+%\begin{definition}
 % \verb|\c_datatool_|\meta{language}\verb|_anchored_|\meta{style}\verb|_date_regex| (anchored)
+%\end{definition}
 % There should be three captured groups in the order that matches
 % \meta{style}
-% For example, the style "ddmmyyyy" should have the day of month
+% For example, the style \opt{ddmmyyyy} should have the day of month
 % number (1-31) in the first captured group, the month 
 % in the second group, and the year number in the third.
-% Styles with "yyyy" should have the century included in the year.
-% Styles with "yy" need to have the century added to the two-digit year.
+% Styles with \opt{yyyy} should have the century included in the year.
+% Styles with \opt{yy} need to have the century added to the two-digit year.
 %
-% Note that the "dd" and "mm" don't mean that two digits are required.
+% Note that the \qt{dd} and \qt{mm} don't mean that two digits are required.
 % (In fact, here the month name not number is expected.)
 % The control sequence names are simply designed to match the 
 % naming scheme used by the regionless numeric regex constants
@@ -486,9 +491,13 @@
 %    \end{macrocode}
 %
 % The naming scheme for time regex constants needs to be in the form
+%\begin{definition}
 % \verb|\c_datatool_|\meta{language}\verb|_|\meta{variant}\verb|_hhmmss_time_regex| (non-anchored)
+%\end{definition}
 % and
+%\begin{definition}
 % \verb|\c_datatool_|\meta{language}\verb|_|\meta{variant}\verb|_anchored_hhmmss_time_regex| (anchored)
+%\end{definition}
 % Both the minutes and seconds are optional here.
 % These will default to 00 if omitted.
 %

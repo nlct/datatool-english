@@ -16,10 +16,17 @@
 \CheckSum{0}
 
 \newcommand*{\sty}[1]{\textsf{#1}}
-\newcommand*{\file}[1]{\nolinkurl{#1}}
-\newcommand*{\filemeta}[3]{\nolinkurl{#1}\meta{#2}\nolinkurl{#3}}
+\newcommand*{\file}[1]{\texorpdfstring{\nolinkurl{#1}}{#1}}
+\newcommand*{\filemeta}[3]{%
+ \texorpdfstring
+  {\nolinkurl{#1}\meta{#2}\nolinkurl{#3}}%
+  {#1<#2>#3}%
+}
 \newcommand*{\filemetameta}[5]{%
- \nolinkurl{#1}\meta{#2}\nolinkurl{#3}\meta{#4}\nolinkurl{#5}}
+ \texorpdfstring
+ {\nolinkurl{#1}\meta{#2}\nolinkurl{#3}\meta{#4}\nolinkurl{#5}}%
+ {#1<#2>#3<#4>#5}%
+}
 \newcommand*{\opt}[1]{\textsf{#1}}
 \newcommand*{\qt}[1]{“#1”}
 \newcommand*{\setlocaleopts}[1]{%
@@ -63,6 +70,8 @@ package (version 3.0+). This needs to be installed in addition to
 \sty{datatool}. To ensure regional support, you will also need to
 install \sty{datatool-regions}.
 \end{abstract}
+
+\tableofcontents
 
 \section{Introduction}
 \label{sec:intro}
@@ -439,7 +448,7 @@ is automatically added to the captions hook if the \sty{person}
 package is loaded.
 \end{docCommand}
 
-\section{Old English (Anglo-Saxon)}
+\section{Old English (Anglo-Saxon, \qt{ang})}
 \label{sec:anglosaxon}
 
 This bundle also supplies very limited support for Old English

@@ -1,10 +1,12 @@
-%\section{South African English LDF for \sty{datatool-base}}
+%\subsection{South African English LDF for \sty{datatool-base}
+%(\file{datatool-en-ZA.ldf})}
 %    \begin{macrocode}
 \TrackLangProvidesResource{en-ZA}%%FILEVERSION%%
 %    \end{macrocode}
 % Load root language file. Note that \sty{datatool-base} should
-% automatically load the region file datatool-ZA.ldf if it is
-% installed.
+% automatically load the region file \file{datatool-ZA.ldf} if it is
+% installed, so only \file{datatool-english.ldf} needs to be loaded
+% (if not already done so).
 %    \begin{macrocode}
 \TrackLangRequireResource{english}
 %    \end{macrocode}
@@ -36,7 +38,7 @@
    \datatool_en_ZA_set_official_numberchars:
  }
 %    \end{macrocode}
-%Provide \cs{DTLsetLocaleOptions} "en-ZA" option to switch between styles.
+%Provide \cs{DTLsetLocaleOptions} \opt{en-ZA} option to switch between styles.
 %    \begin{macrocode}
 \datatool_locale_define_keys:nn { en-ZA }
  {

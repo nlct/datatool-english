@@ -1,4 +1,5 @@
-%\section{Root English (ISO 8859-1) LDF for \sty{datatool-base}}
+%\subsection{Root English ISO 8859-1 LDF for \sty{datatool-base}
+%(\file{datatool-english-latin1.ldf})}
 %    \begin{macrocode}
 \TrackLangProvidesResource{english-latin1}%%FILEVERSION%%
 %    \end{macrocode}
