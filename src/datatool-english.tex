@@ -21,7 +21,7 @@
 \newcommand*{\filemetameta}[5]{%
  \nolinkurl{#1}\meta{#2}\nolinkurl{#3}\meta{#4}\nolinkurl{#5}}
 \newcommand*{\opt}[1]{\textsf{#1}}
-\newcommand*{\qt}[1]{``#1''}
+\newcommand*{\qt}[1]{“#1”}
 \newcommand*{\setlocaleopts}[1]{%
  \cs{DTLsetLocaleOptions}\allowbreak
  \texttt{\brackets{\strong{#1}}}\allowbreak
@@ -69,6 +69,7 @@ install \sty{datatool-regions}.
 
 This bundle provides the English and Old English modules for \sty{datatool} v3.0+.
 The files simply need to be installed on \TeX's path.
+(They will be ignored if a pre-3.0 version of \sty{datatool} is installed.)
 The \sty{datatool-base} package (which is automatically loaded by
 \sty{datatool}) uses \sty{tracklang}'s interface for detecting
 localisation settings and finding the appropriate files.
@@ -139,10 +140,14 @@ the locales provided. For example:
 \printterms
 \end{document}
 \end{dispListing}
+As with \sty{datatool}, these supplementary packages internally load
+\sty{datatool-base} so if that has already been loaded, then the
+localisation support should already have been set.
 
 The \sty{glossaries} package also loads \sty{datatool-base}
-and as from version 4.55 will check for the new \sty{datatool-base}
-commands. If they are defined then \cs{printnoidxglossary} will switch to this
+and, as from \sty{glossaries} version 4.55, it will check for the 
+new \sty{datatool-base} commands. If they are defined then 
+\cs{printnoidxglossary} will switch to this
 new method of sorting otherwise it will fallback on the old method.
 So installing \sty{datatool-english} will not only affect
 \sty{datatool} and its associated packages but also
@@ -230,7 +235,7 @@ If \file{datatool-english.ldf} is installed:
 \begin{dispExample*}{title={With Localisation}}
 \newcommand{\mylist}{élan,zebra,elephant,ant,élite,elk}
 \DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
-Sorted list: \DTLformatlist{\mylist}
+Sorted list: \DTLformatlist{\mylist}.
 \end{dispExample*}
 However, if \file{datatool-english.ldf} isn't installed (or if
 English support hasn't been requested) the resulting list would be:
@@ -239,11 +244,11 @@ English support hasn't been requested) the resulting list would be:
 \begin{dispExample*}{title={No Localisation}}
 \newcommand{\mylist}{élan,zebra,elephant,ant,élite,elk}
 \DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
-Sorted list: \DTLformatlist{\mylist}
+Sorted list: \DTLformatlist{\mylist}.
 \end{dispExample*}
 \endgroup
-This is because a simple character code has been used.
-(Note also the use of \& instead of \qt{and}.)
+This is because a simple character code comparison has been used.
+(Note also the use of the default \& instead of \qt{and}.)
 
 The \cs{DTLsortwordcasehandler} function is for case-sensitive word
 sorting, whereas the \cs{DTLsortwordhandler} function is for
@@ -359,8 +364,8 @@ have a hook to allow supporting language files to extend this to
 parsing temporal values that contain textual content, such as month
 names.
 
-The following commands are provided. Note that they require
-\LaTeX3 syntax.
+The following commands are provided. Note that they use
+\LaTeX3 syntax, which needs to be enabled.
 
 \begin{docCommand*}{datatool_en_get_monthname_map:n}{ \marg{month}}
 Gets the number associated with the given English month name.
@@ -482,26 +487,32 @@ The \qt{ang-Latn} localisation support provides the following
 option, which may be set using
 \setlocaleopts{ang-Latn}.
 
-\begin{docKey}{order}{=\meta{setting}}{initially \opt{harley}}
+\begin{docKey}[ang-Latn]{order}{=\meta{setting}}{initially \opt{harley}}
 Determines the letter order. The \meta{setting} may be:
-\texttt{harley} (A-Z, Ƿ, Ð, Æ, Þ), \texttt{stowe}
-(ending with Ƿ, Ð, Þ) or \texttt{titus}
-(ending with Ƿ, Þ, Ð).
+\docValue{harley} (A-Z, Ƿ, Ð, Æ, Þ), \docValue{stowe}
+(ending with Ƿ, Ð, Þ), \docValue{titus}
+(ending with Ƿ, Þ, Ð) or \docValue{futhorc} (starts f, u, þ, o, r, c).
 \end{docKey}
 
 The \qt{ang-Runr} localisation support provides the following
 option, which may be set using
 \setlocaleopts{ang-Runr}.
 
-\begin{docKey}{order}{=\meta{setting}}{initially \opt{unicode}}
+\begin{docKey}[ang-Runr]{order}{=\meta{setting}}{initially \opt{punc-futhorc}}
 Determines the rune order. The \meta{setting} may be:
-\texttt{unicode} (approximate Unicode order) or
-\texttt{poem} (Old English Rune Poem order).
-Note that the \qt{unicode} order puts the punctuation first,
+\docValue{punc-unicode} (punctuation first, followed by Unicode order
+for the rest),
+\docValue{punc-futhorc} (Old English Rune Poem order, punctuation
+first), or
+\docValue{futhorc-punc} (Old English Rune Poem order, punctuation
+last).
+Note that the \qt{punc-unicode} order puts the punctuation first,
 followed by the other runes, even though the punctuation runes
-actually come towards the end of the Runic block.
-The \qt{poem} order is fuþorc order, with punctuation runes at the
-start (before feof), and the additional non-poem runes appended at the end.
+actually come towards the end of the Runic block.  The Old English
+Rune Poem order is fuþorc order, with the additional non-poem runes
+appended at the end.
+The Tironian et (which isn't a rune) is added to the end of the
+non-punctuation runes.
 \end{docKey}
 
 Both ang-Latn and ang-Runr define \cs{DTLandname} to the Tironian
@@ -550,10 +561,14 @@ as follows:
 \DataToolBaseAngloSaxonLatin
 \DTLsetLocaleOptions{ang-Latn}{order=harley}
 \DTLsortwordlist{\myLatnList}{\DTLsortletterhandler}
-Sorted list: \DTLformatlist{\myLatnList}.
+Sorted list (Harley): \DTLformatlist{\myLatnList}.
+
+\DTLsetLocaleOptions{ang-Latn}{order=futhorc}
+\DTLsortwordlist{\myLatnList}{\DTLsortletterhandler}
+Sorted list (fuþorc): \DTLformatlist{\myLatnList}.
 
 \DataToolBaseAngloSaxonRunic
-\DTLsetLocaleOptions{ang-Runr}{order=poem}
+\DTLsetLocaleOptions{ang-Runr}{order=futhorc-punc}
 \DTLsortwordlist{\myRunrList}{\DTLsortwordhandler}
 Sorted list: \DTLformatlist{\myRunrList}.
 \end{dispExample}
