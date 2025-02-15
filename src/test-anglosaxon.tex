@@ -100,4 +100,14 @@ Sorted list: \DTLformatlist{\wordlist}.
 Sorted list: \DTLformatlist{\wordlist}.
 
 }
+
+\section{Futhorc}
+\DTLsetLocaleOptions{ang-Latn}{order=futhorc}
+
+{% localise
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\wordlist}.
+
+}
+
 \end{document}
