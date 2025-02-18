@@ -3,7 +3,14 @@ Language support for datatool.sty v3.0+
 
 As from version 3.0, the `datatool` package will provide
 localisation support (via the [`tracklang`](https://ctan.org/pkg/tracklang) package).
-This `datatool-english` bundle provides support for English.
+This `datatool-english` bundle provides support for English and
+limited support for Old English.
+
+Some files in this repository use fonts from the Runic Unicode
+Block, such as ᚠᚢᚦᚩᚱᚳ. If you see rectangles instead of Runic
+characters at the end of the previous sentence, you will need to
+install a Runic font. The documentation uses Noto Sans Runic with
+`fontspec` and LuaLaTeX.
 
 Note that the [`datatool-regions`](https://github.com/nlct/datatool-regions)
 bundle provides the language-independent region `.ldf` files. Both
@@ -71,6 +78,8 @@ the result will be:
  > Currency: €1.234,56.  
  > Original list: élan, elephant, élite and elk.  
  > Sorted list: élan, elephant, élite and elk.
+
+## Old English (Anglo-Saxon)
 
 This bundle also includes limited support for Old English
 (Anglo-Saxon) mainly to provide an example for a language that has
