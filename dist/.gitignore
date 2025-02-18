@@ -1,10 +1,13 @@
 *.dtx
 *.ins
 *.ldf
+*.def
+*.sty
 *.out
 *.aux
 *.pdf
 *.log
+*.toc
 *.glo
 *.gls
 *.idx
