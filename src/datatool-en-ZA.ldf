@@ -33,29 +33,46 @@
 %Provide intermediate command to set the applicable number group and
 %decimal character.
 %    \begin{macrocode}
-\cs_new:Npn \datatoolEnglishZASetNumberChars
+\newcommand \datatoolEnglishZASetNumberChars
  {
-   \datatool_en_ZA_set_official_numberchars:
+   \datatool_en_ZA_set_numberchars_official:
  }
 %    \end{macrocode}
 %Provide \cs{DTLsetLocaleOptions} \opt{en-ZA} option to switch between styles.
 %    \begin{macrocode}
 \datatool_locale_define_keys:nn { en-ZA }
  {
-   number-style .choices:nn =
-    { official , unofficial , region }
-    { 
-      \cs_if_exist:cTF 
-       { datatool_en_ZA_set_numberchars_ \l_keys_choice_tl : }
+   number-style .choice: ,
+   number-style / official .code:n =
+    {
+      \renewcommand \datatoolEnglishZASetNumberChars
        {
-         \cs_set_eq:Nc 
-           \datatoolEnglishZASetNumberChars
-           { datatool_en_ZA_set_numberchars_ \l_keys_choice_tl : }
+         \datatool_en_ZA_set_numberchars_official:
        }
+      \datatool_if_current_lang_region:nn { en } { ZA }
        {
-         \renewcommand \datatoolEnglishZASetNumberChars { }
+         \datatoolEnglishZASetNumberChars
        }
-    } , 
+    } ,
+   number-style / unofficial .code:n =
+    {
+      \renewcommand \datatoolEnglishZASetNumberChars
+       {
+         \datatool_en_ZA_set_numberchars_unofficial:
+       }
+      \datatool_if_current_lang_region:nn { en } { ZA }
+       {
+         \datatoolEnglishZASetNumberChars
+       }
+    } ,
+   number-style / region .code:n =
+    {
+      \renewcommand \datatoolEnglishZASetNumberChars { }
+      \datatool_if_current_lang_region:nn { en } { ZA }
+       {
+         \datatoolZASetNumberChars
+       }
+    } ,
  }
 %    \end{macrocode}
 %Provide intermediary command to add to the captions hook.
