@@ -79,6 +79,13 @@ the result will be:
  > Original list: élan, elephant, élite and elk.  
  > Sorted list: élan, elephant, élite and elk.
 
+A multilingual document with the same region for all languages can
+specify the region after the languages. For example:
+```latex
+\usepackage[afrikaans,english]{babel}
+\usepackage[locales={ZA}]{datatool-base}
+```
+
 ## Old English (Anglo-Saxon)
 
 This bundle also includes limited support for Old English
