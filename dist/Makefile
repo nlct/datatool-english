@@ -20,11 +20,9 @@ datatool-english.zip	: datatool-english.dtx datatool-english.ins \
 
 datatool-english.pdf	: datatool-english.dtx datatool-english.ldf
 	lualatex datatool-english.dtx
-	makeindex -s gind.ist datatool-english.idx
-	makeindex -s gglo.ist -o datatool-english.gls datatool-english.glo
+	makeindex datatool-english.idx
 	lualatex datatool-english.dtx
-	makeindex -s gind.ist datatool-english.idx
-	makeindex -s gglo.ist -o datatool-english.gls datatool-english.glo
+	makeindex datatool-english.idx
 	lualatex datatool-english.dtx
 	lualatex datatool-english.dtx
 
