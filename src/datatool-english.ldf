@@ -566,7 +566,7 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\newcommand \DataToolBaseEnglish
+\newcommand \DTLenLocaleHook
  {
   \renewcommand
     \DTLCurrentLocaleWordHandler
@@ -601,5 +601,5 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\TrackLangAddToCaptions{\DataToolBaseEnglish}
+\TrackLangAddToCaptions{\DTLenLocaleHook}
 %    \end{macrocode}

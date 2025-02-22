@@ -73,7 +73,7 @@
 %\end{macro}
 %
 %    \begin{macrocode}
-\newcommand \DataToolBaseAngloSaxonLatin
+\newcommand \DTLangLatnLocaleHook
  {
   \DTLresetLanguage
   \renewcommand
@@ -99,5 +99,5 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\TrackLangAddToCaptions{\DataToolBaseAngloSaxonLatin}
+\TrackLangAddToCaptions{\DTLangLatnLocaleHook}
 %    \end{macrocode}

@@ -25,9 +25,1145 @@
 %\end{macro}
 %
 %If PDF\LaTeX, we can't match greater than FF with \cs{x}, so need different
-%regular expressions depending on whether or not we have PDF\LaTeX.
+%regular expressions depending on whether or not we have 
+%a native Unicode engine.
 %    \begin{macrocode}
-\sys_if_engine_pdftex:TF
+\datatool_if_unicode_engine:TF
+ {
+%    \end{macrocode}
+%Unicode order (mostly Unicode order).
+%The punctuation characters are placed first, the rest follows
+%Unicode order.
+%    \begin{macrocode}
+  \cs_new:Nn \datatool_angRunr_order_punc_unicode:n
+   {
+    \regex_replace_case_all:nN
+    {
+%    \end{macrocode}
+% U+16A0 RUNIC LETTER FEHU FEOH FE F
+%    \begin{macrocode}
+      { \x{16A0} } { \cL\x{31} }
+%    \end{macrocode}
+% U+16A1 RUNIC LETTER V
+%    \begin{macrocode}
+      { \x{16A1} } { \cL\x{32} }
+%    \end{macrocode}
+% U+16A2 RUNIC LETTER URUZ UR U
+%    \begin{macrocode}
+      { \x{16A2} } { \cL\x{33} }
+%    \end{macrocode}
+% U+16A3 RUNIC LETTER YR
+%    \begin{macrocode}
+      { \x{16A3} } { \cL\x{34} }
+%    \end{macrocode}
+% U+16A4 RUNIC LETTER Y
+%    \begin{macrocode}
+      { \x{16A4} } { \cL\x{35} }
+%    \end{macrocode}
+% U+16A5 RUNIC LETTER W
+%    \begin{macrocode}
+      { \x{16A5} } { \cL\x{36} }
+%    \end{macrocode}
+% U+16A6 RUNIC LETTER THURISAZ THURS THORN
+%    \begin{macrocode}
+      { \x{16A6} } { \cL\x{37} }
+%    \end{macrocode}
+% U+16A7 RUNIC LETTER ETH
+%    \begin{macrocode}
+      { \x{16A7} } { \cL\x{38} }
+%    \end{macrocode}
+% U+16A8 RUNIC LETTER ANSUZ A
+%    \begin{macrocode}
+      { \x{16A8} } { \cL\x{39} }
+%    \end{macrocode}
+% U+16A9 RUNIC LETTER OS O
+%    \begin{macrocode}
+      { \x{16A9} } { \cL\x{3A} }
+%    \end{macrocode}
+% U+16AA RUNIC LETTER AC A
+%    \begin{macrocode}
+      { \x{16AA} } { \cL\x{3B} }
+%    \end{macrocode}
+% U+16AB RUNIC LETTER AESC
+%    \begin{macrocode}
+      { \x{16AB} } { \cL\x{3C} }
+%    \end{macrocode}
+% U+16AC RUNIC LETTER LONG-BRANCH-OSS O
+%    \begin{macrocode}
+      { \x{16AC} } { \cL\x{3D} }
+%    \end{macrocode}
+% U+16AD RUNIC LETTER SHORT-TWIG-OSS O
+%    \begin{macrocode}
+      { \x{16AD} } { \cL\x{3E} }
+%    \end{macrocode}
+% U+16AE RUNIC LETTER O
+%    \begin{macrocode}
+      { \x{16AE} } { \cL\x{3F} }
+%    \end{macrocode}
+% U+16AF RUNIC LETTER OE
+%    \begin{macrocode}
+      { \x{16AF} } { \cL\x{40} }
+%    \end{macrocode}
+% U+16B0 RUNIC LETTER ON
+%    \begin{macrocode}
+      { \x{16B0} } { \cL\x{41} }
+%    \end{macrocode}
+% U+16B1 RUNIC LETTER RAIDO RAD REID R
+%    \begin{macrocode}
+      { \x{16B1} } { \cL\x{42} }
+%    \end{macrocode}
+% U+16B2 RUNIC LETTER KAUNA
+%    \begin{macrocode}
+      { \x{16B2} } { \cL\x{43} }
+%    \end{macrocode}
+% U+16B3 RUNIC LETTER CEN
+%    \begin{macrocode}
+      { \x{16B3} } { \cL\x{44} }
+%    \end{macrocode}
+% U+16B4 RUNIC LETTER KAUN K
+%    \begin{macrocode}
+      { \x{16B4} } { \cL\x{45} }
+%    \end{macrocode}
+% U+16B5 RUNIC LETTER G
+%    \begin{macrocode}
+      { \x{16B5} } { \cL\x{46} }
+%    \end{macrocode}
+% U+16B6 RUNIC LETTER ENG
+%    \begin{macrocode}
+      { \x{16B6} } { \cL\x{47} }
+%    \end{macrocode}
+% U+16B7 RUNIC LETTER GEBO GYFU G
+%    \begin{macrocode}
+      { \x{16B7} } { \cL\x{48} }
+%    \end{macrocode}
+% U+16B8 RUNIC LETTER GAR
+%    \begin{macrocode}
+      { \x{16B8} } { \cL\x{49} }
+%    \end{macrocode}
+% U+16B9 RUNIC LETTER WUNJO WYNN W
+%    \begin{macrocode}
+      { \x{16B9} } { \cL\x{4A} }
+%    \end{macrocode}
+% U+16BA RUNIC LETTER HAGLAZ H
+%    \begin{macrocode}
+      { \x{16BA} } { \cL\x{4B} }
+%    \end{macrocode}
+% U+16BB RUNIC LETTER HAEGL H
+%    \begin{macrocode}
+      { \x{16BB} } { \cL\x{4C} }
+%    \end{macrocode}
+% U+16BC RUNIC LETTER LONG-BRANCH-HAGALL H
+%    \begin{macrocode}
+      { \x{16BC} } { \cL\x{4D} }
+%    \end{macrocode}
+% U+16BD RUNIC LETTER SHORT-TWIG-HAGALL H
+%    \begin{macrocode}
+      { \x{16BD} } { \cL\x{4E} }
+%    \end{macrocode}
+% U+16BE RUNIC LETTER NAUDIZ NYD NAUD N
+%    \begin{macrocode}
+      { \x{16BE} } { \cL\x{4F} }
+%    \end{macrocode}
+% U+16BF RUNIC LETTER SHORT-TWIG-NAUD N
+%    \begin{macrocode}
+      { \x{16BF} } { \cL\x{50} }
+%    \end{macrocode}
+% U+16C0 RUNIC LETTER DOTTED-N
+%    \begin{macrocode}
+      { \x{16C0} } { \cL\x{51} }
+%    \end{macrocode}
+% U+16C1 RUNIC LETTER ISAZ IS ISS I
+%    \begin{macrocode}
+      { \x{16C1} } { \cL\x{52} }
+%    \end{macrocode}
+% U+16C2 RUNIC LETTER E
+%    \begin{macrocode}
+      { \x{16C2} } { \cL\x{53} }
+%    \end{macrocode}
+% U+16C3 RUNIC LETTER JERAN J
+%    \begin{macrocode}
+      { \x{16C3} } { \cL\x{54} }
+%    \end{macrocode}
+% U+16C4 RUNIC LETTER GER
+%    \begin{macrocode}
+      { \x{16C4} } { \cL\x{55} }
+%    \end{macrocode}
+% U+16C5 RUNIC LETTER LONG-BRANCH-AR AE
+%    \begin{macrocode}
+      { \x{16C5} } { \cL\x{56} }
+%    \end{macrocode}
+% U+16C6 RUNIC LETTER SHORT-TWIG-AR A
+%    \begin{macrocode}
+      { \x{16C6} } { \cL\x{57} }
+%    \end{macrocode}
+% U+16C7 RUNIC LETTER IWAZ EOH
+%    \begin{macrocode}
+      { \x{16C7} } { \cL\x{58} }
+%    \end{macrocode}
+% U+16C8 RUNIC LETTER PERTHO PEORTH P
+%    \begin{macrocode}
+      { \x{16C8} } { \cL\x{59} }
+%    \end{macrocode}
+% U+16C9 RUNIC LETTER ALGIZ EOLHX
+%    \begin{macrocode}
+      { \x{16C9} } { \cL\x{5A} }
+%    \end{macrocode}
+% U+16CA RUNIC LETTER SOWILO S
+%    \begin{macrocode}
+      { \x{16CA} } { \cL\x{5B} }
+%    \end{macrocode}
+% U+16CB RUNIC LETTER SIGEL LONG-BRANCH-SOL S
+%    \begin{macrocode}
+      { \x{16CB} } { \cL\x{5C} }
+%    \end{macrocode}
+% U+16CC RUNIC LETTER SHORT-TWIG-SOL S
+%    \begin{macrocode}
+      { \x{16CC} } { \cL\x{5D} }
+%    \end{macrocode}
+% U+16CD RUNIC LETTER C
+%    \begin{macrocode}
+      { \x{16CD} } { \cL\x{5E} }
+%    \end{macrocode}
+% U+16CE RUNIC LETTER Z
+%    \begin{macrocode}
+      { \x{16CE} } { \cL\x{5F} }
+%    \end{macrocode}
+% U+16CF RUNIC LETTER TIWAZ TIR TYR T
+%    \begin{macrocode}
+      { \x{16CF} } { \cL\x{60} }
+%    \end{macrocode}
+% U+16D0 RUNIC LETTER SHORT-TWIG-TYR T
+%    \begin{macrocode}
+      { \x{16D0} } { \cL\x{61} }
+%    \end{macrocode}
+% U+16D1 RUNIC LETTER D
+%    \begin{macrocode}
+      { \x{16D1} } { \cL\x{62} }
+%    \end{macrocode}
+% U+16D2 RUNIC LETTER BERKANAN BEORC BJARKAN B
+%    \begin{macrocode}
+      { \x{16D2} } { \cL\x{63} }
+%    \end{macrocode}
+% U+16D3 RUNIC LETTER SHORT-TWIG-BJARKAN B
+%    \begin{macrocode}
+      { \x{16D3} } { \cL\x{64} }
+%    \end{macrocode}
+% U+16D4 RUNIC LETTER DOTTED-P
+%    \begin{macrocode}
+      { \x{16D4} } { \cL\x{65} }
+%    \end{macrocode}
+% U+16D5 RUNIC LETTER OPEN-P
+%    \begin{macrocode}
+      { \x{16D5} } { \cL\x{66} }
+%    \end{macrocode}
+% U+16D6 RUNIC LETTER EHWAZ EH E
+%    \begin{macrocode}
+      { \x{16D6} } { \cL\x{67} }
+%    \end{macrocode}
+% U+16D7 RUNIC LETTER MANNAZ MAN M
+%    \begin{macrocode}
+      { \x{16D7} } { \cL\x{68} }
+%    \end{macrocode}
+% U+16D8 RUNIC LETTER LONG-BRANCH-MADR M
+%    \begin{macrocode}
+      { \x{16D8} } { \cL\x{69} }
+%    \end{macrocode}
+% U+16D9 RUNIC LETTER SHORT-TWIG-MADR M
+%    \begin{macrocode}
+      { \x{16D9} } { \cL\x{6A} }
+%    \end{macrocode}
+% U+16DA RUNIC LETTER LAUKAZ LAGU LOGR L
+%    \begin{macrocode}
+      { \x{16DA} } { \cL\x{6B} }
+%    \end{macrocode}
+% U+16DB RUNIC LETTER DOTTED-L
+%    \begin{macrocode}
+      { \x{16DB} } { \cL\x{6C} }
+%    \end{macrocode}
+% U+16DC RUNIC LETTER INGWAZ
+%    \begin{macrocode}
+      { \x{16DC} } { \cL\x{6D} }
+%    \end{macrocode}
+% U+16DD RUNIC LETTER ING
+%    \begin{macrocode}
+      { \x{16DD} } { \cL\x{6F} }
+%    \end{macrocode}
+% U+16DE RUNIC LETTER DAGAZ DAEG D
+%    \begin{macrocode}
+      { \x{16DE} } { \cL\x{70} }
+%    \end{macrocode}
+% U+16DF RUNIC LETTER OTHALAN ETHEL O
+%    \begin{macrocode}
+      { \x{16DF} } { \cL\x{71} }
+%    \end{macrocode}
+% U+16E0 RUNIC LETTER EAR
+%    \begin{macrocode}
+      { \x{16E0} } { \cL\x{72} }
+%    \end{macrocode}
+% U+16E1 RUNIC LETTER IOR
+%    \begin{macrocode}
+      { \x{16E1} } { \cL\x{73} }
+%    \end{macrocode}
+% U+16E2 RUNIC LETTER CWEORTH
+%    \begin{macrocode}
+      { \x{16E2} } { \cL\x{74} }
+%    \end{macrocode}
+% U+16E3 RUNIC LETTER CALC
+%    \begin{macrocode}
+      { \x{16E3} } { \cL\x{75} }
+%    \end{macrocode}
+% U+16E4 RUNIC LETTER CEALC
+%    \begin{macrocode}
+      { \x{16E4} } { \cL\x{76} }
+%    \end{macrocode}
+% U+16E5 RUNIC LETTER STAN
+%    \begin{macrocode}
+      { \x{16E5} } { \cL\x{77} }
+%    \end{macrocode}
+% U+16E6 RUNIC LETTER LONG-BRANCH-YR
+%    \begin{macrocode}
+      { \x{16E6} } { \cL\x{78} }
+%    \end{macrocode}
+% U+16E7 RUNIC LETTER SHORT-TWIG-YR
+%    \begin{macrocode}
+      { \x{16E7} } { \cL\x{79} }
+%    \end{macrocode}
+% U+16E8 RUNIC LETTER ICELANDIC-YR
+%    \begin{macrocode}
+      { \x{16E8} } { \cL\x{7A} }
+%    \end{macrocode}
+% U+16E9 RUNIC LETTER Q
+%    \begin{macrocode}
+      { \x{16E9} } { \cL\x{7B} }
+%    \end{macrocode}
+% U+16EA RUNIC LETTER X
+%    \begin{macrocode}
+      { \x{16EA} } { \cL\x{7C} }
+%    \end{macrocode}
+% U+16EE RUNIC ARLAUG SYMBOL
+%    \begin{macrocode}
+      { \x{16EE} } { \cL\x{7D}\x{21} }
+%    \end{macrocode}
+% U+16EF RUNIC TVIMADUR SYMBOL
+%    \begin{macrocode}
+      { \x{16EF} } { \cL\x{7D}\x{22} }
+%    \end{macrocode}
+% U+16F0 RUNIC BELGTHOR SYMBOL
+%    \begin{macrocode}
+      { \x{16F0} } { \cL\x{7D}\x{23} }
+%    \end{macrocode}
+% U+16F1 RUNIC LETTER K
+%    \begin{macrocode}
+      { \x{16F1} } { \cL\x{7D}\x{24} }
+%    \end{macrocode}
+% U+16F2 RUNIC LETTER SH
+%    \begin{macrocode}
+      { \x{16F2} } { \cL\x{7D}\x{25} }
+%    \end{macrocode}
+% U+16F3 RUNIC LETTER OO
+%    \begin{macrocode}
+      { \x{16F3} } { \cL\x{7D}\x{26} }
+%    \end{macrocode}
+% U+16F4 RUNIC LETTER FRANKS CASKET OS
+%    \begin{macrocode}
+      { \x{16F4} } { \cL\x{7D}\x{27} }
+%    \end{macrocode}
+% U+16F5 RUNIC LETTER FRANKS CASKET IS
+%    \begin{macrocode}
+      { \x{16F5} } { \cL\x{7D}\x{28} }
+%    \end{macrocode}
+% U+16F6 RUNIC LETTER FRANKS CASKET EH
+%    \begin{macrocode}
+      { \x{16F6} } { \cL\x{7D}\x{29} }
+%    \end{macrocode}
+% U+16F7 RUNIC LETTER FRANKS CASKET AC
+%    \begin{macrocode}
+      { \x{16F7} } { \cL\x{7D}\x{2A} }
+%    \end{macrocode}
+% U+16F8 RUNIC LETTER FRANKS CASKET AESC
+%    \begin{macrocode}
+      { \x{16F8} } { \cL\x{7D}\x{2B} }
+%    \end{macrocode}
+% U+16EB RUNIC SINGLE PUNCTUATION
+%    \begin{macrocode}
+      { \x{16EB} } { \cO\x{21}\x{21} }
+%    \end{macrocode}
+% U+16EC RUNIC MULTIPLE PUNCTUATION
+%    \begin{macrocode}
+      { \x{16EC} } { \cO\x{21}\x{22} }
+%    \end{macrocode}
+% U+16ED RUNIC CROSS PUNCTUATION
+%    \begin{macrocode}
+      { \x{16ED} } { \cO\x{21}\x{23} }
+%    \end{macrocode}
+% Tironian et
+%    \begin{macrocode}
+      { \x{204A} } { \cL\x{7E} }
+%    \end{macrocode}
+%Any character in the punctuation class:
+%    \begin{macrocode}
+      { ([[:punct:]]+) } { \cO\x{21}\x{24} \1 }
+    }
+    #1
+   }
+%    \end{macrocode}
+%Old English Rune Poem order (fuþorc). Not all characters are included in the
+%poem, so they are appended at the end. Punctuation characters come
+%first.
+%    \begin{macrocode}
+  \cs_new:Nn \datatool_angRunr_order_punc_futhorc:n
+   {
+    \regex_replace_case_all:nN
+    {
+%    \end{macrocode}
+% U+16A0 RUNIC LETTER FEHU FEOH FE F
+%    \begin{macrocode}
+      { \x{16A0} } { \cL\x{31} }
+%    \end{macrocode}
+% U+16A2 RUNIC LETTER URUZ UR U
+%    \begin{macrocode}
+      { \x{16A2} } { \cL\x{32} }
+%    \end{macrocode}
+% U+16A6 RUNIC LETTER THURISAZ THURS THORN
+%    \begin{macrocode}
+      { \x{16A6} } { \cL\x{33} }
+%    \end{macrocode}
+% U+16A9 RUNIC LETTER OS O
+%    \begin{macrocode}
+      { \x{16A9} } { \cL\x{34} }
+%    \end{macrocode}
+% U+16B1 RUNIC LETTER RAIDO RAD REID R
+%    \begin{macrocode}
+      { \x{16B1} } { \cL\x{35} }
+%    \end{macrocode}
+% U+16B3 RUNIC LETTER CEN
+%    \begin{macrocode}
+      { \x{16B3} } { \cL\x{36} }
+%    \end{macrocode}
+% U+16B7 RUNIC LETTER GEBO GYFU G
+%    \begin{macrocode}
+      { \x{16B7} } { \cL\x{37} }
+%    \end{macrocode}
+% U+16B9 RUNIC LETTER WUNJO WYNN W
+%    \begin{macrocode}
+      { \x{16B9} } { \cL\x{38} }
+%    \end{macrocode}
+% U+16BB RUNIC LETTER HAEGL H
+%    \begin{macrocode}
+      { \x{16BB} } { \cL\x{39} }
+%    \end{macrocode}
+% U+16BE RUNIC LETTER NAUDIZ NYD NAUD N
+%    \begin{macrocode}
+      { \x{16BE} } { \cL\x{3A} }
+%    \end{macrocode}
+% U+16C1 RUNIC LETTER ISAZ IS ISS I
+%    \begin{macrocode}
+      { \x{16C1} } { \cL\x{3B} }
+%    \end{macrocode}
+% U+16C4 RUNIC LETTER GER
+%    \begin{macrocode}
+      { \x{16C4} } { \cL\x{3C} }
+%    \end{macrocode}
+% U+16C7 RUNIC LETTER IWAZ EOH
+%    \begin{macrocode}
+      { \x{16C7} } { \cL\x{3D} }
+%    \end{macrocode}
+% U+16C8 RUNIC LETTER PERTHO PEORTH P
+%    \begin{macrocode}
+      { \x{16C8} } { \cL\x{3E} }
+%    \end{macrocode}
+% U+16C9 RUNIC LETTER ALGIZ EOLHX
+%    \begin{macrocode}
+      { \x{16C9} } { \cL\x{3F} }
+%    \end{macrocode}
+% U+16CB RUNIC LETTER SIGEL LONG-BRANCH-SOL S
+%    \begin{macrocode}
+      { \x{16CB} } { \cL\x{40} }
+%    \end{macrocode}
+% U+16CF RUNIC LETTER TIWAZ TIR TYR T
+%    \begin{macrocode}
+      { \x{16CF} } { \cL\x{41} }
+%    \end{macrocode}
+% U+16D2 RUNIC LETTER BERKANAN BEORC BJARKAN B
+%    \begin{macrocode}
+      { \x{16D2} } { \cL\x{42} }
+%    \end{macrocode}
+% U+16D6 RUNIC LETTER EHWAZ EH E
+%    \begin{macrocode}
+      { \x{16D6} } { \cL\x{43} }
+%    \end{macrocode}
+% U+16D7 RUNIC LETTER MANNAZ MAN M
+%    \begin{macrocode}
+      { \x{16D7} } { \cL\x{44} }
+%    \end{macrocode}
+% U+16DA RUNIC LETTER LAUKAZ LAGU LOGR L
+%    \begin{macrocode}
+      { \x{16DA} } { \cL\x{45} }
+%    \end{macrocode}
+% U+16DD RUNIC LETTER ING
+%    \begin{macrocode}
+      { \x{16DD} } { \cL\x{46} }
+%    \end{macrocode}
+% U+16DF RUNIC LETTER OTHALAN ETHEL O
+%    \begin{macrocode}
+      { \x{16DF} } { \cL\x{47} }
+%    \end{macrocode}
+% U+16DE RUNIC LETTER DAGAZ DAEG D
+%    \begin{macrocode}
+      { \x{16DE} } { \cL\x{48} }
+%    \end{macrocode}
+% U+16AA RUNIC LETTER AC A
+%    \begin{macrocode}
+      { \x{16AA} } { \cL\x{49} }
+%    \end{macrocode}
+% U+16AB RUNIC LETTER AESC
+%    \begin{macrocode}
+      { \x{16AB} } { \cL\x{4A} }
+%    \end{macrocode}
+% U+16A3 RUNIC LETTER YR
+%    \begin{macrocode}
+      { \x{16A3} } { \cL\x{4B} }
+%    \end{macrocode}
+% U+16E1 RUNIC LETTER IOR
+%    \begin{macrocode}
+      { \x{16E1} } { \cL\x{4C} }
+%    \end{macrocode}
+% U+16E0 RUNIC LETTER EAR
+%    \begin{macrocode}
+      { \x{16E0} } { \cL\x{4D} }
+%    \end{macrocode}
+%The remainder are in Unicode order, except for the punctuation.
+%Some of these may need to be merged into the above, as applicable.
+%
+% U+16A1 RUNIC LETTER V
+%    \begin{macrocode}
+      { \x{16A1} } { \cL\x{4E} }
+%    \end{macrocode}
+% U+16A4 RUNIC LETTER Y
+%    \begin{macrocode}
+      { \x{16A4} } { \cL\x{4F} }
+%    \end{macrocode}
+% U+16A5 RUNIC LETTER W
+%    \begin{macrocode}
+      { \x{16A5} } { \cL\x{50} }
+%    \end{macrocode}
+% U+16A7 RUNIC LETTER ETH
+%    \begin{macrocode}
+      { \x{16A7} } { \cL\x{51} }
+%    \end{macrocode}
+% U+16A8 RUNIC LETTER ANSUZ A
+%    \begin{macrocode}
+      { \x{16A8} } { \cL\x{52} }
+%    \end{macrocode}
+% U+16AC RUNIC LETTER LONG-BRANCH-OSS O
+%    \begin{macrocode}
+      { \x{16AC} } { \cL\x{53} }
+%    \end{macrocode}
+% U+16AD RUNIC LETTER SHORT-TWIG-OSS O
+%    \begin{macrocode}
+      { \x{16AD} } { \cL\x{54} }
+%    \end{macrocode}
+% U+16AE RUNIC LETTER O
+%    \begin{macrocode}
+      { \x{16AE} } { \cL\x{55} }
+%    \end{macrocode}
+% U+16AF RUNIC LETTER OE
+%    \begin{macrocode}
+      { \x{16AF} } { \cL\x{56} }
+%    \end{macrocode}
+% U+16B0 RUNIC LETTER ON
+%    \begin{macrocode}
+      { \x{16B0} } { \cL\x{57} }
+%    \end{macrocode}
+% U+16B2 RUNIC LETTER KAUNA
+%    \begin{macrocode}
+      { \x{16B2} } { \cL\x{58} }
+%    \end{macrocode}
+% U+16B4 RUNIC LETTER KAUN K
+%    \begin{macrocode}
+      { \x{16B4} } { \cL\x{59} }
+%    \end{macrocode}
+% U+16B5 RUNIC LETTER G
+%    \begin{macrocode}
+      { \x{16B5} } { \cL\x{5A} }
+%    \end{macrocode}
+% U+16B6 RUNIC LETTER ENG
+%    \begin{macrocode}
+      { \x{16B6} } { \cL\x{5B} }
+%    \end{macrocode}
+% U+16B8 RUNIC LETTER GAR
+%    \begin{macrocode}
+      { \x{16B8} } { \cL\x{5C} }
+%    \end{macrocode}
+% U+16BA RUNIC LETTER HAGLAZ H
+%    \begin{macrocode}
+      { \x{16BA} } { \cL\x{5D} }
+%    \end{macrocode}
+% U+16BC RUNIC LETTER LONG-BRANCH-HAGALL H
+%    \begin{macrocode}
+      { \x{16BC} } { \cL\x{5E} }
+%    \end{macrocode}
+% U+16BD RUNIC LETTER SHORT-TWIG-HAGALL H
+%    \begin{macrocode}
+      { \x{16BD} } { \cL\x{5F} }
+%    \end{macrocode}
+% U+16BF RUNIC LETTER SHORT-TWIG-NAUD N
+%    \begin{macrocode}
+      { \x{16BF} } { \cL\x{60} }
+%    \end{macrocode}
+% U+16C0 RUNIC LETTER DOTTED-N
+%    \begin{macrocode}
+      { \x{16C0} } { \cL\x{61} }
+%    \end{macrocode}
+% U+16C2 RUNIC LETTER E
+%    \begin{macrocode}
+      { \x{16C2} } { \cL\x{62} }
+%    \end{macrocode}
+% U+16C3 RUNIC LETTER JERAN J
+%    \begin{macrocode}
+      { \x{16C3} } { \cL\x{63} }
+%    \end{macrocode}
+% U+16C5 RUNIC LETTER LONG-BRANCH-AR AE
+%    \begin{macrocode}
+      { \x{16C5} } { \cL\x{64} }
+%    \end{macrocode}
+% U+16C6 RUNIC LETTER SHORT-TWIG-AR A
+%    \begin{macrocode}
+      { \x{16C6} } { \cL\x{65} }
+%    \end{macrocode}
+% U+16CA RUNIC LETTER SOWILO S
+%    \begin{macrocode}
+      { \x{16CA} } { \cL\x{66} }
+%    \end{macrocode}
+% U+16CC RUNIC LETTER SHORT-TWIG-SOL S
+%    \begin{macrocode}
+      { \x{16CC} } { \cL\x{67} }
+%    \end{macrocode}
+% U+16CD RUNIC LETTER C
+%    \begin{macrocode}
+      { \x{16CD} } { \cL\x{68} }
+%    \end{macrocode}
+% U+16CE RUNIC LETTER Z
+%    \begin{macrocode}
+      { \x{16CE} } { \cL\x{69} }
+%    \end{macrocode}
+% U+16D0 RUNIC LETTER SHORT-TWIG-TYR T
+%    \begin{macrocode}
+      { \x{16D0} } { \cL\x{6A} }
+%    \end{macrocode}
+% U+16D1 RUNIC LETTER D
+%    \begin{macrocode}
+      { \x{16D1} } { \cL\x{6B} }
+%    \end{macrocode}
+% U+16D3 RUNIC LETTER SHORT-TWIG-BJARKAN B
+%    \begin{macrocode}
+      { \x{16D3} } { \cL\x{6C} }
+%    \end{macrocode}
+% U+16D4 RUNIC LETTER DOTTED-P
+%    \begin{macrocode}
+      { \x{16D4} } { \cL\x{6D} }
+%    \end{macrocode}
+% U+16D5 RUNIC LETTER OPEN-P
+%    \begin{macrocode}
+      { \x{16D5} } { \cL\x{6E} }
+%    \end{macrocode}
+% U+16D8 RUNIC LETTER LONG-BRANCH-MADR M
+%    \begin{macrocode}
+      { \x{16D8} } { \cL\x{6F} }
+%    \end{macrocode}
+% U+16D9 RUNIC LETTER SHORT-TWIG-MADR M
+%    \begin{macrocode}
+      { \x{16D9} } { \cL\x{70} }
+%    \end{macrocode}
+% U+16DB RUNIC LETTER DOTTED-L
+%    \begin{macrocode}
+      { \x{16DB} } { \cL\x{71} }
+%    \end{macrocode}
+% U+16DC RUNIC LETTER INGWAZ
+%    \begin{macrocode}
+      { \x{16DC} } { \cL\x{72} }
+%    \end{macrocode}
+% U+16E2 RUNIC LETTER CWEORTH
+%    \begin{macrocode}
+      { \x{16E2} } { \cL\x{73} }
+%    \end{macrocode}
+% U+16E3 RUNIC LETTER CALC
+%    \begin{macrocode}
+      { \x{16E3} } { \cL\x{74} }
+%    \end{macrocode}
+% U+16E4 RUNIC LETTER CEALC
+%    \begin{macrocode}
+      { \x{16E4} } { \cL\x{75} }
+%    \end{macrocode}
+% U+16E5 RUNIC LETTER STAN
+%    \begin{macrocode}
+      { \x{16E5} } { \cL\x{76} }
+%    \end{macrocode}
+% U+16E6 RUNIC LETTER LONG-BRANCH-YR
+%    \begin{macrocode}
+      { \x{16E6} } { \cL\x{77} }
+%    \end{macrocode}
+% U+16E7 RUNIC LETTER SHORT-TWIG-YR
+%    \begin{macrocode}
+      { \x{16E7} } { \cL\x{78} }
+%    \end{macrocode}
+% U+16E8 RUNIC LETTER ICELANDIC-YR
+%    \begin{macrocode}
+      { \x{16E8} } { \cL\x{79} }
+%    \end{macrocode}
+% U+16E9 RUNIC LETTER Q
+%    \begin{macrocode}
+      { \x{16E9} } { \cL\x{7A} }
+%    \end{macrocode}
+% U+16EA RUNIC LETTER X
+%    \begin{macrocode}
+      { \x{16EA} } { \cL\x{7B} }
+%    \end{macrocode}
+% U+16EE RUNIC ARLAUG SYMBOL
+%    \begin{macrocode}
+      { \x{16EE} } { \cL\x{7C}\x{21} }
+%    \end{macrocode}
+% U+16EF RUNIC TVIMADUR SYMBOL
+%    \begin{macrocode}
+      { \x{16EF} } { \cL\x{7C}\x{22} }
+%    \end{macrocode}
+% U+16F0 RUNIC BELGTHOR SYMBOL
+%    \begin{macrocode}
+      { \x{16F0} } { \cL\x{7D}\x{23} }
+%    \end{macrocode}
+% U+16F1 RUNIC LETTER K
+%    \begin{macrocode}
+      { \x{16F1} } { \cL\x{7D}\x{24} }
+%    \end{macrocode}
+% U+16F2 RUNIC LETTER SH
+%    \begin{macrocode}
+      { \x{16F2} } { \cL\x{7D}\x{25} }
+%    \end{macrocode}
+% U+16F3 RUNIC LETTER OO
+%    \begin{macrocode}
+      { \x{16F3} } { \cL\x{7D}\x{26} }
+%    \end{macrocode}
+% U+16F4 RUNIC LETTER FRANKS CASKET OS
+%    \begin{macrocode}
+      { \x{16F4} } { \cL\x{7D}\x{27} }
+%    \end{macrocode}
+% U+16F5 RUNIC LETTER FRANKS CASKET IS
+%    \begin{macrocode}
+      { \x{16F5} } { \cL\x{7D}\x{28} }
+%    \end{macrocode}
+% U+16F6 RUNIC LETTER FRANKS CASKET EH
+%    \begin{macrocode}
+      { \x{16F6} } { \cL\x{7D}\x{29} }
+%    \end{macrocode}
+% U+16F7 RUNIC LETTER FRANKS CASKET AC
+%    \begin{macrocode}
+      { \x{16F7} } { \cL\x{7D}\x{2A} }
+%    \end{macrocode}
+% U+16F8 RUNIC LETTER FRANKS CASKET AESC
+%    \begin{macrocode}
+      { \x{16F8} } { \cL\x{7D}\x{2B} }
+%    \end{macrocode}
+% U+16EB RUNIC SINGLE PUNCTUATION
+%    \begin{macrocode}
+      { \x{16EB} } { \cO\x{21}\x{21} }
+%    \end{macrocode}
+% U+16EC RUNIC MULTIPLE PUNCTUATION
+%    \begin{macrocode}
+      { \x{16EC} } { \cO\x{21}\x{22} }
+%    \end{macrocode}
+% U+16ED RUNIC CROSS PUNCTUATION
+%    \begin{macrocode}
+      { \x{16ED} } { \cO\x{21}\x{23} }
+%    \end{macrocode}
+% Tironian et
+%    \begin{macrocode}
+      { \x{204A} } { \cL\x{7E} }
+%    \end{macrocode}
+%Any character in the punctuation class:
+%    \begin{macrocode}
+      { ([[:punct:]]+) } { \cO\x{21}\x{24} \1 }
+    }
+    #1
+   }
+%    \end{macrocode}
+%Old English Rune Poem order (fuþorc, punctuation last). Not all characters are included in the
+%poem, so they are appended at the end.
+%    \begin{macrocode}
+  \cs_new:Nn \datatool_angRunr_order_futhorc_punc:n
+   {
+    \regex_replace_case_all:nN
+    {
+%    \end{macrocode}
+% U+16A0 RUNIC LETTER FEHU FEOH FE F
+%    \begin{macrocode}
+      { \x{16A0} } { \cL\x{31} }
+%    \end{macrocode}
+% U+16A2 RUNIC LETTER URUZ UR U
+%    \begin{macrocode}
+      { \x{16A2} } { \cL\x{32} }
+%    \end{macrocode}
+% U+16A6 RUNIC LETTER THURISAZ THURS THORN
+%    \begin{macrocode}
+      { \x{16A6} } { \cL\x{33} }
+%    \end{macrocode}
+% U+16A9 RUNIC LETTER OS O
+%    \begin{macrocode}
+      { \x{16A9} } { \cL\x{34} }
+%    \end{macrocode}
+% U+16B1 RUNIC LETTER RAIDO RAD REID R
+%    \begin{macrocode}
+      { \x{16B1} } { \cL\x{35} }
+%    \end{macrocode}
+% U+16B3 RUNIC LETTER CEN
+%    \begin{macrocode}
+      { \x{16B3} } { \cL\x{36} }
+%    \end{macrocode}
+% U+16B7 RUNIC LETTER GEBO GYFU G
+%    \begin{macrocode}
+      { \x{16B7} } { \cL\x{37} }
+%    \end{macrocode}
+% U+16B9 RUNIC LETTER WUNJO WYNN W
+%    \begin{macrocode}
+      { \x{16B9} } { \cL\x{38} }
+%    \end{macrocode}
+% U+16BB RUNIC LETTER HAEGL H
+%    \begin{macrocode}
+      { \x{16BB} } { \cL\x{39} }
+%    \end{macrocode}
+% U+16BE RUNIC LETTER NAUDIZ NYD NAUD N
+%    \begin{macrocode}
+      { \x{16BE} } { \cL\x{3A} }
+%    \end{macrocode}
+% U+16C1 RUNIC LETTER ISAZ IS ISS I
+%    \begin{macrocode}
+      { \x{16C1} } { \cL\x{3B} }
+%    \end{macrocode}
+% U+16C4 RUNIC LETTER GER
+%    \begin{macrocode}
+      { \x{16C4} } { \cL\x{3C} }
+%    \end{macrocode}
+% U+16C7 RUNIC LETTER IWAZ EOH
+%    \begin{macrocode}
+      { \x{16C7} } { \cL\x{3D} }
+%    \end{macrocode}
+% U+16C8 RUNIC LETTER PERTHO PEORTH P
+%    \begin{macrocode}
+      { \x{16C8} } { \cL\x{3E} }
+%    \end{macrocode}
+% U+16C9 RUNIC LETTER ALGIZ EOLHX
+%    \begin{macrocode}
+      { \x{16C9} } { \cL\x{3F} }
+%    \end{macrocode}
+% U+16CB RUNIC LETTER SIGEL LONG-BRANCH-SOL S
+%    \begin{macrocode}
+      { \x{16CB} } { \cL\x{40} }
+%    \end{macrocode}
+% U+16CF RUNIC LETTER TIWAZ TIR TYR T
+%    \begin{macrocode}
+      { \x{16CF} } { \cL\x{41} }
+%    \end{macrocode}
+% U+16D2 RUNIC LETTER BERKANAN BEORC BJARKAN B
+%    \begin{macrocode}
+      { \x{16D2} } { \cL\x{42} }
+%    \end{macrocode}
+% U+16D6 RUNIC LETTER EHWAZ EH E
+%    \begin{macrocode}
+      { \x{16D6} } { \cL\x{43} }
+%    \end{macrocode}
+% U+16D7 RUNIC LETTER MANNAZ MAN M
+%    \begin{macrocode}
+      { \x{16D7} } { \cL\x{44} }
+%    \end{macrocode}
+% U+16DA RUNIC LETTER LAUKAZ LAGU LOGR L
+%    \begin{macrocode}
+      { \x{16DA} } { \cL\x{45} }
+%    \end{macrocode}
+% U+16DD RUNIC LETTER ING
+%    \begin{macrocode}
+      { \x{16DD} } { \cL\x{46} }
+%    \end{macrocode}
+% U+16DF RUNIC LETTER OTHALAN ETHEL O
+%    \begin{macrocode}
+      { \x{16DF} } { \cL\x{47} }
+%    \end{macrocode}
+% U+16DE RUNIC LETTER DAGAZ DAEG D
+%    \begin{macrocode}
+      { \x{16DE} } { \cL\x{48} }
+%    \end{macrocode}
+% U+16AA RUNIC LETTER AC A
+%    \begin{macrocode}
+      { \x{16AA} } { \cL\x{49} }
+%    \end{macrocode}
+% U+16AB RUNIC LETTER AESC
+%    \begin{macrocode}
+      { \x{16AB} } { \cL\x{4A} }
+%    \end{macrocode}
+% U+16A3 RUNIC LETTER YR
+%    \begin{macrocode}
+      { \x{16A3} } { \cL\x{4B} }
+%    \end{macrocode}
+% U+16E1 RUNIC LETTER IOR
+%    \begin{macrocode}
+      { \x{16E1} } { \cL\x{4C} }
+%    \end{macrocode}
+% U+16E0 RUNIC LETTER EAR
+%    \begin{macrocode}
+      { \x{16E0} } { \cL\x{4D} }
+%    \end{macrocode}
+%The remainder are in Unicode order, except for the punctuation.
+%Some of these may need to be merged into the above, as applicable.
+%
+% U+16A1 RUNIC LETTER V
+%    \begin{macrocode}
+      { \x{16A1} } { \cL\x{4E} }
+%    \end{macrocode}
+% U+16A4 RUNIC LETTER Y
+%    \begin{macrocode}
+      { \x{16A4} } { \cL\x{4F} }
+%    \end{macrocode}
+% U+16A5 RUNIC LETTER W
+%    \begin{macrocode}
+      { \x{16A5} } { \cL\x{50} }
+%    \end{macrocode}
+% U+16A7 RUNIC LETTER ETH
+%    \begin{macrocode}
+      { \x{16A7} } { \cL\x{51} }
+%    \end{macrocode}
+% U+16A8 RUNIC LETTER ANSUZ A
+%    \begin{macrocode}
+      { \x{16A8} } { \cL\x{52} }
+%    \end{macrocode}
+% U+16AC RUNIC LETTER LONG-BRANCH-OSS O
+%    \begin{macrocode}
+      { \x{16AC} } { \cL\x{53} }
+%    \end{macrocode}
+% U+16AD RUNIC LETTER SHORT-TWIG-OSS O
+%    \begin{macrocode}
+      { \x{16AD} } { \cL\x{54} }
+%    \end{macrocode}
+% U+16AE RUNIC LETTER O
+%    \begin{macrocode}
+      { \x{16AE} } { \cL\x{55} }
+%    \end{macrocode}
+% U+16AF RUNIC LETTER OE
+%    \begin{macrocode}
+      { \x{16AF} } { \cL\x{56} }
+%    \end{macrocode}
+% U+16B0 RUNIC LETTER ON
+%    \begin{macrocode}
+      { \x{16B0} } { \cL\x{57} }
+%    \end{macrocode}
+% U+16B2 RUNIC LETTER KAUNA
+%    \begin{macrocode}
+      { \x{16B2} } { \cL\x{58} }
+%    \end{macrocode}
+% U+16B4 RUNIC LETTER KAUN K
+%    \begin{macrocode}
+      { \x{16B4} } { \cL\x{59} }
+%    \end{macrocode}
+% U+16B5 RUNIC LETTER G
+%    \begin{macrocode}
+      { \x{16B5} } { \cL\x{5A} }
+%    \end{macrocode}
+% U+16B6 RUNIC LETTER ENG
+%    \begin{macrocode}
+      { \x{16B6} } { \cL\x{5B} }
+%    \end{macrocode}
+% U+16B8 RUNIC LETTER GAR
+%    \begin{macrocode}
+      { \x{16B8} } { \cL\x{5C} }
+%    \end{macrocode}
+% U+16BA RUNIC LETTER HAGLAZ H
+%    \begin{macrocode}
+      { \x{16BA} } { \cL\x{5D} }
+%    \end{macrocode}
+% U+16BC RUNIC LETTER LONG-BRANCH-HAGALL H
+%    \begin{macrocode}
+      { \x{16BC} } { \cL\x{5E} }
+%    \end{macrocode}
+% U+16BD RUNIC LETTER SHORT-TWIG-HAGALL H
+%    \begin{macrocode}
+      { \x{16BD} } { \cL\x{5F} }
+%    \end{macrocode}
+% U+16BF RUNIC LETTER SHORT-TWIG-NAUD N
+%    \begin{macrocode}
+      { \x{16BF} } { \cL\x{60} }
+%    \end{macrocode}
+% U+16C0 RUNIC LETTER DOTTED-N
+%    \begin{macrocode}
+      { \x{16C0} } { \cL\x{61} }
+%    \end{macrocode}
+% U+16C2 RUNIC LETTER E
+%    \begin{macrocode}
+      { \x{16C2} } { \cL\x{62} }
+%    \end{macrocode}
+% U+16C3 RUNIC LETTER JERAN J
+%    \begin{macrocode}
+      { \x{16C3} } { \cL\x{63} }
+%    \end{macrocode}
+% U+16C5 RUNIC LETTER LONG-BRANCH-AR AE
+%    \begin{macrocode}
+      { \x{16C5} } { \cL\x{64} }
+%    \end{macrocode}
+% U+16C6 RUNIC LETTER SHORT-TWIG-AR A
+%    \begin{macrocode}
+      { \x{16C6} } { \cL\x{65} }
+%    \end{macrocode}
+% U+16CA RUNIC LETTER SOWILO S
+%    \begin{macrocode}
+      { \x{16CA} } { \cL\x{66} }
+%    \end{macrocode}
+% U+16CC RUNIC LETTER SHORT-TWIG-SOL S
+%    \begin{macrocode}
+      { \x{16CC} } { \cL\x{67} }
+%    \end{macrocode}
+% U+16CD RUNIC LETTER C
+%    \begin{macrocode}
+      { \x{16CD} } { \cL\x{68} }
+%    \end{macrocode}
+% U+16CE RUNIC LETTER Z
+%    \begin{macrocode}
+      { \x{16CE} } { \cL\x{69} }
+%    \end{macrocode}
+% U+16D0 RUNIC LETTER SHORT-TWIG-TYR T
+%    \begin{macrocode}
+      { \x{16D0} } { \cL\x{6A} }
+%    \end{macrocode}
+% U+16D1 RUNIC LETTER D
+%    \begin{macrocode}
+      { \x{16D1} } { \cL\x{6B} }
+%    \end{macrocode}
+% U+16D3 RUNIC LETTER SHORT-TWIG-BJARKAN B
+%    \begin{macrocode}
+      { \x{16D3} } { \cL\x{6C} }
+%    \end{macrocode}
+% U+16D4 RUNIC LETTER DOTTED-P
+%    \begin{macrocode}
+      { \x{16D4} } { \cL\x{6D} }
+%    \end{macrocode}
+% U+16D5 RUNIC LETTER OPEN-P
+%    \begin{macrocode}
+      { \x{16D5} } { \cL\x{6E} }
+%    \end{macrocode}
+% U+16D8 RUNIC LETTER LONG-BRANCH-MADR M
+%    \begin{macrocode}
+      { \x{16D8} } { \cL\x{6F} }
+%    \end{macrocode}
+% U+16D9 RUNIC LETTER SHORT-TWIG-MADR M
+%    \begin{macrocode}
+      { \x{16D9} } { \cL\x{70} }
+%    \end{macrocode}
+% U+16DB RUNIC LETTER DOTTED-L
+%    \begin{macrocode}
+      { \x{16DB} } { \cL\x{71} }
+%    \end{macrocode}
+% U+16DC RUNIC LETTER INGWAZ
+%    \begin{macrocode}
+      { \x{16DC} } { \cL\x{72} }
+%    \end{macrocode}
+% U+16E2 RUNIC LETTER CWEORTH
+%    \begin{macrocode}
+      { \x{16E2} } { \cL\x{73} }
+%    \end{macrocode}
+% U+16E3 RUNIC LETTER CALC
+%    \begin{macrocode}
+      { \x{16E3} } { \cL\x{74} }
+%    \end{macrocode}
+% U+16E4 RUNIC LETTER CEALC
+%    \begin{macrocode}
+      { \x{16E4} } { \cL\x{75} }
+%    \end{macrocode}
+% U+16E5 RUNIC LETTER STAN
+%    \begin{macrocode}
+      { \x{16E5} } { \cL\x{76} }
+%    \end{macrocode}
+% U+16E6 RUNIC LETTER LONG-BRANCH-YR
+%    \begin{macrocode}
+      { \x{16E6} } { \cL\x{77} }
+%    \end{macrocode}
+% U+16E7 RUNIC LETTER SHORT-TWIG-YR
+%    \begin{macrocode}
+      { \x{16E7} } { \cL\x{78} }
+%    \end{macrocode}
+% U+16E8 RUNIC LETTER ICELANDIC-YR
+%    \begin{macrocode}
+      { \x{16E8} } { \cL\x{79} }
+%    \end{macrocode}
+% U+16E9 RUNIC LETTER Q
+%    \begin{macrocode}
+      { \x{16E9} } { \cL\x{7A} }
+%    \end{macrocode}
+% U+16EA RUNIC LETTER X
+%    \begin{macrocode}
+      { \x{16EA} } { \cL\x{7B} }
+%    \end{macrocode}
+% U+16EE RUNIC ARLAUG SYMBOL
+%    \begin{macrocode}
+      { \x{16EE} } { \cL\x{7C}\x{21} }
+%    \end{macrocode}
+% U+16EF RUNIC TVIMADUR SYMBOL
+%    \begin{macrocode}
+      { \x{16EF} } { \cL\x{7C}\x{22} }
+%    \end{macrocode}
+% U+16F0 RUNIC BELGTHOR SYMBOL
+%    \begin{macrocode}
+      { \x{16F0} } { \cL\x{7D}\x{23} }
+%    \end{macrocode}
+% U+16F1 RUNIC LETTER K
+%    \begin{macrocode}
+      { \x{16F1} } { \cL\x{7D}\x{24} }
+%    \end{macrocode}
+% U+16F2 RUNIC LETTER SH
+%    \begin{macrocode}
+      { \x{16F2} } { \cL\x{7D}\x{25} }
+%    \end{macrocode}
+% U+16F3 RUNIC LETTER OO
+%    \begin{macrocode}
+      { \x{16F3} } { \cL\x{7D}\x{26} }
+%    \end{macrocode}
+% U+16F4 RUNIC LETTER FRANKS CASKET OS
+%    \begin{macrocode}
+      { \x{16F4} } { \cL\x{7D}\x{27} }
+%    \end{macrocode}
+% U+16F5 RUNIC LETTER FRANKS CASKET IS
+%    \begin{macrocode}
+      { \x{16F5} } { \cL\x{7D}\x{28} }
+%    \end{macrocode}
+% U+16F6 RUNIC LETTER FRANKS CASKET EH
+%    \begin{macrocode}
+      { \x{16F6} } { \cL\x{7D}\x{29} }
+%    \end{macrocode}
+% U+16F7 RUNIC LETTER FRANKS CASKET AC
+%    \begin{macrocode}
+      { \x{16F7} } { \cL\x{7D}\x{2A} }
+%    \end{macrocode}
+% U+16F8 RUNIC LETTER FRANKS CASKET AESC
+%    \begin{macrocode}
+      { \x{16F8} } { \cL\x{7D}\x{2B} }
+%    \end{macrocode}
+% Tironian et
+%    \begin{macrocode}
+      { \x{204A} } { \cL\x{7D} \x{2C} }
+%    \end{macrocode}
+% U+16EB RUNIC SINGLE PUNCTUATION
+%    \begin{macrocode}
+      { \x{16EB} } { \cO\x{7E}\x{21} }
+%    \end{macrocode}
+% U+16EC RUNIC MULTIPLE PUNCTUATION
+%    \begin{macrocode}
+      { \x{16EC} } { \cO\x{7E}\x{22} }
+%    \end{macrocode}
+% U+16ED RUNIC CROSS PUNCTUATION
+%    \begin{macrocode}
+      { \x{16ED} } { \cO\x{7E}\x{23} }
+%    \end{macrocode}
+%Any character in the punctuation class:
+%    \begin{macrocode}
+      { ([[:punct:]]+) } { \cO\x{7E}\x{24} \1 }
+    }
+    #1
+   }
+ }
  {
 %    \end{macrocode}
 %Unicode order (mostly Unicode order).
@@ -1429,1141 +2565,6 @@
 %    \end{macrocode}
 %Any character in the punctuation class (unlikely to occur in Runic
 %but added for completeness):
-%    \begin{macrocode}
-      { ([[:punct:]]+) } { \cO\x{7E}\x{24} \1 }
-    }
-    #1
-   }
- }
- {
-%    \end{macrocode}
-%Unicode order (mostly Unicode order).
-%The punctuation characters are placed first, the rest follows
-%Unicode order.
-%    \begin{macrocode}
-  \cs_new:Nn \datatool_angRunr_order_punc_unicode:n
-   {
-    \regex_replace_case_all:nN
-    {
-%    \end{macrocode}
-% U+16A0 RUNIC LETTER FEHU FEOH FE F
-%    \begin{macrocode}
-      { \x{16A0} } { \cL\x{31} }
-%    \end{macrocode}
-% U+16A1 RUNIC LETTER V
-%    \begin{macrocode}
-      { \x{16A1} } { \cL\x{32} }
-%    \end{macrocode}
-% U+16A2 RUNIC LETTER URUZ UR U
-%    \begin{macrocode}
-      { \x{16A2} } { \cL\x{33} }
-%    \end{macrocode}
-% U+16A3 RUNIC LETTER YR
-%    \begin{macrocode}
-      { \x{16A3} } { \cL\x{34} }
-%    \end{macrocode}
-% U+16A4 RUNIC LETTER Y
-%    \begin{macrocode}
-      { \x{16A4} } { \cL\x{35} }
-%    \end{macrocode}
-% U+16A5 RUNIC LETTER W
-%    \begin{macrocode}
-      { \x{16A5} } { \cL\x{36} }
-%    \end{macrocode}
-% U+16A6 RUNIC LETTER THURISAZ THURS THORN
-%    \begin{macrocode}
-      { \x{16A6} } { \cL\x{37} }
-%    \end{macrocode}
-% U+16A7 RUNIC LETTER ETH
-%    \begin{macrocode}
-      { \x{16A7} } { \cL\x{38} }
-%    \end{macrocode}
-% U+16A8 RUNIC LETTER ANSUZ A
-%    \begin{macrocode}
-      { \x{16A8} } { \cL\x{39} }
-%    \end{macrocode}
-% U+16A9 RUNIC LETTER OS O
-%    \begin{macrocode}
-      { \x{16A9} } { \cL\x{3A} }
-%    \end{macrocode}
-% U+16AA RUNIC LETTER AC A
-%    \begin{macrocode}
-      { \x{16AA} } { \cL\x{3B} }
-%    \end{macrocode}
-% U+16AB RUNIC LETTER AESC
-%    \begin{macrocode}
-      { \x{16AB} } { \cL\x{3C} }
-%    \end{macrocode}
-% U+16AC RUNIC LETTER LONG-BRANCH-OSS O
-%    \begin{macrocode}
-      { \x{16AC} } { \cL\x{3D} }
-%    \end{macrocode}
-% U+16AD RUNIC LETTER SHORT-TWIG-OSS O
-%    \begin{macrocode}
-      { \x{16AD} } { \cL\x{3E} }
-%    \end{macrocode}
-% U+16AE RUNIC LETTER O
-%    \begin{macrocode}
-      { \x{16AE} } { \cL\x{3F} }
-%    \end{macrocode}
-% U+16AF RUNIC LETTER OE
-%    \begin{macrocode}
-      { \x{16AF} } { \cL\x{40} }
-%    \end{macrocode}
-% U+16B0 RUNIC LETTER ON
-%    \begin{macrocode}
-      { \x{16B0} } { \cL\x{41} }
-%    \end{macrocode}
-% U+16B1 RUNIC LETTER RAIDO RAD REID R
-%    \begin{macrocode}
-      { \x{16B1} } { \cL\x{42} }
-%    \end{macrocode}
-% U+16B2 RUNIC LETTER KAUNA
-%    \begin{macrocode}
-      { \x{16B2} } { \cL\x{43} }
-%    \end{macrocode}
-% U+16B3 RUNIC LETTER CEN
-%    \begin{macrocode}
-      { \x{16B3} } { \cL\x{44} }
-%    \end{macrocode}
-% U+16B4 RUNIC LETTER KAUN K
-%    \begin{macrocode}
-      { \x{16B4} } { \cL\x{45} }
-%    \end{macrocode}
-% U+16B5 RUNIC LETTER G
-%    \begin{macrocode}
-      { \x{16B5} } { \cL\x{46} }
-%    \end{macrocode}
-% U+16B6 RUNIC LETTER ENG
-%    \begin{macrocode}
-      { \x{16B6} } { \cL\x{47} }
-%    \end{macrocode}
-% U+16B7 RUNIC LETTER GEBO GYFU G
-%    \begin{macrocode}
-      { \x{16B7} } { \cL\x{48} }
-%    \end{macrocode}
-% U+16B8 RUNIC LETTER GAR
-%    \begin{macrocode}
-      { \x{16B8} } { \cL\x{49} }
-%    \end{macrocode}
-% U+16B9 RUNIC LETTER WUNJO WYNN W
-%    \begin{macrocode}
-      { \x{16B9} } { \cL\x{4A} }
-%    \end{macrocode}
-% U+16BA RUNIC LETTER HAGLAZ H
-%    \begin{macrocode}
-      { \x{16BA} } { \cL\x{4B} }
-%    \end{macrocode}
-% U+16BB RUNIC LETTER HAEGL H
-%    \begin{macrocode}
-      { \x{16BB} } { \cL\x{4C} }
-%    \end{macrocode}
-% U+16BC RUNIC LETTER LONG-BRANCH-HAGALL H
-%    \begin{macrocode}
-      { \x{16BC} } { \cL\x{4D} }
-%    \end{macrocode}
-% U+16BD RUNIC LETTER SHORT-TWIG-HAGALL H
-%    \begin{macrocode}
-      { \x{16BD} } { \cL\x{4E} }
-%    \end{macrocode}
-% U+16BE RUNIC LETTER NAUDIZ NYD NAUD N
-%    \begin{macrocode}
-      { \x{16BE} } { \cL\x{4F} }
-%    \end{macrocode}
-% U+16BF RUNIC LETTER SHORT-TWIG-NAUD N
-%    \begin{macrocode}
-      { \x{16BF} } { \cL\x{50} }
-%    \end{macrocode}
-% U+16C0 RUNIC LETTER DOTTED-N
-%    \begin{macrocode}
-      { \x{16C0} } { \cL\x{51} }
-%    \end{macrocode}
-% U+16C1 RUNIC LETTER ISAZ IS ISS I
-%    \begin{macrocode}
-      { \x{16C1} } { \cL\x{52} }
-%    \end{macrocode}
-% U+16C2 RUNIC LETTER E
-%    \begin{macrocode}
-      { \x{16C2} } { \cL\x{53} }
-%    \end{macrocode}
-% U+16C3 RUNIC LETTER JERAN J
-%    \begin{macrocode}
-      { \x{16C3} } { \cL\x{54} }
-%    \end{macrocode}
-% U+16C4 RUNIC LETTER GER
-%    \begin{macrocode}
-      { \x{16C4} } { \cL\x{55} }
-%    \end{macrocode}
-% U+16C5 RUNIC LETTER LONG-BRANCH-AR AE
-%    \begin{macrocode}
-      { \x{16C5} } { \cL\x{56} }
-%    \end{macrocode}
-% U+16C6 RUNIC LETTER SHORT-TWIG-AR A
-%    \begin{macrocode}
-      { \x{16C6} } { \cL\x{57} }
-%    \end{macrocode}
-% U+16C7 RUNIC LETTER IWAZ EOH
-%    \begin{macrocode}
-      { \x{16C7} } { \cL\x{58} }
-%    \end{macrocode}
-% U+16C8 RUNIC LETTER PERTHO PEORTH P
-%    \begin{macrocode}
-      { \x{16C8} } { \cL\x{59} }
-%    \end{macrocode}
-% U+16C9 RUNIC LETTER ALGIZ EOLHX
-%    \begin{macrocode}
-      { \x{16C9} } { \cL\x{5A} }
-%    \end{macrocode}
-% U+16CA RUNIC LETTER SOWILO S
-%    \begin{macrocode}
-      { \x{16CA} } { \cL\x{5B} }
-%    \end{macrocode}
-% U+16CB RUNIC LETTER SIGEL LONG-BRANCH-SOL S
-%    \begin{macrocode}
-      { \x{16CB} } { \cL\x{5C} }
-%    \end{macrocode}
-% U+16CC RUNIC LETTER SHORT-TWIG-SOL S
-%    \begin{macrocode}
-      { \x{16CC} } { \cL\x{5D} }
-%    \end{macrocode}
-% U+16CD RUNIC LETTER C
-%    \begin{macrocode}
-      { \x{16CD} } { \cL\x{5E} }
-%    \end{macrocode}
-% U+16CE RUNIC LETTER Z
-%    \begin{macrocode}
-      { \x{16CE} } { \cL\x{5F} }
-%    \end{macrocode}
-% U+16CF RUNIC LETTER TIWAZ TIR TYR T
-%    \begin{macrocode}
-      { \x{16CF} } { \cL\x{60} }
-%    \end{macrocode}
-% U+16D0 RUNIC LETTER SHORT-TWIG-TYR T
-%    \begin{macrocode}
-      { \x{16D0} } { \cL\x{61} }
-%    \end{macrocode}
-% U+16D1 RUNIC LETTER D
-%    \begin{macrocode}
-      { \x{16D1} } { \cL\x{62} }
-%    \end{macrocode}
-% U+16D2 RUNIC LETTER BERKANAN BEORC BJARKAN B
-%    \begin{macrocode}
-      { \x{16D2} } { \cL\x{63} }
-%    \end{macrocode}
-% U+16D3 RUNIC LETTER SHORT-TWIG-BJARKAN B
-%    \begin{macrocode}
-      { \x{16D3} } { \cL\x{64} }
-%    \end{macrocode}
-% U+16D4 RUNIC LETTER DOTTED-P
-%    \begin{macrocode}
-      { \x{16D4} } { \cL\x{65} }
-%    \end{macrocode}
-% U+16D5 RUNIC LETTER OPEN-P
-%    \begin{macrocode}
-      { \x{16D5} } { \cL\x{66} }
-%    \end{macrocode}
-% U+16D6 RUNIC LETTER EHWAZ EH E
-%    \begin{macrocode}
-      { \x{16D6} } { \cL\x{67} }
-%    \end{macrocode}
-% U+16D7 RUNIC LETTER MANNAZ MAN M
-%    \begin{macrocode}
-      { \x{16D7} } { \cL\x{68} }
-%    \end{macrocode}
-% U+16D8 RUNIC LETTER LONG-BRANCH-MADR M
-%    \begin{macrocode}
-      { \x{16D8} } { \cL\x{69} }
-%    \end{macrocode}
-% U+16D9 RUNIC LETTER SHORT-TWIG-MADR M
-%    \begin{macrocode}
-      { \x{16D9} } { \cL\x{6A} }
-%    \end{macrocode}
-% U+16DA RUNIC LETTER LAUKAZ LAGU LOGR L
-%    \begin{macrocode}
-      { \x{16DA} } { \cL\x{6B} }
-%    \end{macrocode}
-% U+16DB RUNIC LETTER DOTTED-L
-%    \begin{macrocode}
-      { \x{16DB} } { \cL\x{6C} }
-%    \end{macrocode}
-% U+16DC RUNIC LETTER INGWAZ
-%    \begin{macrocode}
-      { \x{16DC} } { \cL\x{6D} }
-%    \end{macrocode}
-% U+16DD RUNIC LETTER ING
-%    \begin{macrocode}
-      { \x{16DD} } { \cL\x{6F} }
-%    \end{macrocode}
-% U+16DE RUNIC LETTER DAGAZ DAEG D
-%    \begin{macrocode}
-      { \x{16DE} } { \cL\x{70} }
-%    \end{macrocode}
-% U+16DF RUNIC LETTER OTHALAN ETHEL O
-%    \begin{macrocode}
-      { \x{16DF} } { \cL\x{71} }
-%    \end{macrocode}
-% U+16E0 RUNIC LETTER EAR
-%    \begin{macrocode}
-      { \x{16E0} } { \cL\x{72} }
-%    \end{macrocode}
-% U+16E1 RUNIC LETTER IOR
-%    \begin{macrocode}
-      { \x{16E1} } { \cL\x{73} }
-%    \end{macrocode}
-% U+16E2 RUNIC LETTER CWEORTH
-%    \begin{macrocode}
-      { \x{16E2} } { \cL\x{74} }
-%    \end{macrocode}
-% U+16E3 RUNIC LETTER CALC
-%    \begin{macrocode}
-      { \x{16E3} } { \cL\x{75} }
-%    \end{macrocode}
-% U+16E4 RUNIC LETTER CEALC
-%    \begin{macrocode}
-      { \x{16E4} } { \cL\x{76} }
-%    \end{macrocode}
-% U+16E5 RUNIC LETTER STAN
-%    \begin{macrocode}
-      { \x{16E5} } { \cL\x{77} }
-%    \end{macrocode}
-% U+16E6 RUNIC LETTER LONG-BRANCH-YR
-%    \begin{macrocode}
-      { \x{16E6} } { \cL\x{78} }
-%    \end{macrocode}
-% U+16E7 RUNIC LETTER SHORT-TWIG-YR
-%    \begin{macrocode}
-      { \x{16E7} } { \cL\x{79} }
-%    \end{macrocode}
-% U+16E8 RUNIC LETTER ICELANDIC-YR
-%    \begin{macrocode}
-      { \x{16E8} } { \cL\x{7A} }
-%    \end{macrocode}
-% U+16E9 RUNIC LETTER Q
-%    \begin{macrocode}
-      { \x{16E9} } { \cL\x{7B} }
-%    \end{macrocode}
-% U+16EA RUNIC LETTER X
-%    \begin{macrocode}
-      { \x{16EA} } { \cL\x{7C} }
-%    \end{macrocode}
-% U+16EE RUNIC ARLAUG SYMBOL
-%    \begin{macrocode}
-      { \x{16EE} } { \cL\x{7D}\x{21} }
-%    \end{macrocode}
-% U+16EF RUNIC TVIMADUR SYMBOL
-%    \begin{macrocode}
-      { \x{16EF} } { \cL\x{7D}\x{22} }
-%    \end{macrocode}
-% U+16F0 RUNIC BELGTHOR SYMBOL
-%    \begin{macrocode}
-      { \x{16F0} } { \cL\x{7D}\x{23} }
-%    \end{macrocode}
-% U+16F1 RUNIC LETTER K
-%    \begin{macrocode}
-      { \x{16F1} } { \cL\x{7D}\x{24} }
-%    \end{macrocode}
-% U+16F2 RUNIC LETTER SH
-%    \begin{macrocode}
-      { \x{16F2} } { \cL\x{7D}\x{25} }
-%    \end{macrocode}
-% U+16F3 RUNIC LETTER OO
-%    \begin{macrocode}
-      { \x{16F3} } { \cL\x{7D}\x{26} }
-%    \end{macrocode}
-% U+16F4 RUNIC LETTER FRANKS CASKET OS
-%    \begin{macrocode}
-      { \x{16F4} } { \cL\x{7D}\x{27} }
-%    \end{macrocode}
-% U+16F5 RUNIC LETTER FRANKS CASKET IS
-%    \begin{macrocode}
-      { \x{16F5} } { \cL\x{7D}\x{28} }
-%    \end{macrocode}
-% U+16F6 RUNIC LETTER FRANKS CASKET EH
-%    \begin{macrocode}
-      { \x{16F6} } { \cL\x{7D}\x{29} }
-%    \end{macrocode}
-% U+16F7 RUNIC LETTER FRANKS CASKET AC
-%    \begin{macrocode}
-      { \x{16F7} } { \cL\x{7D}\x{2A} }
-%    \end{macrocode}
-% U+16F8 RUNIC LETTER FRANKS CASKET AESC
-%    \begin{macrocode}
-      { \x{16F8} } { \cL\x{7D}\x{2B} }
-%    \end{macrocode}
-% U+16EB RUNIC SINGLE PUNCTUATION
-%    \begin{macrocode}
-      { \x{16EB} } { \cO\x{21}\x{21} }
-%    \end{macrocode}
-% U+16EC RUNIC MULTIPLE PUNCTUATION
-%    \begin{macrocode}
-      { \x{16EC} } { \cO\x{21}\x{22} }
-%    \end{macrocode}
-% U+16ED RUNIC CROSS PUNCTUATION
-%    \begin{macrocode}
-      { \x{16ED} } { \cO\x{21}\x{23} }
-%    \end{macrocode}
-% Tironian et
-%    \begin{macrocode}
-      { \x{204A} } { \cL\x{7E} }
-%    \end{macrocode}
-%Any character in the punctuation class:
-%    \begin{macrocode}
-      { ([[:punct:]]+) } { \cO\x{21}\x{24} \1 }
-    }
-    #1
-   }
-%    \end{macrocode}
-%Old English Rune Poem order (fuþorc). Not all characters are included in the
-%poem, so they are appended at the end. Punctuation characters come
-%first.
-%    \begin{macrocode}
-  \cs_new:Nn \datatool_angRunr_order_punc_futhorc:n
-   {
-    \regex_replace_case_all:nN
-    {
-%    \end{macrocode}
-% U+16A0 RUNIC LETTER FEHU FEOH FE F
-%    \begin{macrocode}
-      { \x{16A0} } { \cL\x{31} }
-%    \end{macrocode}
-% U+16A2 RUNIC LETTER URUZ UR U
-%    \begin{macrocode}
-      { \x{16A2} } { \cL\x{32} }
-%    \end{macrocode}
-% U+16A6 RUNIC LETTER THURISAZ THURS THORN
-%    \begin{macrocode}
-      { \x{16A6} } { \cL\x{33} }
-%    \end{macrocode}
-% U+16A9 RUNIC LETTER OS O
-%    \begin{macrocode}
-      { \x{16A9} } { \cL\x{34} }
-%    \end{macrocode}
-% U+16B1 RUNIC LETTER RAIDO RAD REID R
-%    \begin{macrocode}
-      { \x{16B1} } { \cL\x{35} }
-%    \end{macrocode}
-% U+16B3 RUNIC LETTER CEN
-%    \begin{macrocode}
-      { \x{16B3} } { \cL\x{36} }
-%    \end{macrocode}
-% U+16B7 RUNIC LETTER GEBO GYFU G
-%    \begin{macrocode}
-      { \x{16B7} } { \cL\x{37} }
-%    \end{macrocode}
-% U+16B9 RUNIC LETTER WUNJO WYNN W
-%    \begin{macrocode}
-      { \x{16B9} } { \cL\x{38} }
-%    \end{macrocode}
-% U+16BB RUNIC LETTER HAEGL H
-%    \begin{macrocode}
-      { \x{16BB} } { \cL\x{39} }
-%    \end{macrocode}
-% U+16BE RUNIC LETTER NAUDIZ NYD NAUD N
-%    \begin{macrocode}
-      { \x{16BE} } { \cL\x{3A} }
-%    \end{macrocode}
-% U+16C1 RUNIC LETTER ISAZ IS ISS I
-%    \begin{macrocode}
-      { \x{16C1} } { \cL\x{3B} }
-%    \end{macrocode}
-% U+16C4 RUNIC LETTER GER
-%    \begin{macrocode}
-      { \x{16C4} } { \cL\x{3C} }
-%    \end{macrocode}
-% U+16C7 RUNIC LETTER IWAZ EOH
-%    \begin{macrocode}
-      { \x{16C7} } { \cL\x{3D} }
-%    \end{macrocode}
-% U+16C8 RUNIC LETTER PERTHO PEORTH P
-%    \begin{macrocode}
-      { \x{16C8} } { \cL\x{3E} }
-%    \end{macrocode}
-% U+16C9 RUNIC LETTER ALGIZ EOLHX
-%    \begin{macrocode}
-      { \x{16C9} } { \cL\x{3F} }
-%    \end{macrocode}
-% U+16CB RUNIC LETTER SIGEL LONG-BRANCH-SOL S
-%    \begin{macrocode}
-      { \x{16CB} } { \cL\x{40} }
-%    \end{macrocode}
-% U+16CF RUNIC LETTER TIWAZ TIR TYR T
-%    \begin{macrocode}
-      { \x{16CF} } { \cL\x{41} }
-%    \end{macrocode}
-% U+16D2 RUNIC LETTER BERKANAN BEORC BJARKAN B
-%    \begin{macrocode}
-      { \x{16D2} } { \cL\x{42} }
-%    \end{macrocode}
-% U+16D6 RUNIC LETTER EHWAZ EH E
-%    \begin{macrocode}
-      { \x{16D6} } { \cL\x{43} }
-%    \end{macrocode}
-% U+16D7 RUNIC LETTER MANNAZ MAN M
-%    \begin{macrocode}
-      { \x{16D7} } { \cL\x{44} }
-%    \end{macrocode}
-% U+16DA RUNIC LETTER LAUKAZ LAGU LOGR L
-%    \begin{macrocode}
-      { \x{16DA} } { \cL\x{45} }
-%    \end{macrocode}
-% U+16DD RUNIC LETTER ING
-%    \begin{macrocode}
-      { \x{16DD} } { \cL\x{46} }
-%    \end{macrocode}
-% U+16DF RUNIC LETTER OTHALAN ETHEL O
-%    \begin{macrocode}
-      { \x{16DF} } { \cL\x{47} }
-%    \end{macrocode}
-% U+16DE RUNIC LETTER DAGAZ DAEG D
-%    \begin{macrocode}
-      { \x{16DE} } { \cL\x{48} }
-%    \end{macrocode}
-% U+16AA RUNIC LETTER AC A
-%    \begin{macrocode}
-      { \x{16AA} } { \cL\x{49} }
-%    \end{macrocode}
-% U+16AB RUNIC LETTER AESC
-%    \begin{macrocode}
-      { \x{16AB} } { \cL\x{4A} }
-%    \end{macrocode}
-% U+16A3 RUNIC LETTER YR
-%    \begin{macrocode}
-      { \x{16A3} } { \cL\x{4B} }
-%    \end{macrocode}
-% U+16E1 RUNIC LETTER IOR
-%    \begin{macrocode}
-      { \x{16E1} } { \cL\x{4C} }
-%    \end{macrocode}
-% U+16E0 RUNIC LETTER EAR
-%    \begin{macrocode}
-      { \x{16E0} } { \cL\x{4D} }
-%    \end{macrocode}
-%The remainder are in Unicode order, except for the punctuation.
-%Some of these may need to be merged into the above, as applicable.
-%
-% U+16A1 RUNIC LETTER V
-%    \begin{macrocode}
-      { \x{16A1} } { \cL\x{4E} }
-%    \end{macrocode}
-% U+16A4 RUNIC LETTER Y
-%    \begin{macrocode}
-      { \x{16A4} } { \cL\x{4F} }
-%    \end{macrocode}
-% U+16A5 RUNIC LETTER W
-%    \begin{macrocode}
-      { \x{16A5} } { \cL\x{50} }
-%    \end{macrocode}
-% U+16A7 RUNIC LETTER ETH
-%    \begin{macrocode}
-      { \x{16A7} } { \cL\x{51} }
-%    \end{macrocode}
-% U+16A8 RUNIC LETTER ANSUZ A
-%    \begin{macrocode}
-      { \x{16A8} } { \cL\x{52} }
-%    \end{macrocode}
-% U+16AC RUNIC LETTER LONG-BRANCH-OSS O
-%    \begin{macrocode}
-      { \x{16AC} } { \cL\x{53} }
-%    \end{macrocode}
-% U+16AD RUNIC LETTER SHORT-TWIG-OSS O
-%    \begin{macrocode}
-      { \x{16AD} } { \cL\x{54} }
-%    \end{macrocode}
-% U+16AE RUNIC LETTER O
-%    \begin{macrocode}
-      { \x{16AE} } { \cL\x{55} }
-%    \end{macrocode}
-% U+16AF RUNIC LETTER OE
-%    \begin{macrocode}
-      { \x{16AF} } { \cL\x{56} }
-%    \end{macrocode}
-% U+16B0 RUNIC LETTER ON
-%    \begin{macrocode}
-      { \x{16B0} } { \cL\x{57} }
-%    \end{macrocode}
-% U+16B2 RUNIC LETTER KAUNA
-%    \begin{macrocode}
-      { \x{16B2} } { \cL\x{58} }
-%    \end{macrocode}
-% U+16B4 RUNIC LETTER KAUN K
-%    \begin{macrocode}
-      { \x{16B4} } { \cL\x{59} }
-%    \end{macrocode}
-% U+16B5 RUNIC LETTER G
-%    \begin{macrocode}
-      { \x{16B5} } { \cL\x{5A} }
-%    \end{macrocode}
-% U+16B6 RUNIC LETTER ENG
-%    \begin{macrocode}
-      { \x{16B6} } { \cL\x{5B} }
-%    \end{macrocode}
-% U+16B8 RUNIC LETTER GAR
-%    \begin{macrocode}
-      { \x{16B8} } { \cL\x{5C} }
-%    \end{macrocode}
-% U+16BA RUNIC LETTER HAGLAZ H
-%    \begin{macrocode}
-      { \x{16BA} } { \cL\x{5D} }
-%    \end{macrocode}
-% U+16BC RUNIC LETTER LONG-BRANCH-HAGALL H
-%    \begin{macrocode}
-      { \x{16BC} } { \cL\x{5E} }
-%    \end{macrocode}
-% U+16BD RUNIC LETTER SHORT-TWIG-HAGALL H
-%    \begin{macrocode}
-      { \x{16BD} } { \cL\x{5F} }
-%    \end{macrocode}
-% U+16BF RUNIC LETTER SHORT-TWIG-NAUD N
-%    \begin{macrocode}
-      { \x{16BF} } { \cL\x{60} }
-%    \end{macrocode}
-% U+16C0 RUNIC LETTER DOTTED-N
-%    \begin{macrocode}
-      { \x{16C0} } { \cL\x{61} }
-%    \end{macrocode}
-% U+16C2 RUNIC LETTER E
-%    \begin{macrocode}
-      { \x{16C2} } { \cL\x{62} }
-%    \end{macrocode}
-% U+16C3 RUNIC LETTER JERAN J
-%    \begin{macrocode}
-      { \x{16C3} } { \cL\x{63} }
-%    \end{macrocode}
-% U+16C5 RUNIC LETTER LONG-BRANCH-AR AE
-%    \begin{macrocode}
-      { \x{16C5} } { \cL\x{64} }
-%    \end{macrocode}
-% U+16C6 RUNIC LETTER SHORT-TWIG-AR A
-%    \begin{macrocode}
-      { \x{16C6} } { \cL\x{65} }
-%    \end{macrocode}
-% U+16CA RUNIC LETTER SOWILO S
-%    \begin{macrocode}
-      { \x{16CA} } { \cL\x{66} }
-%    \end{macrocode}
-% U+16CC RUNIC LETTER SHORT-TWIG-SOL S
-%    \begin{macrocode}
-      { \x{16CC} } { \cL\x{67} }
-%    \end{macrocode}
-% U+16CD RUNIC LETTER C
-%    \begin{macrocode}
-      { \x{16CD} } { \cL\x{68} }
-%    \end{macrocode}
-% U+16CE RUNIC LETTER Z
-%    \begin{macrocode}
-      { \x{16CE} } { \cL\x{69} }
-%    \end{macrocode}
-% U+16D0 RUNIC LETTER SHORT-TWIG-TYR T
-%    \begin{macrocode}
-      { \x{16D0} } { \cL\x{6A} }
-%    \end{macrocode}
-% U+16D1 RUNIC LETTER D
-%    \begin{macrocode}
-      { \x{16D1} } { \cL\x{6B} }
-%    \end{macrocode}
-% U+16D3 RUNIC LETTER SHORT-TWIG-BJARKAN B
-%    \begin{macrocode}
-      { \x{16D3} } { \cL\x{6C} }
-%    \end{macrocode}
-% U+16D4 RUNIC LETTER DOTTED-P
-%    \begin{macrocode}
-      { \x{16D4} } { \cL\x{6D} }
-%    \end{macrocode}
-% U+16D5 RUNIC LETTER OPEN-P
-%    \begin{macrocode}
-      { \x{16D5} } { \cL\x{6E} }
-%    \end{macrocode}
-% U+16D8 RUNIC LETTER LONG-BRANCH-MADR M
-%    \begin{macrocode}
-      { \x{16D8} } { \cL\x{6F} }
-%    \end{macrocode}
-% U+16D9 RUNIC LETTER SHORT-TWIG-MADR M
-%    \begin{macrocode}
-      { \x{16D9} } { \cL\x{70} }
-%    \end{macrocode}
-% U+16DB RUNIC LETTER DOTTED-L
-%    \begin{macrocode}
-      { \x{16DB} } { \cL\x{71} }
-%    \end{macrocode}
-% U+16DC RUNIC LETTER INGWAZ
-%    \begin{macrocode}
-      { \x{16DC} } { \cL\x{72} }
-%    \end{macrocode}
-% U+16E2 RUNIC LETTER CWEORTH
-%    \begin{macrocode}
-      { \x{16E2} } { \cL\x{73} }
-%    \end{macrocode}
-% U+16E3 RUNIC LETTER CALC
-%    \begin{macrocode}
-      { \x{16E3} } { \cL\x{74} }
-%    \end{macrocode}
-% U+16E4 RUNIC LETTER CEALC
-%    \begin{macrocode}
-      { \x{16E4} } { \cL\x{75} }
-%    \end{macrocode}
-% U+16E5 RUNIC LETTER STAN
-%    \begin{macrocode}
-      { \x{16E5} } { \cL\x{76} }
-%    \end{macrocode}
-% U+16E6 RUNIC LETTER LONG-BRANCH-YR
-%    \begin{macrocode}
-      { \x{16E6} } { \cL\x{77} }
-%    \end{macrocode}
-% U+16E7 RUNIC LETTER SHORT-TWIG-YR
-%    \begin{macrocode}
-      { \x{16E7} } { \cL\x{78} }
-%    \end{macrocode}
-% U+16E8 RUNIC LETTER ICELANDIC-YR
-%    \begin{macrocode}
-      { \x{16E8} } { \cL\x{79} }
-%    \end{macrocode}
-% U+16E9 RUNIC LETTER Q
-%    \begin{macrocode}
-      { \x{16E9} } { \cL\x{7A} }
-%    \end{macrocode}
-% U+16EA RUNIC LETTER X
-%    \begin{macrocode}
-      { \x{16EA} } { \cL\x{7B} }
-%    \end{macrocode}
-% U+16EE RUNIC ARLAUG SYMBOL
-%    \begin{macrocode}
-      { \x{16EE} } { \cL\x{7C}\x{21} }
-%    \end{macrocode}
-% U+16EF RUNIC TVIMADUR SYMBOL
-%    \begin{macrocode}
-      { \x{16EF} } { \cL\x{7C}\x{22} }
-%    \end{macrocode}
-% U+16F0 RUNIC BELGTHOR SYMBOL
-%    \begin{macrocode}
-      { \x{16F0} } { \cL\x{7D}\x{23} }
-%    \end{macrocode}
-% U+16F1 RUNIC LETTER K
-%    \begin{macrocode}
-      { \x{16F1} } { \cL\x{7D}\x{24} }
-%    \end{macrocode}
-% U+16F2 RUNIC LETTER SH
-%    \begin{macrocode}
-      { \x{16F2} } { \cL\x{7D}\x{25} }
-%    \end{macrocode}
-% U+16F3 RUNIC LETTER OO
-%    \begin{macrocode}
-      { \x{16F3} } { \cL\x{7D}\x{26} }
-%    \end{macrocode}
-% U+16F4 RUNIC LETTER FRANKS CASKET OS
-%    \begin{macrocode}
-      { \x{16F4} } { \cL\x{7D}\x{27} }
-%    \end{macrocode}
-% U+16F5 RUNIC LETTER FRANKS CASKET IS
-%    \begin{macrocode}
-      { \x{16F5} } { \cL\x{7D}\x{28} }
-%    \end{macrocode}
-% U+16F6 RUNIC LETTER FRANKS CASKET EH
-%    \begin{macrocode}
-      { \x{16F6} } { \cL\x{7D}\x{29} }
-%    \end{macrocode}
-% U+16F7 RUNIC LETTER FRANKS CASKET AC
-%    \begin{macrocode}
-      { \x{16F7} } { \cL\x{7D}\x{2A} }
-%    \end{macrocode}
-% U+16F8 RUNIC LETTER FRANKS CASKET AESC
-%    \begin{macrocode}
-      { \x{16F8} } { \cL\x{7D}\x{2B} }
-%    \end{macrocode}
-% U+16EB RUNIC SINGLE PUNCTUATION
-%    \begin{macrocode}
-      { \x{16EB} } { \cO\x{21}\x{21} }
-%    \end{macrocode}
-% U+16EC RUNIC MULTIPLE PUNCTUATION
-%    \begin{macrocode}
-      { \x{16EC} } { \cO\x{21}\x{22} }
-%    \end{macrocode}
-% U+16ED RUNIC CROSS PUNCTUATION
-%    \begin{macrocode}
-      { \x{16ED} } { \cO\x{21}\x{23} }
-%    \end{macrocode}
-% Tironian et
-%    \begin{macrocode}
-      { \x{204A} } { \cL\x{7E} }
-%    \end{macrocode}
-%Any character in the punctuation class:
-%    \begin{macrocode}
-      { ([[:punct:]]+) } { \cO\x{21}\x{24} \1 }
-    }
-    #1
-   }
-%    \end{macrocode}
-%Old English Rune Poem order (fuþorc, punctuation last). Not all characters are included in the
-%poem, so they are appended at the end.
-%    \begin{macrocode}
-  \cs_new:Nn \datatool_angRunr_order_futhorc_punc:n
-   {
-    \regex_replace_case_all:nN
-    {
-%    \end{macrocode}
-% U+16A0 RUNIC LETTER FEHU FEOH FE F
-%    \begin{macrocode}
-      { \x{16A0} } { \cL\x{31} }
-%    \end{macrocode}
-% U+16A2 RUNIC LETTER URUZ UR U
-%    \begin{macrocode}
-      { \x{16A2} } { \cL\x{32} }
-%    \end{macrocode}
-% U+16A6 RUNIC LETTER THURISAZ THURS THORN
-%    \begin{macrocode}
-      { \x{16A6} } { \cL\x{33} }
-%    \end{macrocode}
-% U+16A9 RUNIC LETTER OS O
-%    \begin{macrocode}
-      { \x{16A9} } { \cL\x{34} }
-%    \end{macrocode}
-% U+16B1 RUNIC LETTER RAIDO RAD REID R
-%    \begin{macrocode}
-      { \x{16B1} } { \cL\x{35} }
-%    \end{macrocode}
-% U+16B3 RUNIC LETTER CEN
-%    \begin{macrocode}
-      { \x{16B3} } { \cL\x{36} }
-%    \end{macrocode}
-% U+16B7 RUNIC LETTER GEBO GYFU G
-%    \begin{macrocode}
-      { \x{16B7} } { \cL\x{37} }
-%    \end{macrocode}
-% U+16B9 RUNIC LETTER WUNJO WYNN W
-%    \begin{macrocode}
-      { \x{16B9} } { \cL\x{38} }
-%    \end{macrocode}
-% U+16BB RUNIC LETTER HAEGL H
-%    \begin{macrocode}
-      { \x{16BB} } { \cL\x{39} }
-%    \end{macrocode}
-% U+16BE RUNIC LETTER NAUDIZ NYD NAUD N
-%    \begin{macrocode}
-      { \x{16BE} } { \cL\x{3A} }
-%    \end{macrocode}
-% U+16C1 RUNIC LETTER ISAZ IS ISS I
-%    \begin{macrocode}
-      { \x{16C1} } { \cL\x{3B} }
-%    \end{macrocode}
-% U+16C4 RUNIC LETTER GER
-%    \begin{macrocode}
-      { \x{16C4} } { \cL\x{3C} }
-%    \end{macrocode}
-% U+16C7 RUNIC LETTER IWAZ EOH
-%    \begin{macrocode}
-      { \x{16C7} } { \cL\x{3D} }
-%    \end{macrocode}
-% U+16C8 RUNIC LETTER PERTHO PEORTH P
-%    \begin{macrocode}
-      { \x{16C8} } { \cL\x{3E} }
-%    \end{macrocode}
-% U+16C9 RUNIC LETTER ALGIZ EOLHX
-%    \begin{macrocode}
-      { \x{16C9} } { \cL\x{3F} }
-%    \end{macrocode}
-% U+16CB RUNIC LETTER SIGEL LONG-BRANCH-SOL S
-%    \begin{macrocode}
-      { \x{16CB} } { \cL\x{40} }
-%    \end{macrocode}
-% U+16CF RUNIC LETTER TIWAZ TIR TYR T
-%    \begin{macrocode}
-      { \x{16CF} } { \cL\x{41} }
-%    \end{macrocode}
-% U+16D2 RUNIC LETTER BERKANAN BEORC BJARKAN B
-%    \begin{macrocode}
-      { \x{16D2} } { \cL\x{42} }
-%    \end{macrocode}
-% U+16D6 RUNIC LETTER EHWAZ EH E
-%    \begin{macrocode}
-      { \x{16D6} } { \cL\x{43} }
-%    \end{macrocode}
-% U+16D7 RUNIC LETTER MANNAZ MAN M
-%    \begin{macrocode}
-      { \x{16D7} } { \cL\x{44} }
-%    \end{macrocode}
-% U+16DA RUNIC LETTER LAUKAZ LAGU LOGR L
-%    \begin{macrocode}
-      { \x{16DA} } { \cL\x{45} }
-%    \end{macrocode}
-% U+16DD RUNIC LETTER ING
-%    \begin{macrocode}
-      { \x{16DD} } { \cL\x{46} }
-%    \end{macrocode}
-% U+16DF RUNIC LETTER OTHALAN ETHEL O
-%    \begin{macrocode}
-      { \x{16DF} } { \cL\x{47} }
-%    \end{macrocode}
-% U+16DE RUNIC LETTER DAGAZ DAEG D
-%    \begin{macrocode}
-      { \x{16DE} } { \cL\x{48} }
-%    \end{macrocode}
-% U+16AA RUNIC LETTER AC A
-%    \begin{macrocode}
-      { \x{16AA} } { \cL\x{49} }
-%    \end{macrocode}
-% U+16AB RUNIC LETTER AESC
-%    \begin{macrocode}
-      { \x{16AB} } { \cL\x{4A} }
-%    \end{macrocode}
-% U+16A3 RUNIC LETTER YR
-%    \begin{macrocode}
-      { \x{16A3} } { \cL\x{4B} }
-%    \end{macrocode}
-% U+16E1 RUNIC LETTER IOR
-%    \begin{macrocode}
-      { \x{16E1} } { \cL\x{4C} }
-%    \end{macrocode}
-% U+16E0 RUNIC LETTER EAR
-%    \begin{macrocode}
-      { \x{16E0} } { \cL\x{4D} }
-%    \end{macrocode}
-%The remainder are in Unicode order, except for the punctuation.
-%Some of these may need to be merged into the above, as applicable.
-%
-% U+16A1 RUNIC LETTER V
-%    \begin{macrocode}
-      { \x{16A1} } { \cL\x{4E} }
-%    \end{macrocode}
-% U+16A4 RUNIC LETTER Y
-%    \begin{macrocode}
-      { \x{16A4} } { \cL\x{4F} }
-%    \end{macrocode}
-% U+16A5 RUNIC LETTER W
-%    \begin{macrocode}
-      { \x{16A5} } { \cL\x{50} }
-%    \end{macrocode}
-% U+16A7 RUNIC LETTER ETH
-%    \begin{macrocode}
-      { \x{16A7} } { \cL\x{51} }
-%    \end{macrocode}
-% U+16A8 RUNIC LETTER ANSUZ A
-%    \begin{macrocode}
-      { \x{16A8} } { \cL\x{52} }
-%    \end{macrocode}
-% U+16AC RUNIC LETTER LONG-BRANCH-OSS O
-%    \begin{macrocode}
-      { \x{16AC} } { \cL\x{53} }
-%    \end{macrocode}
-% U+16AD RUNIC LETTER SHORT-TWIG-OSS O
-%    \begin{macrocode}
-      { \x{16AD} } { \cL\x{54} }
-%    \end{macrocode}
-% U+16AE RUNIC LETTER O
-%    \begin{macrocode}
-      { \x{16AE} } { \cL\x{55} }
-%    \end{macrocode}
-% U+16AF RUNIC LETTER OE
-%    \begin{macrocode}
-      { \x{16AF} } { \cL\x{56} }
-%    \end{macrocode}
-% U+16B0 RUNIC LETTER ON
-%    \begin{macrocode}
-      { \x{16B0} } { \cL\x{57} }
-%    \end{macrocode}
-% U+16B2 RUNIC LETTER KAUNA
-%    \begin{macrocode}
-      { \x{16B2} } { \cL\x{58} }
-%    \end{macrocode}
-% U+16B4 RUNIC LETTER KAUN K
-%    \begin{macrocode}
-      { \x{16B4} } { \cL\x{59} }
-%    \end{macrocode}
-% U+16B5 RUNIC LETTER G
-%    \begin{macrocode}
-      { \x{16B5} } { \cL\x{5A} }
-%    \end{macrocode}
-% U+16B6 RUNIC LETTER ENG
-%    \begin{macrocode}
-      { \x{16B6} } { \cL\x{5B} }
-%    \end{macrocode}
-% U+16B8 RUNIC LETTER GAR
-%    \begin{macrocode}
-      { \x{16B8} } { \cL\x{5C} }
-%    \end{macrocode}
-% U+16BA RUNIC LETTER HAGLAZ H
-%    \begin{macrocode}
-      { \x{16BA} } { \cL\x{5D} }
-%    \end{macrocode}
-% U+16BC RUNIC LETTER LONG-BRANCH-HAGALL H
-%    \begin{macrocode}
-      { \x{16BC} } { \cL\x{5E} }
-%    \end{macrocode}
-% U+16BD RUNIC LETTER SHORT-TWIG-HAGALL H
-%    \begin{macrocode}
-      { \x{16BD} } { \cL\x{5F} }
-%    \end{macrocode}
-% U+16BF RUNIC LETTER SHORT-TWIG-NAUD N
-%    \begin{macrocode}
-      { \x{16BF} } { \cL\x{60} }
-%    \end{macrocode}
-% U+16C0 RUNIC LETTER DOTTED-N
-%    \begin{macrocode}
-      { \x{16C0} } { \cL\x{61} }
-%    \end{macrocode}
-% U+16C2 RUNIC LETTER E
-%    \begin{macrocode}
-      { \x{16C2} } { \cL\x{62} }
-%    \end{macrocode}
-% U+16C3 RUNIC LETTER JERAN J
-%    \begin{macrocode}
-      { \x{16C3} } { \cL\x{63} }
-%    \end{macrocode}
-% U+16C5 RUNIC LETTER LONG-BRANCH-AR AE
-%    \begin{macrocode}
-      { \x{16C5} } { \cL\x{64} }
-%    \end{macrocode}
-% U+16C6 RUNIC LETTER SHORT-TWIG-AR A
-%    \begin{macrocode}
-      { \x{16C6} } { \cL\x{65} }
-%    \end{macrocode}
-% U+16CA RUNIC LETTER SOWILO S
-%    \begin{macrocode}
-      { \x{16CA} } { \cL\x{66} }
-%    \end{macrocode}
-% U+16CC RUNIC LETTER SHORT-TWIG-SOL S
-%    \begin{macrocode}
-      { \x{16CC} } { \cL\x{67} }
-%    \end{macrocode}
-% U+16CD RUNIC LETTER C
-%    \begin{macrocode}
-      { \x{16CD} } { \cL\x{68} }
-%    \end{macrocode}
-% U+16CE RUNIC LETTER Z
-%    \begin{macrocode}
-      { \x{16CE} } { \cL\x{69} }
-%    \end{macrocode}
-% U+16D0 RUNIC LETTER SHORT-TWIG-TYR T
-%    \begin{macrocode}
-      { \x{16D0} } { \cL\x{6A} }
-%    \end{macrocode}
-% U+16D1 RUNIC LETTER D
-%    \begin{macrocode}
-      { \x{16D1} } { \cL\x{6B} }
-%    \end{macrocode}
-% U+16D3 RUNIC LETTER SHORT-TWIG-BJARKAN B
-%    \begin{macrocode}
-      { \x{16D3} } { \cL\x{6C} }
-%    \end{macrocode}
-% U+16D4 RUNIC LETTER DOTTED-P
-%    \begin{macrocode}
-      { \x{16D4} } { \cL\x{6D} }
-%    \end{macrocode}
-% U+16D5 RUNIC LETTER OPEN-P
-%    \begin{macrocode}
-      { \x{16D5} } { \cL\x{6E} }
-%    \end{macrocode}
-% U+16D8 RUNIC LETTER LONG-BRANCH-MADR M
-%    \begin{macrocode}
-      { \x{16D8} } { \cL\x{6F} }
-%    \end{macrocode}
-% U+16D9 RUNIC LETTER SHORT-TWIG-MADR M
-%    \begin{macrocode}
-      { \x{16D9} } { \cL\x{70} }
-%    \end{macrocode}
-% U+16DB RUNIC LETTER DOTTED-L
-%    \begin{macrocode}
-      { \x{16DB} } { \cL\x{71} }
-%    \end{macrocode}
-% U+16DC RUNIC LETTER INGWAZ
-%    \begin{macrocode}
-      { \x{16DC} } { \cL\x{72} }
-%    \end{macrocode}
-% U+16E2 RUNIC LETTER CWEORTH
-%    \begin{macrocode}
-      { \x{16E2} } { \cL\x{73} }
-%    \end{macrocode}
-% U+16E3 RUNIC LETTER CALC
-%    \begin{macrocode}
-      { \x{16E3} } { \cL\x{74} }
-%    \end{macrocode}
-% U+16E4 RUNIC LETTER CEALC
-%    \begin{macrocode}
-      { \x{16E4} } { \cL\x{75} }
-%    \end{macrocode}
-% U+16E5 RUNIC LETTER STAN
-%    \begin{macrocode}
-      { \x{16E5} } { \cL\x{76} }
-%    \end{macrocode}
-% U+16E6 RUNIC LETTER LONG-BRANCH-YR
-%    \begin{macrocode}
-      { \x{16E6} } { \cL\x{77} }
-%    \end{macrocode}
-% U+16E7 RUNIC LETTER SHORT-TWIG-YR
-%    \begin{macrocode}
-      { \x{16E7} } { \cL\x{78} }
-%    \end{macrocode}
-% U+16E8 RUNIC LETTER ICELANDIC-YR
-%    \begin{macrocode}
-      { \x{16E8} } { \cL\x{79} }
-%    \end{macrocode}
-% U+16E9 RUNIC LETTER Q
-%    \begin{macrocode}
-      { \x{16E9} } { \cL\x{7A} }
-%    \end{macrocode}
-% U+16EA RUNIC LETTER X
-%    \begin{macrocode}
-      { \x{16EA} } { \cL\x{7B} }
-%    \end{macrocode}
-% U+16EE RUNIC ARLAUG SYMBOL
-%    \begin{macrocode}
-      { \x{16EE} } { \cL\x{7C}\x{21} }
-%    \end{macrocode}
-% U+16EF RUNIC TVIMADUR SYMBOL
-%    \begin{macrocode}
-      { \x{16EF} } { \cL\x{7C}\x{22} }
-%    \end{macrocode}
-% U+16F0 RUNIC BELGTHOR SYMBOL
-%    \begin{macrocode}
-      { \x{16F0} } { \cL\x{7D}\x{23} }
-%    \end{macrocode}
-% U+16F1 RUNIC LETTER K
-%    \begin{macrocode}
-      { \x{16F1} } { \cL\x{7D}\x{24} }
-%    \end{macrocode}
-% U+16F2 RUNIC LETTER SH
-%    \begin{macrocode}
-      { \x{16F2} } { \cL\x{7D}\x{25} }
-%    \end{macrocode}
-% U+16F3 RUNIC LETTER OO
-%    \begin{macrocode}
-      { \x{16F3} } { \cL\x{7D}\x{26} }
-%    \end{macrocode}
-% U+16F4 RUNIC LETTER FRANKS CASKET OS
-%    \begin{macrocode}
-      { \x{16F4} } { \cL\x{7D}\x{27} }
-%    \end{macrocode}
-% U+16F5 RUNIC LETTER FRANKS CASKET IS
-%    \begin{macrocode}
-      { \x{16F5} } { \cL\x{7D}\x{28} }
-%    \end{macrocode}
-% U+16F6 RUNIC LETTER FRANKS CASKET EH
-%    \begin{macrocode}
-      { \x{16F6} } { \cL\x{7D}\x{29} }
-%    \end{macrocode}
-% U+16F7 RUNIC LETTER FRANKS CASKET AC
-%    \begin{macrocode}
-      { \x{16F7} } { \cL\x{7D}\x{2A} }
-%    \end{macrocode}
-% U+16F8 RUNIC LETTER FRANKS CASKET AESC
-%    \begin{macrocode}
-      { \x{16F8} } { \cL\x{7D}\x{2B} }
-%    \end{macrocode}
-% Tironian et
-%    \begin{macrocode}
-      { \x{204A} } { \cL\x{7D} \x{2C} }
-%    \end{macrocode}
-% U+16EB RUNIC SINGLE PUNCTUATION
-%    \begin{macrocode}
-      { \x{16EB} } { \cO\x{7E}\x{21} }
-%    \end{macrocode}
-% U+16EC RUNIC MULTIPLE PUNCTUATION
-%    \begin{macrocode}
-      { \x{16EC} } { \cO\x{7E}\x{22} }
-%    \end{macrocode}
-% U+16ED RUNIC CROSS PUNCTUATION
-%    \begin{macrocode}
-      { \x{16ED} } { \cO\x{7E}\x{23} }
-%    \end{macrocode}
-%Any character in the punctuation class:
 %    \begin{macrocode}
       { ([[:punct:]]+) } { \cO\x{7E}\x{24} \1 }
     }

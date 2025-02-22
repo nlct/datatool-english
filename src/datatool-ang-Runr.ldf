@@ -77,7 +77,7 @@
 %\end{macro}
 %
 %    \begin{macrocode}
-\newcommand \DataToolBaseAngloSaxonRunic
+\newcommand \DTLangRunrLocaleHook
  {
   \DTLresetLanguage
   \renewcommand
@@ -103,5 +103,5 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\TrackLangAddToCaptions{\DataToolBaseAngloSaxonRunic}
+\TrackLangAddToCaptions{\DTLangRunrLocaleHook}
 %    \end{macrocode}

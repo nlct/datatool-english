@@ -17,10 +17,13 @@
 % Provide both official and unofficial options for the number group
 % and decimal characters.
 % Official style has a space number group and a decimal dot.
+% This will allow a normal space, \cs{,} (thin space command) or
+% the thin space Unicode character U+2009 as the number group separator when
+% parsing and will use \cs{,} when formatting.
 %    \begin{macrocode}
 \cs_new:Npn \datatool_en_ZA_set_numberchars_official:
  {
-   \DTLsetnumberchars { ~ } { . }
+   \datatool_set_thinspace_group_decimal_char:n { . }
  }
 %    \end{macrocode}
 % Unofficial style has a comma number group and a decimal dot.
@@ -33,53 +36,42 @@
 %Provide intermediate command to set the applicable number group and
 %decimal character.
 %    \begin{macrocode}
-\newcommand \datatoolEnglishZASetNumberChars
+\newcommand \datatoolenZASetNumberChars
  {
-   \datatool_en_ZA_set_numberchars_official:
+   \bool_if:NT \l_datatool_region_set_numberchars_bool
+    {
+      \datatool_en_ZA_set_numberchars_official:
+    }
  }
 %    \end{macrocode}
 %Provide \cs{DTLsetLocaleOptions} \opt{en-ZA} option to switch between styles.
 %    \begin{macrocode}
 \datatool_locale_define_keys:nn { en-ZA }
  {
-   number-style .choice: ,
-   number-style / official .code:n =
+   number-style .choices:nn =
+    { official , unofficial }
     {
-      \renewcommand \datatoolEnglishZASetNumberChars
-       {
-         \datatool_en_ZA_set_numberchars_official:
-       }
+      \exp_args:NNe \renewcommand
+        \datatoolenZASetNumberChars
+        {
+           \exp_not:N \bool_if:NT
+            \exp_not:N \l_datatool_region_set_numberchars_bool
+             {
+               \exp_not:c { datatool_en_ZA_set_numberchars_ \l_keys_choice_tl : }
+             }
+         }
       \datatool_if_current_lang_region:nn { en } { ZA }
        {
-         \datatoolEnglishZASetNumberChars
-       }
-    } ,
-   number-style / unofficial .code:n =
-    {
-      \renewcommand \datatoolEnglishZASetNumberChars
-       {
-         \datatool_en_ZA_set_numberchars_unofficial:
-       }
-      \datatool_if_current_lang_region:nn { en } { ZA }
-       {
-         \datatoolEnglishZASetNumberChars
-       }
-    } ,
-   number-style / region .code:n =
-    {
-      \renewcommand \datatoolEnglishZASetNumberChars { }
-      \datatool_if_current_lang_region:nn { en } { ZA }
-       {
-         \datatoolZASetNumberChars
+         \datatoolenZASetNumberChars
        }
     } ,
  }
 %    \end{macrocode}
 %Provide intermediary command to add to the captions hook.
 %    \begin{macrocode}
-\newcommand \DataToolBaseEnglishZA
+\newcommand \DTLenZALocaleHook
  {
-   \datatoolEnglishZASetNumberChars
+   \datatoolenZASetNumberChars
  }
 %    \end{macrocode}
 % \LaTeX3 syntax no longer needed.
@@ -88,5 +80,5 @@
 %    \end{macrocode}
 % Add to captions hook.
 %    \begin{macrocode}
-\TrackLangAddToCaptions{\DataToolBaseEnglishZA}
+\TrackLangAddToCaptions{\DTLenZALocaleHook}
 %    \end{macrocode}

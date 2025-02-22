@@ -175,9 +175,9 @@ So installing \sty{datatool-english} will not only affect
 \end{document}
 \end{dispListing}
 
-\begin{docCommand}{DataToolBaseEnglish}{}
+\begin{docCommand}{DTLenLocaleHook}{}
 The \file{datatool-english.ldf} file provides an intermediary command
-\cs{DataToolBaseEnglish} that's automatically added to the captions hook.
+\cs{DTLenLocaleHook} that's automatically added to the captions hook.
 This performs all the \sty{datatool-base} English language redefinitions.
 There should be little reason to actually use this command anywhere
 unless you're not using a language package with caption hooks.
@@ -239,7 +239,7 @@ For example, suppose the document starts with:
 \documentclass{article}
 \usepackage[locales={en}]{datatool}
 \end{dispListing*}
-\DataToolBaseEnglish
+\DTLenLocaleHook
 If \file{datatool-english.ldf} is installed:
 \begin{dispExample*}{title={With Localisation}}
 \newcommand{\mylist}{élan,zebra,elephant,ant,élite,elk}
@@ -483,11 +483,11 @@ is needed when specifying the locale.
 
 If there is no captions hook, the last locale to be tracked is the
 one that will be in effect. You can switch using the following:
-\begin{docCommand}{DataToolBaseAngloSaxonLatin}{}
+\begin{docCommand}{DTLangLatnLocaleHook}{}
 Switch to \qt{ang-Latn} (if \file{datatool-ang-Latn.ldf} has been
 loaded, undefined otherwise).
 \end{docCommand}
-\begin{docCommand}{DataToolBaseAngloSaxonRunic}{}
+\begin{docCommand}{DTLangRunrLocaleHook}{}
 Switch to \qt{ang-Runr} (if \file{datatool-ang-Runr.ldf} has been
 loaded, undefined otherwise).
 \end{docCommand}
@@ -530,12 +530,12 @@ This is done via the following hooks:
 \begin{docCommand}{DTLangLatnTranslations}{}
 This is defined in \file{datatool-ang-Latn.ldf} to update the
 definition of \cs{DTLandname} and is implemented by
-\cs{DataToolBaseAngloSaxonLatn}.
+\cs{DTLangLatnLocaleHook}.
 \end{docCommand}
 \begin{docCommand}{DTLangRunrTranslations}{}
 This is defined in \file{datatool-ang-Runr.ldf} to update the
 definition of \cs{DTLandname} and is implemented by
-\cs{DataToolBaseAngloSaxonRunic}.
+\cs{DTLangRunrLocaleHook}.
 \end{docCommand}
 
 There is no other localisation support (that is, no other
@@ -567,7 +567,7 @@ is defined to expand to the comma-separated list
 then these lists can be sorted in the document
 as follows:
 \begin{dispExample}
-\DataToolBaseAngloSaxonLatin
+\DTLangLatnLocaleHook
 \DTLsetLocaleOptions{ang-Latn}{order=harley}
 \DTLsortwordlist{\myLatnList}{\DTLsortletterhandler}
 Sorted list (Harley): \DTLformatlist{\myLatnList}.
@@ -576,7 +576,7 @@ Sorted list (Harley): \DTLformatlist{\myLatnList}.
 \DTLsortwordlist{\myLatnList}{\DTLsortletterhandler}
 Sorted list (fuþorc): \DTLformatlist{\myLatnList}.
 
-\DataToolBaseAngloSaxonRunic
+\DTLangRunrLocaleHook
 \DTLsetLocaleOptions{ang-Runr}{order=futhorc-punc}
 \DTLsortwordlist{\myRunrList}{\DTLsortwordhandler}
 Sorted list: \DTLformatlist{\myRunrList}.

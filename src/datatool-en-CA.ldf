@@ -17,10 +17,13 @@
 % Provide both official and unofficial options for the number group
 % and decimal characters.
 % Official style has a space number group and a decimal dot.
+% This will allow a normal space, \cs{,} (thin space command) or
+% the thin space Unicode character U+2009 as the number group separator when
+% parsing and will use \cs{,} when formatting.
 %    \begin{macrocode}
 \cs_new:Nn \datatool_en_CA_set_numberchars_official:
  {
-   \DTLsetnumberchars { ~ } { . }
+   \datatool_set_thinspace_group_decimal_char:n { . }
  }
 %    \end{macrocode}
 % Unofficial style has a comma number group and a decimal dot.
@@ -33,9 +36,12 @@
 %Provide intermediate command to set the applicable number group and
 %decimal character.
 %    \begin{macrocode}
-\newcommand \datatoolEnglishCASetNumberChars
+\newcommand \datatoolenCASetNumberChars
  {
-   \datatool_en_CA_set_numberchars_official:
+   \bool_if:NT \l_datatool_region_set_numberchars_bool
+    {
+      \datatool_en_CA_set_numberchars_official:
+    }
  }
 %    \end{macrocode}
 %Provide \cs{DTLsetLocaleOptions} \opt{en-CA} option to switch between styles.
@@ -45,24 +51,35 @@
    number-style .choices:nn =
     { official , unofficial }
     { 
-      \tl_set_eq:Nc 
-        \datatoolEnglishCASetNumberChars
-        { datatool_en_CA_set_numberchars_ \l_keys_choice_tl : }
+      \exp_args:NNe \renewcommand
+        \datatoolenCASetNumberChars
+        {
+           \exp_not:N \bool_if:NT
+            \exp_not:N \l_datatool_region_set_numberchars_bool
+             {
+               \exp_not:c { datatool_en_CA_set_numberchars_ \l_keys_choice_tl : }
+             }
+         }
+      \datatool_if_current_lang_region:nn { en } { CA }
+       {
+         \datatoolenCASetNumberChars
+       }
     } , 
 }
 %    \end{macrocode}
 %Provide intermediary command to add to the captions hook.
 %    \begin{macrocode}
-\newcommand \DataToolBaseEnglishCA
+\newcommand \DTLenCALocaleHook
  {
-   \datatoolEnglishCASetNumberChars
+   \datatoolenCASetNumberChars
  }
 %    \end{macrocode}
 % \LaTeX3 syntax no longer needed.
 %    \begin{macrocode}
 \ExplSyntaxOff
 %    \end{macrocode}
-% Add to captions hook.
+% Add to captions hook (this is needed for languages but not
+% language-less regions).
 %    \begin{macrocode}
-\TrackLangAddToCaptions{\DataToolBaseEnglishCA}
+\TrackLangAddToCaptions{\DTLenCALocaleHook}
 %    \end{macrocode}
