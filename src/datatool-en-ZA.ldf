@@ -14,21 +14,21 @@
 %    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
-% Provide both official and unofficial options for the number group
+% Provide dialect options for the number group
 % and decimal characters.
-% Official style has a space number group and a decimal dot.
+% Space style has a space number group and a decimal dot.
 % This will allow a normal space, \cs{,} (thin space command) or
 % the thin space Unicode character U+2009 as the number group separator when
 % parsing and will use \cs{,} when formatting.
 %    \begin{macrocode}
-\cs_new:Npn \datatool_en_ZA_set_numberchars_official:
+\cs_new:Npn \datatool_en_ZA_set_numberchars_thinspace:
  {
    \datatool_set_thinspace_group_decimal_char:n { . }
  }
 %    \end{macrocode}
-% Unofficial style has a comma number group and a decimal dot.
+% Comma style has a comma number group and a decimal dot.
 %    \begin{macrocode}
-\cs_new:Npn \datatool_en_ZA_set_numberchars_unofficial:
+\cs_new:Npn \datatool_en_ZA_set_numberchars_comma:
  {
    \DTLsetnumberchars { , } { . }
  }
@@ -40,7 +40,7 @@
  {
    \bool_if:NT \l_datatool_region_set_numberchars_bool
     {
-      \datatool_en_ZA_set_numberchars_official:
+      \datatool_en_ZA_set_numberchars_thinspace:
     }
  }
 %    \end{macrocode}
@@ -49,7 +49,7 @@
 \datatool_locale_define_keys:nn { en-ZA }
  {
    number-style .choices:nn =
-    { official , unofficial }
+    { thinspace , comma }
     {
       \exp_args:NNe \renewcommand
         \datatoolenZASetNumberChars
@@ -60,6 +60,10 @@
                \exp_not:c { datatool_en_ZA_set_numberchars_ \l_keys_choice_tl : }
              }
          }
+%    \end{macrocode}
+%Note that this will be reset when the dialect changes unless 
+%\verb|\DTLsetLocaleOptions{ZA}{number-style=dialect}| is used.
+%    \begin{macrocode}
       \datatool_if_current_lang_region:nn { en } { ZA }
        {
          \datatoolenZASetNumberChars
@@ -67,18 +71,7 @@
     } ,
  }
 %    \end{macrocode}
-%Provide intermediary command to add to the captions hook.
-%    \begin{macrocode}
-\newcommand \DTLenZALocaleHook
- {
-   \datatoolenZASetNumberChars
- }
-%    \end{macrocode}
 % \LaTeX3 syntax no longer needed.
 %    \begin{macrocode}
 \ExplSyntaxOff
-%    \end{macrocode}
-% Add to captions hook.
-%    \begin{macrocode}
-\TrackLangAddToCaptions{\DTLenZALocaleHook}
 %    \end{macrocode}
