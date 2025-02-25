@@ -16,7 +16,7 @@
 %    \end{macrocode}
 % Not found.
 %    \begin{macrocode}
-  \PackageWarning{datatool-ang-Latn}%
+  \csuse{datatool_locale_warn:n}{datatool-ang-Latn}%
    {%
      No support for `anglosaxon' with script `Latn'
      and encoding `\TrackLangEncodingName'.%

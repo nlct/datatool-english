@@ -20,7 +20,7 @@
 %    \end{macrocode}
 % Not found.
 %    \begin{macrocode}
-  \PackageWarning{datatool-anglosaxon}%
+  \csuse{datatool_locale_warn:n}{datatool-anglosaxon}%
    {%
      No support for `anglosaxon' with script `\CurrentTrackedDialectScript'
      and encoding `\TrackLangEncodingName'%

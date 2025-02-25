@@ -25,7 +25,7 @@
 %    \end{macrocode}
 % Not found.
 %    \begin{macrocode}
-  \PackageWarning{datatool-ang-Runr}%
+  \csuse{datatool_locale_warn:n}{datatool-ang-Runr}%
    {%
      No support for `anglosaxon' with script `Runr'
      and encoding `\TrackLangEncodingName'.%
