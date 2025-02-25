@@ -197,9 +197,10 @@ and for providing fixed text translations.
 
 Aside from the letter group commands, described in
 section~\ref{sec:orthography}, the only fixed text for 
-\sty{datatool-base} is \cs{DTLandname}. This is redefined implicitly
+\sty{datatool-base} is \cs{DTLandname} and the textual data types
+used by \cs{DTLgetDataTypeName}. These are redefined implicitly
 via the command \cs{DTLenTranslations}, which allows an alternative
-definition to be provided without having to add anything to the
+definition of \cs{DTLandname} to be provided without having to add anything to the
 caption hook.
 
 Options provided by \file{datatool-english.ldf} may be set with
@@ -207,6 +208,7 @@ Options provided by \file{datatool-english.ldf} may be set with
 
 \begin{docKey}{and}{=\meta{setting}}{initial \opt{word}}
 This determines the definition of \cs{DTLandname} within
+\cs{DTLenSetAndName} used by
 \cs{DTLenTranslations}. The value may be:
 \docValue{word} (define \cs{DTLandname} to expand to
 \qt{and}) or \docValue{amp} (define \cs{DTLandname}
@@ -542,6 +544,13 @@ This is defined in \file{datatool-ang-Runr.ldf} to update the
 definition of \cs{DTLandname} and is implemented by
 \cs{DTLangRunrLocaleHook}.
 \end{docCommand}
+Ideally, the language file should also redefine the commands
+\cs{DTLdatatypeunsetname}, \cs{DTLdatatypestringname},
+\cs{DTLdatatypeintegername}, \cs{DTLdatatypedecimalname},
+\cs{DTLdatatypecurrencyname}, \cs{DTLdatatypedatetimename},
+\cs{TLdatatypedatename}, \cs{DTLdatatypetimename}, and
+\cs{DTLdatatypeinvalidname}, although these are mostly provided for
+debugging.
 
 There is no other localisation support (that is, no other
 fixed text or date/time support). The remaining language-sensitive

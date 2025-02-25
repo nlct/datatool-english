@@ -86,9 +86,24 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\newcommand \DTLenTranslations
+\newcommand \DTLenSetAndName
  {
   \renewcommand \DTLandname { and }
+ }
+%    \end{macrocode}
+%    \begin{macrocode}
+\newcommand \DTLenTranslations
+ {
+  \DTLenSetAndName
+  \renewcommand \DTLdatatypeunsetname { unset }
+  \renewcommand \DTLdatatypestringname { string }
+  \renewcommand \DTLdatatypeintegername { integer }
+  \renewcommand \DTLdatatypedecimalname { decimal }
+  \renewcommand \DTLdatatypecurrencyname { currency }
+  \renewcommand \DTLdatatypedatetimename { date-time }
+  \renewcommand \DTLdatatypedatename { date }
+  \renewcommand \DTLdatatypetimename { time }
+  \renewcommand \DTLdatatypeinvalidname { invalid }
  }
 %    \end{macrocode}
 %Provide options
@@ -98,21 +113,21 @@
     and .choice:,
     and / word .code:n = 
      {
-      \renewcommand \DTLenTranslations
+      \renewcommand \DTLenSetAndName
        {
          \renewcommand \DTLandname { and }
        }
       \tl_if_eq:NnT \l_datatool_current_language_tl { en }
-       { \DTLenTranslations }
+       { \DTLenSetAndName }
      } ,
     and / amp .code:n = 
      {
-      \renewcommand \DTLenTranslations
+      \renewcommand \DTLenSetAndName
        {
          \renewcommand \DTLandname { \& }
        }
       \tl_if_eq:NnT \l_datatool_current_language_tl { en }
-       { \DTLenTranslations }
+       { \DTLenSetAndName }
      } ,
  }
 %    \end{macrocode}
