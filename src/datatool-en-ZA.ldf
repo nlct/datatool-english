@@ -64,11 +64,18 @@
 %Note that this will be reset when the dialect changes unless 
 %\verb|\DTLsetLocaleOptions{ZA}{number-style=dialect}| is used.
 %    \begin{macrocode}
-      \datatool_if_current_lang_region:nn { en } { ZA }
+      \datatool_if_current_lang_region:nnT { en } { ZA }
        {
          \datatoolenZASetNumberChars
        }
     } ,
+ }
+%    \end{macrocode}
+%Provide a hook using the required naming scheme.
+%    \begin{macrocode}
+\newcommand \DTLenZALocaleHook
+ {
+   \datatoolenZASetNumberChars
  }
 %    \end{macrocode}
 % \LaTeX3 syntax no longer needed.

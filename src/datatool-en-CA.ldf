@@ -60,7 +60,7 @@
                \exp_not:c { datatool_en_CA_set_numberchars_ \l_keys_choice_tl : }
              }
          }
-      \datatool_if_current_lang_region:nn { en } { CA }
+      \datatool_if_current_lang_region:nnT { en } { CA }
        {
          \datatoolenCASetNumberChars
        }

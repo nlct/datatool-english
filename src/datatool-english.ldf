@@ -14,7 +14,7 @@
 %    \end{macrocode}
 % Not found, fallback on \file{datatool-english-ascii.ldf}
 %    \begin{macrocode}
-  \csuse{datatool_locale_warn:n}{datatool-english}%
+  \csuse{datatool_locale_warn:nn}{datatool-english}%
    {%
      No support for `english' with 
      encoding `\TrackLangEncodingName'
