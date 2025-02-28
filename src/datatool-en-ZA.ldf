@@ -82,3 +82,8 @@
 %    \begin{macrocode}
 \ExplSyntaxOff
 %    \end{macrocode}
+% Add to captions hook (this is needed for languages but not
+% language-less regions).
+%    \begin{macrocode}
+\TrackLangAddToCaptions{\DTLenZALocaleHook}
+%    \end{macrocode}
