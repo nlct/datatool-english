@@ -23,65 +23,64 @@ supplementary package) if they are found and required by the
 `tracklang` localisation settings. See the `datatool` and `tracklang` user
 manuals for further details.
 
-This bundle is specific to language support or particular 
+This bundle is specific to language support or particular
 language+region combinations where the region default depends on the
-language.
-Region files (such as `datatool-GB.ldf`) are provided with `datatool-regions`
-which needs to be installed separately. This separation allows
-arbitrary mix of language and region.
+language. Region files (such as `datatool-GB.ldf`) are provided
+with `datatool-regions` which needs to be installed separately. This
+separation allows arbitrary mix of language and region.
 
 Example:
-```latex
-\documentclass[en-GB]{article}
-\usepackage{datatool-base}% v3.0
-\newcommand{\mylist}{élan,elephant,élite,elk}
-\begin{document}
-Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
 
-Original list: \DTLformatlist{\mylist}
-
-\DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
-Sorted list: \DTLformatlist{\mylist}
-\end{document}
-```
+    \documentclass[en-GB]{article}
+    \usepackage{datatool-base}% v3.0
+    \newcommand{\mylist}{élan,elephant,élite,elk}
+    \begin{document}
+    Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
+    
+    Original list: \DTLformatlist{\mylist}.
+    
+    \DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
+    Sorted list: \DTLformatlist{\mylist}.
+    \end{document}
 
 If `datatool-english` is correctly installed, the result will be:
 
  > Currency: £1,234.56.  
- > Original list: élan, elephant, élite and elk  
- > Sorted list: élan, elephant, élite and elk
+ > Original list: élan, elephant, élite and elk.  
+ > Sorted list: élan, elephant, élite and elk.
 
 Otherwise the result will be:
 
  > Currency: £1,234.56.  
- > Original list: élan, elephant, élite & elk  
- > Sorted list: elephant, elk, élan & élite
+ > Original list: élan, elephant, élite & elk.  
+ > Sorted list: elephant, elk, élan & élite.
 
 (This assumes the region file `datatool-GB.ldf` provided with
 `datatool-regions` is also installed.)
 
 The language doesn't need to be an official language for the region.
 For example:
-```latex
-\documentclass{article}
-\usepackage[locales={en-BE}]{datatool-base}% v3.0
-\newcommand{\mylist}{élan,elephant,élite,elk}
-\begin{document}
-Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
 
-Original list: \DTLformatlist{\mylist}
+    \documentclass{article}
+    \usepackage[locales={en-BE}]{datatool-base}% v3.0
+    \newcommand{\mylist}{élan,elephant,élite,elk}
+    \begin{document}
+    Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
+    
+    Original list: \DTLformatlist{\mylist}.
+    
+    \DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
+    Sorted list: \DTLformatlist{\mylist}.
+    \end{document}
 
-\DTLsortwordlist{\mylist}{\DTLsortwordcasehandler}
-Sorted list: \DTLformatlist{\mylist}
-\end{document}
-```
 If both `datatool-english.ldf` (provided with this bundle) and 
 `datatool-BE.ldf` (provided with `datatool-regions`) are installed,
 the result will be:
 
- > Currency: €1.234,56.  
- > Original list: élan, elephant, élite and elk  
- > Sorted list: élan, elephant, élite and elk
+ > Currency: 1.234,56€.  
+ > Original list: élan, elephant, élite and elk.  
+ > Sorted list: élan, elephant, élite and elk.
+
 
 See also:
 

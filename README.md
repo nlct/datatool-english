@@ -1,5 +1,5 @@
 # datatool-english
-Language support for datatool.sty v3.0+
+English language support for datatool.sty v3.0+
 
 As from version 3.0, the `datatool` package will provide
 localisation support (via the [`tracklang`](https://ctan.org/pkg/tracklang) package).
@@ -9,7 +9,7 @@ limited support for Old English.
 Some files in this repository use fonts from the Runic Unicode
 Block, such as ᚠᚢᚦᚩᚱᚳ. If you see rectangles instead of Runic
 characters at the end of the previous sentence, you will need to
-install a Runic font. The documentation uses Noto Sans Runic with
+install a Runic font to view them. The documentation uses Noto Sans Runic with
 `fontspec` and LuaLaTeX.
 
 Note that the [`datatool-regions`](https://github.com/nlct/datatool-regions)
@@ -58,7 +58,7 @@ installed, then the result will be:
 The separation of region and language support means that you can mix
 and match without requiring the exact _lang_`-`_region_ file.
 
-Example:
+For example:
 ```latex
 \documentclass{article}
 \usepackage[locales={en-BE}]{datatool-base}% v3.0
@@ -72,19 +72,14 @@ Original list: \DTLformatlist{\mylist}.
 Sorted list: \DTLformatlist{\mylist}.
 \end{document}
 ```
-If `datatool-english` and `datatool-regions` are both correctly installed, 
+
+If both `datatool-english.ldf` (provided with this bundle) and 
+`datatool-BE.ldf` (provided with `datatool-regions`) are installed,
 the result will be:
 
- > Currency: €1.234,56.  
+ > Currency: 1.234,56€.  
  > Original list: élan, elephant, élite and elk.  
  > Sorted list: élan, elephant, élite and elk.
-
-A multilingual document with the same region for all languages can
-specify the region after the languages. For example:
-```latex
-\usepackage[afrikaans,english]{babel}
-\usepackage[locales={ZA}]{datatool-base}
-```
 
 ## Old English (Anglo-Saxon)
 
