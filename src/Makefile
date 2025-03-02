@@ -1,3 +1,6 @@
+pdflatex=pdflatex-dev
+lualatex=lualatex-dev
+
 ldfs=datatool-english.ldf \
 datatool-english-ascii.ldf \
 datatool-english-latin1.ldf \
@@ -15,30 +18,33 @@ datatool-ang-Runr-utf8.ldf
 all	: test-english.pdf test-datatool.pdf \
 	test-datagidx.pdf test-glossarynoidx.pdf \
 	test-anglosaxon.pdf test-runes.pdf \
-	test-person.pdf
+	test-person.pdf test-idxgloss.pdf
 
 test-english.pdf	: test-english.tex $(ldfs)
-	pdflatex test-english.tex
+	$(pdflatex) test-english.tex
 
 test-datatool.pdf	: test-datatool.tex $(ldfs)
-	pdflatex test-datatool.tex
+	$(pdflatex) test-datatool.tex
 
 test-datagidx.pdf	: test-datagidx.tex $(ldfs)
-	pdflatex test-datagidx.tex
-	pdflatex test-datagidx.tex
+	$(pdflatex) test-datagidx.tex
+	$(pdflatex) test-datagidx.tex
 
 test-glossarynoidx.pdf	: test-glossarynoidx.tex $(ldfs)
-	pdflatex test-glossarynoidx.tex
-	pdflatex test-glossarynoidx.tex
+	$(pdflatex) test-glossarynoidx.tex
+	$(pdflatex) test-glossarynoidx.tex
 
 test-person.pdf	: test-person.tex $(ldfs)
-	pdflatex test-person.tex
+	$(pdflatex) test-person.tex
 
 test-anglosaxon.pdf	: test-anglosaxon.tex $(ldfs)
-	lualatex test-anglosaxon.tex
+	$(lualatex) test-anglosaxon.tex
 
 test-runes.pdf	: test-runes.tex $(ldfs)
-	lualatex test-runes.tex
+	$(lualatex) test-runes.tex
+
+test-idxgloss.pdf	: test-idxgloss.tex $(ldfs)
+	$(lualatex) test-idxgloss.tex
 
 clean	:
 	\rm -f *.out *.pdf *.log *.aux
