@@ -6,7 +6,7 @@
 % If \cs{DTLsetLocaleOptions} options need to be provided, the sub-module should be
 % \qt{person}.  For example, 
 %\begin{definition}
-%\verb|datatool_locale_define_keys:nn| \marg{ en / person } \meta{key-value list}
+%\cs{datatool\_locale\_define\_keys:nn} \marg{ en / person } \meta{key-value list}
 %\end{definition}
 %Provide intermediate command to add to captions hook.
 %    \begin{macrocode}
