@@ -1,5 +1,5 @@
 % arara: pdflatex
-\documentclass[english]{article}
+\documentclass[british]{article}
 
 \usepackage[T1]{fontenc}
 \usepackage{datatool-base}
@@ -93,4 +93,21 @@ Case-sensitive: \DTLformatlist{\combinedlist}.
 Case-insensitive: \DTLformatlist{\combinedlist}.
 
 }
+
+\DTLsetup{datetime={parse}}
+\DTLsetLocaleOptions{GB}{
+ date-style=dmyy,
+ date-variant=dialect,
+ time-variant=dot
+}
+\DTLparse\result{Fri 28th Feb ’25}
+\result.
+Data type: \DTLgetDataTypeName{\DTLdatumtype{\result}}.
+Numeric value: \DTLdatumvalue{\result}.
+
+\ExplSyntaxOn
+\datatool_extract_timestamp:NN \result \l_tmpa_tl
+Time-stamp: ~ \l_tmpa_tl
+\ExplSyntaxOff
+
 \end{document}

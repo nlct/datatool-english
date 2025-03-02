@@ -381,7 +381,7 @@
    \ur{c_datatool_en_ordinal_suffix_regex} ?
    \s+
    ( \ur{c_datatool_en_month_name_regex}  )
-    \, ? \s+ ( \d{2} )
+    \, ? \s+ \ur{c_datatool_apostrophe_regex} ? ( \d{2} )
  }
 %    \end{macrocode}
 %
@@ -394,7 +394,7 @@
    \ur{c_datatool_en_ordinal_suffix_regex} ?
    \s+
    ( \ur{c_datatool_en_month_name_regex}  )
-    \, ? \s+ ( \d{2} )
+    \, ? \s+ \ur{c_datatool_apostrophe_regex} ? ( \d{2} )
    \s* \Z
  }
 %    \end{macrocode}
@@ -433,7 +433,7 @@
    \s+
    ( \ur{c_datatool_day_of_month_regex} )
    \ur{c_datatool_en_ordinal_suffix_regex} ?
-    \, ? \s+ ( \d{2} )
+    \, ? \s+ \ur{c_datatool_apostrophe_regex} ? ( \d{2} )
  }
 %    \end{macrocode}
 %
@@ -446,7 +446,7 @@
    \s+
    ( \ur{c_datatool_day_of_month_regex} )
    \ur{c_datatool_en_ordinal_suffix_regex} ?
-    \, ? \s+ ( \d{2} )
+    \, ? \s+ \ur{c_datatool_apostrophe_regex} ? ( \d{2} )
    \s* \Z
  }
 %    \end{macrocode}
@@ -478,11 +478,11 @@
    \s* \Z
  }
 %    \end{macrocode}
-%
+%This is a bit unusual but provided for completeness.
 %    \begin{macrocode}
 \regex_const:Nn \c_datatool_en_yymmdd_date_regex
  {
-   ( \d{2} ) \s+ 
+   \ur{c_datatool_apostrophe_regex} ? ( \d{2} ) \s+ 
    ( \ur{c_datatool_en_month_name_regex}  )
    \s+
    ( \ur{c_datatool_day_of_month_regex} )
@@ -495,7 +495,7 @@
 \regex_const:Nn \c_datatool_en_anchored_yymmdd_date_regex
  {
    \A \s*
-   ( \d{2} ) \s+ 
+   \ur{c_datatool_apostrophe_regex} ? ( \d{2} ) \s+ 
    ( \ur{c_datatool_en_month_name_regex}  )
    \s+
    ( \ur{c_datatool_day_of_month_regex} )
