@@ -57,10 +57,12 @@
 %\begin{definition}
 %\cs{DTLangLatnLocaleGetGroupString}\marg{actual}\marg{sort value}\marg{tl}
 %\end{definition}
+%Get the text that will be used to obtain the letter group 
+%(the actual value not the sort value). 
 %    \begin{macrocode}
 \newcommand \DTLangLatnLocaleGetGroupString [ 3 ]
  {
-   \tl_set:Nn #3 { #1 }
+   \datatool_sort_preprocess:Nn #3 { #1 }
    \datatool_angLatn_process_letter_group:N #3
    \bool_lazy_and:nnT
      { \tl_if_head_eq_charcode_p:nN { #1 } - }

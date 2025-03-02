@@ -66,12 +66,12 @@
 %\begin{definition}
 %\cs{DTLangRunrLocaleGetGroupString}\marg{actual}\marg{sort value}\marg{tl}
 %\end{definition}
-%Get the first character of the string (from the actual value not the sort
-%value).
+%Get the text that will be used to obtain the letter group 
+%(the actual value not the sort value). 
 %    \begin{macrocode}
 \newcommand \DTLangRunrLocaleGetGroupString [ 3 ]
  {
-   \tl_set:Nn #3 { #1 }
+   \datatool_sort_preprocess:Nn #3 { #1 }
  }
 %    \end{macrocode}
 %\end{macro}
