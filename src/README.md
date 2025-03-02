@@ -89,9 +89,10 @@ See also:
 
 This bundle also includes limited support for Old English
 (Anglo-Saxon) mainly to provide an example for a language that has
-multiple scripts (in this case, Latin and Runic). The language codes
-are `ang-Latn` for Anglo-Saxon Latin Script and `ang-Runr`
-for Anglo-Saxon Runic Script. There's only support for UTF-8.
+multiple scripts (in this case, Latin and Runic) or uses an extended
+Latin script. The language codes are `ang-Latn` for Anglo-Saxon
+Latin Script and `ang-Runr` for Anglo-Saxon Runic Script. There's
+only support for UTF-8.
 
 This material is subject to the LaTeX Project Public License.
 See http://www.ctan.org/license/lppl1.3 for the details of that
