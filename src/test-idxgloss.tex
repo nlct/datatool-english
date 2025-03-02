@@ -1,0 +1,21 @@
+% arara: lualatex
+\documentclass{article}
+
+\usepackage{fontspec}
+\usepackage
+ [
+  locales={
+   %en,
+   ang-Latn
+  }
+ ]
+ {datatool-base}%v3.0+
+\usepackage[verbose,tex,noprefix,nosanitize]{testidx-glossaries}
+
+\tstidxmakegloss
+
+\begin{document}
+\testidx
+
+\tstidxprintglossaries
+\end{document}
