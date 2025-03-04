@@ -18,7 +18,8 @@ datatool-ang-Runr-utf8.ldf
 all	: test-english.pdf test-datatool.pdf \
 	test-datagidx.pdf test-glossarynoidx.pdf \
 	test-anglosaxon.pdf test-runes.pdf \
-	test-person.pdf test-idxgloss.pdf
+	test-person.pdf test-idxgloss.pdf \
+	test-Latn.pdf
 
 test-english.pdf	: test-english.tex $(ldfs)
 	$(pdflatex) test-english.tex
@@ -45,6 +46,9 @@ test-runes.pdf	: test-runes.tex $(ldfs)
 
 test-idxgloss.pdf	: test-idxgloss.tex $(ldfs)
 	$(lualatex) test-idxgloss.tex
+
+test-Latn.pdf	: test-Latn.tex $(ldfs)
+	$(lualatex) test-Latn.tex
 
 clean	:
 	\rm -f *.out *.pdf *.log *.aux

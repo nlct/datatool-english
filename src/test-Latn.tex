@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage{fontspec}
+\setromanfont{Noto Serif}
+
+\usepackage[locales={en-BE,ang-Latn}]{datatool-base}
+
+\newcommand{\wordlist}{
+ ýþung,
+ eásteweard,
+ áǽðan,
+ Œthelwald,
+ þorn,
+ æsċ,
+ eaþ-fynde,
+ ðæt,
+ Æðelþryð,
+ aardvark,
+ zebra,
+ ƿēana,
+ Oswine
+}
+
+\begin{document}
+Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
+
+Formatted text: \result.
+Data type: \DTLgetDataTypeName{\DTLdatumtype{\result}}.
+Numeric value: \DTLdatumvalue{\result}.
+Currency symbol: \DTLdatumcurrency{\result}.
+
+\DTLenLocaleHook
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\wordlist}.
+
+\DTLangLatnLocaleHook
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\wordlist}.
+
+\DTLresetRegion
+\DTLresetLanguage
+Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
+
+\DTLsortwordlist{\wordlist}{\DTLsortletterhandler}
+Sorted list: \DTLformatlist{\wordlist}.
+\end{document}
