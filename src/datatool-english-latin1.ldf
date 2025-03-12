@@ -14,7 +14,7 @@
   \regex_replace_case_all:nN
   {
     { [ \x{C0} - \x{C5} ] } { A }
-    { \x{C6} } { Ae }
+    { \x{C6} } { AE }
     { \x{C7} } { C }
     { [ \x{C8} - \x{CB} ] } { E }
     { [ \x{CC} - \x{CF} ] } { I }
@@ -25,7 +25,7 @@
 %    \end{macrocode}
 %Version 1.1: treat eth as thorn
 %    \begin{macrocode}
-    { \x{DE} | \x{D0} } { Th }
+    { \x{DE} | \x{D0} } { TH }
     { \x{DF} } { ss }
     { [ \x{E0} - \x{E5} ] } { a }
     { \x{E6} } { ae }
@@ -46,14 +46,14 @@
 %Version 1.1 added math shift check.
 %    \begin{macrocode}
     { \cM(.) } { \1 }
-    { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24} \1 }
+    { (\ur{l_datatool_currencysigns_regex}) } { \cO\$ \1 }
 %    \end{macrocode}
 %Ensure punctuation characters are grouped together by
 %prefixing them with straight double-quote. This ensures that they
 %will all be placed before any alphabetical characters.
 %Version 1.1 added category code check.
 %    \begin{macrocode}
-    { \cO([[:punct:]]) } { \cO" \1 }
+    { \cO([[:punct:]]) } { \cO\" \1 }
   }
   #1
 }

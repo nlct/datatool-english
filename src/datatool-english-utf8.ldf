@@ -18,7 +18,7 @@
   \regex_replace_case_all:nN
   {
     {À|Á|Â|Ã|Ä|Å} {A}
-    {Æ} {Ae}
+    {Æ} {AE}
     {Ç} {C}
     {È|É|Ê|Ë} {E}
     {Ì|Í|Î|Ï} {I}
@@ -29,7 +29,7 @@
 %    \end{macrocode}
 %Version 1.1: treat eth as thorn
 %    \begin{macrocode}
-    {Þ|Ð} {Th}
+    {Þ|Ð} {TH}
     {ß} {ss}
     {à|á|â|ã|ä|å} {a}
     {æ} {ae}
@@ -49,7 +49,7 @@
     {ĳ} {ij}
     {Ł} {L}
     {ł} {l}
-    {Œ} {Oe}
+    {Œ} {OE}
     {œ} {oe}
     {Ƿ} {W}
     {ƿ} {w}
@@ -59,7 +59,7 @@
 %Version 1.1 added math shift check.
 %    \begin{macrocode}
     { \cM(.) } { \1 }
-    { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24} \1 }
+    { (\ur{l_datatool_currencysigns_regex}) } { \cO\$ \1 }
 %    \end{macrocode}
 %Ensure common punctuation characters are grouped together by
 %prefixing them with straight double-quote. This ensures that they
@@ -67,25 +67,25 @@
 %
 %Treat closing quote the same as straight apostrophe.
 %    \begin{macrocode}
-    { ’ } { \cO" \cO' }
+    { ’ } { \cO\" \cO\' }
 %    \end{macrocode}
 %Treat opening quote the same as backtick.
 %    \begin{macrocode}
-    { ‘ } { \cO" \cO` }
+    { ‘ } { \cO\" \cO\` }
 %    \end{macrocode}
 %Treat opening and closing double quotes the same as straight
 %double-quote.
 %    \begin{macrocode}
-    { (“|”) } { \cO" \cO" }
+    { (“|”) } { \cO\" \cO\" }
 %    \end{macrocode}
 %Treat em-dash and en-dash the same as hyphen/minus.
 %    \begin{macrocode}
-    { (—|–) } { \cO" \cO- }
+    { (—|–) } { \cO\" \cO\- }
 %    \end{macrocode}
 %Any character in the punctuation class that has category other:
 %Version 1.1 added category code check.
 %    \begin{macrocode}
-    { \cO([[:punct:]]) } { \cO" \1 }
+    { \cO([[:punct:]]) } { \cO\" \1 }
   }
   #1
 }

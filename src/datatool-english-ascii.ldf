@@ -20,7 +20,7 @@
 %    \end{macrocode}
 %Version 1.1 added category code check.
 %    \begin{macrocode}
-    { \cO([[:punct:]]) } { \cO" \1 }
+    { \cO([[:punct:]]) } { \cO\" \1 }
    #1
  }
 %    \end{macrocode}

@@ -1,7 +1,9 @@
 % arara: pdflatex
 % arara: pdflatex
 \documentclass{article}
-\usepackage[locales={en},index,style=indexgroup]{glossaries}
+\usepackage[locales={en},index,style=indexgroup]
+ {glossaries}
+ %{glossaries-extra}
 \makenoidxglossaries
 \newterm{zebra}
 \newterm{aardvark}
@@ -11,9 +13,17 @@
 \newterm{elephant}
 \newterm{élite}
 \newterm{elk}
+\newterm{2}
+\newterm{1}
+\newterm{10}
+\newterm[name={\ensuremath{\pi}}]{pi}
+\newterm[name={/}]{slash}
+\newterm[name={\ensuremath{\alpha}}]{alpha}
 \begin{document}
 \gls{elk}, \gls{élan} \gls{élite} and \gls{elephant}.
 \gls{ætherial}, \gls{aardvark}, \gls{age} and \gls{zebra}.
+\gls{1}, \gls{2}, \gls{10}.
+\gls{pi}\gls{slash}\gls{alpha}.
 \printnoidxglossary[type=index,sort=word]
 \end{document}
 

@@ -46,6 +46,7 @@ test-runes.pdf	: test-runes.tex $(ldfs)
 
 test-idxgloss.pdf	: test-idxgloss.tex $(ldfs)
 	$(lualatex) test-idxgloss.tex
+	$(lualatex) test-idxgloss.tex
 
 test-Latn.pdf	: test-Latn.tex $(ldfs)
 	$(lualatex) test-Latn.tex

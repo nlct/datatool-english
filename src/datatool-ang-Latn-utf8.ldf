@@ -42,10 +42,10 @@
     {Œ} {OE}
     {Ù|Ú|Û|Ü|Ū} {U}
     {Ý} {Y}
-    {Ƿ|Ꝩ} { \cL\x{5B} }
-    {Ð} { \cL\x{5C} }
-    {Æ|Ǣ|Ǽ|Æ̀|Æ̂} { \cL\x{5D} }
-    {Þ|Ꝥ} { \cL\x{5E} }
+    {Ƿ|Ꝩ} { \cL\[ }
+    {Ð} { \cL\\ }
+    {Æ|Ǣ|Ǽ|Æ̀|Æ̂} { \cL\] }
+    {Þ|Ꝥ} { \cL\^ }
     {à|á|â|ã|ä|ā} {a}
     {ç|ċ} {c}
     {è|é|ê|ë|ē} {e}
@@ -57,15 +57,15 @@
     {ß} {ss}
     {ù|ú|û|ü|ū} {u}
     {ý} {y}
-    {ƿ|ꝩ} { \cL\x{7B} }
-    {ð} { \cL\x{7C} }
-    {æ|ǣ|ǽ|æ̀|æ̂} { \cL\x{7D} }
-    {þ|ꝥ} { \cL\x{7E} }
+    {ƿ|ꝩ} { \cL\{ }
+    {ð} { \cL\| }
+    {æ|ǣ|ǽ|æ̀|æ̂} { \cL\} }
+    {þ|ꝥ} { \cL\~ }
 %    \end{macrocode}
 %Any character in the punctuation class that has category other:
 %Version 1.1 added category code check.
 %    \begin{macrocode}
-    { \cO([[:punct:]]) } { \cO" \1 }
+    { \cO([[:punct:]]) } { \cO\" \1 }
   }
   #1
  }
@@ -89,9 +89,9 @@
     {Ꞇ|Ꞇ̃} {T}
     {Ù|Ú|Û|Ü} {U}
     {Ý} {Y}
-    {Ƿ|Ꝩ} { \cL\x{5B} }
-    {Ð} { \cL\x{5C} }
-    {Þ|Ꝥ} { \cL\x{5D} }
+    {Ƿ|Ꝩ} { \cL\[ }
+    {Ð} { \cL\\ }
+    {Þ|Ꝥ} { \cL\] }
     {à|á|â|ã|ä|ą} {a}
     {æ|ǣ|ǽ|æ̀|æ̂} {ae}
     {ç|ċ} {c}
@@ -103,15 +103,15 @@
     {ꞇ|ꞇ̃} {t}
     {ù|ú|û|ü} {u}
     {ý} {y}
-    {ƿ|ꝩ} { \cL\x{7B} }
-    {ð} { \cL\x{7C} }
-    {þ|ꝥ} { \cL\x{7D} }
-    {⁊} { \cL\x{7E} }
+    {ƿ|ꝩ} { \cL\{ }
+    {ð} { \cL\| }
+    {þ|ꝥ} { \cL\} }
+    {⁊} { \cL\~ }
 %    \end{macrocode}
 %Any character in the punctuation class that has category other:
 %Version 1.1 added category code check.
 %    \begin{macrocode}
-    { \cO([[:punct:]]) } { \cO" \1 }
+    { \cO([[:punct:]]) } { \cO\" \1 }
   }
   #1
  }
@@ -134,9 +134,9 @@
     {Ꞇ|Ꞇ̃} {T}
     {Ù|Ú|Û|Ü} {U}
     {Ý} {Y}
-    {Ƿ|Ꝩ} { \cL\x{5B} }
-    {Ð} { \cL\x{5D} }
-    {Þ|Ꝥ} { \cL\x{5C} }
+    {Ƿ|Ꝩ} { \cL\[ }
+    {Ð} { \cL\\ }
+    {Þ|Ꝥ} { \cL\] }
     {à|á|â|ã|ä|ą} {a}
     {æ|ǣ|ǽ|æ̀|æ̂} {ae}
     {ç|ċ} {c}
@@ -148,15 +148,15 @@
     {ꞇ|ꞇ̃} {t}
     {ù|ú|û|ü} {u}
     {ý} {y}
-    {ƿ|ꝩ} { \cL\x{7B} }
-    {ð} { \cL\x{7D} }
-    {þ|ꝥ} { \cL\x{7C} }
-    {⁊} { \cL\x{7E} }
+    {ƿ|ꝩ} { \cL\{ }
+    {ð} { \cL\| }
+    {þ|ꝥ} { \cL\} }
+    {⁊} { \cL\~ }
 %    \end{macrocode}
 %Any character in the punctuation class that has category other:
 %Version 1.1 added category code check.
 %    \begin{macrocode}
-    { \cO([[:punct:]]) } { \cO" \1 }
+    { \cO([[:punct:]]) } { \cO\" \1 }
   }
   #1
  }
@@ -177,12 +177,12 @@
     {g} {\cL\x{37}}
     {w} {\cL\x{38}}
     {h} {\cL\x{39}}
-    {n} {\cL\x{3A}}
-    {i} {\cL\x{3B}}
-    {j} {\cL\x{3C}}
-    {ï} {\cL\x{3D}}
-    {p} {\cL\x{3E}}
-    {x} {\cL\x{40}}
+    {n} {\cL\:}
+    {i} {\cL\;}
+    {j} {\cL\<}
+    {ï} {\cL\=}
+    {p} {\cL\>}
+    {x} {\cL\@}
     {st} {\cL\x{51}}
     {s} {\cL\x{41}}
     {t} {\cL\x{42}}
@@ -209,7 +209,7 @@
 %Any character in the punctuation class that has category other:
 %Version 1.1 added category code check.
 %    \begin{macrocode}
-    { \cO([[:punct:]]) } { \cO" \1 }
+    { \cO([[:punct:]]) } { \cO\" \1 }
   }
   #1
  }
