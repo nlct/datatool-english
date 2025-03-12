@@ -13,9 +13,9 @@ ldfs=../src/datatool-english.ldf \
 ../src/datatool-ang-Runr-utf8.ldf 
 
 datatool-english.zip	: datatool-english.dtx datatool-english.ins \
-	datatool-english.pdf README.md DEPENDS.txt
+	datatool-english.pdf README.md DEPENDS.txt CHANGES
 	mkdir -p datatool-english
-	cp datatool-english.{dtx,ins,pdf} README.md DEPENDS.txt datatool-english
+	cp datatool-english.{dtx,ins,pdf} README.md DEPENDS.txt CHANGES datatool-english
 	zip --exclude="*.swp" -r datatool-english.zip datatool-english
 
 datatool-english.pdf	: datatool-english.dtx datatool-english.ldf
