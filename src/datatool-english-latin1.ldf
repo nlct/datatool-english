@@ -18,35 +18,42 @@
     { \x{C7} } { C }
     { [ \x{C8} - \x{CB} ] } { E }
     { [ \x{CC} - \x{CF} ] } { I }
-    { \x{D0} } { D }
     { \x{D1} } { N }
     { [ \x{D2} - \x{D6} \x{D8} ] } { O }
     { [ \x{D9} - \x{DC} ]} { U }
     { \x{DD} } { Y }
-    { \x{DE} } { Th }
+%    \end{macrocode}
+%Version 1.1: treat eth as thorn
+%    \begin{macrocode}
+    { \x{DE} | \x{D0} } { Th }
     { \x{DF} } { ss }
     { [ \x{E0} - \x{E5} ] } { a }
     { \x{E6} } { ae }
     { \x{E7} } { c }
     { [ \x{E8} - \x{EB} ] } { e }
     { [ \x{EC} - \x{EF} ] } { i }
-    { \x{F0} } { d }
     { \x{F1} } { n }
     { [ \x{F2} - \x{F6} \x{F8} ] } { o }
     { [ \x{F9} - \x{FC} ] } { u }
     { [ \x{FD} \x{FF} ] } { y }
-    { \x{FE} } { th }
+%    \end{macrocode}
+%Version 1.1: treat eth as thorn
+%    \begin{macrocode}
+    { \x{FE} | \x{F0} } { th }
 %    \end{macrocode}
 %Ensure currency symbols are grouped together by prefixing all 
-%currency symbols with \verb|$|.
+%currency symbols with \verb|$| but don't change math shift.
+%Version 1.1 added math shift check.
 %    \begin{macrocode}
-    { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24}\1 }
+    { \cM(.) } { \1 }
+    { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24} \1 }
 %    \end{macrocode}
 %Ensure punctuation characters are grouped together by
 %prefixing them with straight double-quote. This ensures that they
 %will all be placed before any alphabetical characters.
+%Version 1.1 added category code check.
 %    \begin{macrocode}
-    { ([[:punct:]]+) } { \cO"\1 }
+    { \cO([[:punct:]]) } { \cO" \1 }
   }
   #1
 }

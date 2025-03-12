@@ -22,24 +22,28 @@
     {Ç} {C}
     {È|É|Ê|Ë} {E}
     {Ì|Í|Î|Ï} {I}
-    {Ð} {D}
     {Ñ} {N}
     {Ò|Ó|Ô|Õ|Ö|Ø} {O}
     {Ù|Ú|Û|Ü} {U}
     {Ý} {Y}
-    {Þ} {Th}
+%    \end{macrocode}
+%Version 1.1: treat eth as thorn
+%    \begin{macrocode}
+    {Þ|Ð} {Th}
     {ß} {ss}
     {à|á|â|ã|ä|å} {a}
     {æ} {ae}
     {ç} {c}
     {è|é|ê|ë} {e}
     {ì|í|î|ï} {i}
-    {ð} {d}
     {ñ} {n}
     {ò|ó|ô|õ|ö|ø} {o}
     {ù|ú|û|ü} {u}
     {ý|ÿ} {y}
-    {þ} {th}
+%    \end{macrocode}
+%Version 1.1: treat eth as thorn
+%    \begin{macrocode}
+    {þ|ð} {th}
     {ſ} {s}
     {Ĳ} {Ij}
     {ĳ} {ij}
@@ -51,9 +55,11 @@
     {ƿ} {w}
 %    \end{macrocode}
 %Ensure currency symbols are grouped together by prefixing all 
-%currency symbols with \verb|$|.
+%currency symbols with \verb|$| but don't change math shift.
+%Version 1.1 added math shift check.
 %    \begin{macrocode}
-    { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24}\1 }
+    { \cM(.) } { \1 }
+    { (\ur{l_datatool_currencysigns_regex}) } { \cO\x{24} \1 }
 %    \end{macrocode}
 %Ensure common punctuation characters are grouped together by
 %prefixing them with straight double-quote. This ensures that they
@@ -61,24 +67,25 @@
 %
 %Treat closing quote the same as straight apostrophe.
 %    \begin{macrocode}
-    { ’ } { \cO"' }
+    { ’ } { \cO" \cO' }
 %    \end{macrocode}
 %Treat opening quote the same as backtick.
 %    \begin{macrocode}
-    { ‘ } { \cO"` }
+    { ‘ } { \cO" \cO` }
 %    \end{macrocode}
 %Treat opening and closing double quotes the same as straight
 %double-quote.
 %    \begin{macrocode}
-    { (“|”) } { \cO"\cO" }
+    { (“|”) } { \cO" \cO" }
 %    \end{macrocode}
 %Treat em-dash and en-dash the same as hyphen/minus.
 %    \begin{macrocode}
-    { (—|–) } { \cO"- }
+    { (—|–) } { \cO" \cO- }
 %    \end{macrocode}
-%Any character in the punctuation class:
+%Any character in the punctuation class that has category other:
+%Version 1.1 added category code check.
 %    \begin{macrocode}
-    { ([[:punct:]]+) } { \cO"\1 }
+    { \cO([[:punct:]]) } { \cO" \1 }
   }
   #1
 }

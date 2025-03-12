@@ -342,67 +342,68 @@
 %    \end{macrocode}
 % U+16EE RUNIC ARLAUG SYMBOL
 %    \begin{macrocode}
-      { \x{16EE} } { \cL\x{7D}\x{21} }
+      { \x{16EE} } { \cL\x{7D} \cO\x{21} }
 %    \end{macrocode}
 % U+16EF RUNIC TVIMADUR SYMBOL
 %    \begin{macrocode}
-      { \x{16EF} } { \cL\x{7D}\x{22} }
+      { \x{16EF} } { \cL\x{7D} \cO\x{22} }
 %    \end{macrocode}
 % U+16F0 RUNIC BELGTHOR SYMBOL
 %    \begin{macrocode}
-      { \x{16F0} } { \cL\x{7D}\x{23} }
+      { \x{16F0} } { \cL\x{7D} \cO\x{23} }
 %    \end{macrocode}
 % U+16F1 RUNIC LETTER K
 %    \begin{macrocode}
-      { \x{16F1} } { \cL\x{7D}\x{24} }
+      { \x{16F1} } { \cL\x{7D} \cO\x{24} }
 %    \end{macrocode}
 % U+16F2 RUNIC LETTER SH
 %    \begin{macrocode}
-      { \x{16F2} } { \cL\x{7D}\x{25} }
+      { \x{16F2} } { \cL\x{7D} \cO\x{25} }
 %    \end{macrocode}
 % U+16F3 RUNIC LETTER OO
 %    \begin{macrocode}
-      { \x{16F3} } { \cL\x{7D}\x{26} }
+      { \x{16F3} } { \cL\x{7D} \cO\x{26} }
 %    \end{macrocode}
 % U+16F4 RUNIC LETTER FRANKS CASKET OS
 %    \begin{macrocode}
-      { \x{16F4} } { \cL\x{7D}\x{27} }
+      { \x{16F4} } { \cL\x{7D} \cO\x{27} }
 %    \end{macrocode}
 % U+16F5 RUNIC LETTER FRANKS CASKET IS
 %    \begin{macrocode}
-      { \x{16F5} } { \cL\x{7D}\x{28} }
+      { \x{16F5} } { \cL\x{7D} \cO\x{28} }
 %    \end{macrocode}
 % U+16F6 RUNIC LETTER FRANKS CASKET EH
 %    \begin{macrocode}
-      { \x{16F6} } { \cL\x{7D}\x{29} }
+      { \x{16F6} } { \cL\x{7D} \cO\x{29} }
 %    \end{macrocode}
 % U+16F7 RUNIC LETTER FRANKS CASKET AC
 %    \begin{macrocode}
-      { \x{16F7} } { \cL\x{7D}\x{2A} }
+      { \x{16F7} } { \cL\x{7D} \cO\x{2A} }
 %    \end{macrocode}
 % U+16F8 RUNIC LETTER FRANKS CASKET AESC
 %    \begin{macrocode}
-      { \x{16F8} } { \cL\x{7D}\x{2B} }
+      { \x{16F8} } { \cL\x{7D} \cO\x{2B} }
 %    \end{macrocode}
 % U+16EB RUNIC SINGLE PUNCTUATION
 %    \begin{macrocode}
-      { \x{16EB} } { \cO\x{21}\x{21} }
+      { \x{16EB} } { \cO\x{21} \cO\x{21} }
 %    \end{macrocode}
 % U+16EC RUNIC MULTIPLE PUNCTUATION
 %    \begin{macrocode}
-      { \x{16EC} } { \cO\x{21}\x{22} }
+      { \x{16EC} } { \cO\x{21} \cO\x{22} }
 %    \end{macrocode}
 % U+16ED RUNIC CROSS PUNCTUATION
 %    \begin{macrocode}
-      { \x{16ED} } { \cO\x{21}\x{23} }
+      { \x{16ED} } { \cO\x{21} \cO\x{23} }
 %    \end{macrocode}
 % Tironian et
 %    \begin{macrocode}
       { \x{204A} } { \cL\x{7E} }
 %    \end{macrocode}
-%Any character in the punctuation class:
+%Any character in the punctuation class that has category other:
+%Version 1.1 added category code check.
 %    \begin{macrocode}
-      { ([[:punct:]]+) } { \cO\x{21}\x{24} \1 }
+      { \cO([[:punct:]]) } { \cO\x{21} \cO\x{24} \1 }
     }
     #1
    }
@@ -721,67 +722,68 @@
 %    \end{macrocode}
 % U+16EE RUNIC ARLAUG SYMBOL
 %    \begin{macrocode}
-      { \x{16EE} } { \cL\x{7C}\x{21} }
+      { \x{16EE} } { \cL\x{7C} \cO\x{21} }
 %    \end{macrocode}
 % U+16EF RUNIC TVIMADUR SYMBOL
 %    \begin{macrocode}
-      { \x{16EF} } { \cL\x{7C}\x{22} }
+      { \x{16EF} } { \cL\x{7C} \cO\x{22} }
 %    \end{macrocode}
 % U+16F0 RUNIC BELGTHOR SYMBOL
 %    \begin{macrocode}
-      { \x{16F0} } { \cL\x{7D}\x{23} }
+      { \x{16F0} } { \cL\x{7D} \cO\x{23} }
 %    \end{macrocode}
 % U+16F1 RUNIC LETTER K
 %    \begin{macrocode}
-      { \x{16F1} } { \cL\x{7D}\x{24} }
+      { \x{16F1} } { \cL\x{7D} \cO\x{24} }
 %    \end{macrocode}
 % U+16F2 RUNIC LETTER SH
 %    \begin{macrocode}
-      { \x{16F2} } { \cL\x{7D}\x{25} }
+      { \x{16F2} } { \cL\x{7D} \cO\x{25} }
 %    \end{macrocode}
 % U+16F3 RUNIC LETTER OO
 %    \begin{macrocode}
-      { \x{16F3} } { \cL\x{7D}\x{26} }
+      { \x{16F3} } { \cL\x{7D} \cO\x{26} }
 %    \end{macrocode}
 % U+16F4 RUNIC LETTER FRANKS CASKET OS
 %    \begin{macrocode}
-      { \x{16F4} } { \cL\x{7D}\x{27} }
+      { \x{16F4} } { \cL\x{7D} \cO\x{27} }
 %    \end{macrocode}
 % U+16F5 RUNIC LETTER FRANKS CASKET IS
 %    \begin{macrocode}
-      { \x{16F5} } { \cL\x{7D}\x{28} }
+      { \x{16F5} } { \cL\x{7D} \cO\x{28} }
 %    \end{macrocode}
 % U+16F6 RUNIC LETTER FRANKS CASKET EH
 %    \begin{macrocode}
-      { \x{16F6} } { \cL\x{7D}\x{29} }
+      { \x{16F6} } { \cL\x{7D} \cO\x{29} }
 %    \end{macrocode}
 % U+16F7 RUNIC LETTER FRANKS CASKET AC
 %    \begin{macrocode}
-      { \x{16F7} } { \cL\x{7D}\x{2A} }
+      { \x{16F7} } { \cL\x{7D} \cO\x{2A} }
 %    \end{macrocode}
 % U+16F8 RUNIC LETTER FRANKS CASKET AESC
 %    \begin{macrocode}
-      { \x{16F8} } { \cL\x{7D}\x{2B} }
+      { \x{16F8} } { \cL\x{7D} \cO\x{2B} }
 %    \end{macrocode}
 % U+16EB RUNIC SINGLE PUNCTUATION
 %    \begin{macrocode}
-      { \x{16EB} } { \cO\x{21}\x{21} }
+      { \x{16EB} } { \cO\x{21} \cO\x{21} }
 %    \end{macrocode}
 % U+16EC RUNIC MULTIPLE PUNCTUATION
 %    \begin{macrocode}
-      { \x{16EC} } { \cO\x{21}\x{22} }
+      { \x{16EC} } { \cO\x{21} \cO\x{22} }
 %    \end{macrocode}
 % U+16ED RUNIC CROSS PUNCTUATION
 %    \begin{macrocode}
-      { \x{16ED} } { \cO\x{21}\x{23} }
+      { \x{16ED} } { \cO\x{21} \cO\x{23} }
 %    \end{macrocode}
 % Tironian et
 %    \begin{macrocode}
       { \x{204A} } { \cL\x{7E} }
 %    \end{macrocode}
-%Any character in the punctuation class:
+%Any character in the punctuation class that has category other:
+%Version 1.1 added category code check.
 %    \begin{macrocode}
-      { ([[:punct:]]+) } { \cO\x{21}\x{24} \1 }
+      { \cO([[:punct:]]) } { \cO\x{21} \cO\x{24} \1 }
     }
     #1
    }
@@ -1099,67 +1101,68 @@
 %    \end{macrocode}
 % U+16EE RUNIC ARLAUG SYMBOL
 %    \begin{macrocode}
-      { \x{16EE} } { \cL\x{7C}\x{21} }
+      { \x{16EE} } { \cL\x{7C} \cO\x{21} }
 %    \end{macrocode}
 % U+16EF RUNIC TVIMADUR SYMBOL
 %    \begin{macrocode}
-      { \x{16EF} } { \cL\x{7C}\x{22} }
+      { \x{16EF} } { \cL\x{7C} \cO\x{22} }
 %    \end{macrocode}
 % U+16F0 RUNIC BELGTHOR SYMBOL
 %    \begin{macrocode}
-      { \x{16F0} } { \cL\x{7D}\x{23} }
+      { \x{16F0} } { \cL\x{7D} \cO\x{23} }
 %    \end{macrocode}
 % U+16F1 RUNIC LETTER K
 %    \begin{macrocode}
-      { \x{16F1} } { \cL\x{7D}\x{24} }
+      { \x{16F1} } { \cL\x{7D} \cO\x{24} }
 %    \end{macrocode}
 % U+16F2 RUNIC LETTER SH
 %    \begin{macrocode}
-      { \x{16F2} } { \cL\x{7D}\x{25} }
+      { \x{16F2} } { \cL\x{7D} \cO\x{25} }
 %    \end{macrocode}
 % U+16F3 RUNIC LETTER OO
 %    \begin{macrocode}
-      { \x{16F3} } { \cL\x{7D}\x{26} }
+      { \x{16F3} } { \cL\x{7D} \cO\x{26} }
 %    \end{macrocode}
 % U+16F4 RUNIC LETTER FRANKS CASKET OS
 %    \begin{macrocode}
-      { \x{16F4} } { \cL\x{7D}\x{27} }
+      { \x{16F4} } { \cL\x{7D} \cO\x{27} }
 %    \end{macrocode}
 % U+16F5 RUNIC LETTER FRANKS CASKET IS
 %    \begin{macrocode}
-      { \x{16F5} } { \cL\x{7D}\x{28} }
+      { \x{16F5} } { \cL\x{7D} \cO\x{28} }
 %    \end{macrocode}
 % U+16F6 RUNIC LETTER FRANKS CASKET EH
 %    \begin{macrocode}
-      { \x{16F6} } { \cL\x{7D}\x{29} }
+      { \x{16F6} } { \cL\x{7D} \cO\x{29} }
 %    \end{macrocode}
 % U+16F7 RUNIC LETTER FRANKS CASKET AC
 %    \begin{macrocode}
-      { \x{16F7} } { \cL\x{7D}\x{2A} }
+      { \x{16F7} } { \cL\x{7D} \cO\x{2A} }
 %    \end{macrocode}
 % U+16F8 RUNIC LETTER FRANKS CASKET AESC
 %    \begin{macrocode}
-      { \x{16F8} } { \cL\x{7D}\x{2B} }
+      { \x{16F8} } { \cL\x{7D} \cO\x{2B} }
 %    \end{macrocode}
 % Tironian et
 %    \begin{macrocode}
-      { \x{204A} } { \cL\x{7D} \x{2C} }
+      { \x{204A} } { \cL\x{7D} \cO\x{2C} }
 %    \end{macrocode}
 % U+16EB RUNIC SINGLE PUNCTUATION
 %    \begin{macrocode}
-      { \x{16EB} } { \cO\x{7E}\x{21} }
+      { \x{16EB} } { \cO\x{7E} \cO\x{21} }
 %    \end{macrocode}
 % U+16EC RUNIC MULTIPLE PUNCTUATION
 %    \begin{macrocode}
-      { \x{16EC} } { \cO\x{7E}\x{22} }
+      { \x{16EC} } { \cO\x{7E} \cO\x{22} }
 %    \end{macrocode}
 % U+16ED RUNIC CROSS PUNCTUATION
 %    \begin{macrocode}
-      { \x{16ED} } { \cO\x{7E}\x{23} }
+      { \x{16ED} } { \cO\x{7E} \cO\x{23} }
 %    \end{macrocode}
-%Any character in the punctuation class:
+%Any character in the punctuation class that has category other:
+%Version 1.1 added category code check.
 %    \begin{macrocode}
-      { ([[:punct:]]+) } { \cO\x{7E}\x{24} \1 }
+      { \cO([[:punct:]]) } { \cO\x{7E} \cO\x{24} \1 }
     }
     #1
    }
@@ -1553,81 +1556,82 @@
 % U+16EE RUNIC ARLAUG SYMBOL
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AE} }
-       { \cL\x{7D}\x{21} }
+       { \cL\x{7D} \cO\x{21} }
 %    \end{macrocode}
 % U+16EF RUNIC TVIMADUR SYMBOL
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AF} }
-       { \cL\x{7D}\x{22} }
+       { \cL\x{7D} \cO\x{22} }
 %    \end{macrocode}
 % U+16F0 RUNIC BELGTHOR SYMBOL
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B0} }
-       { \cL\x{7D}\x{23} }
+       { \cL\x{7D} \cO\x{23} }
 %    \end{macrocode}
 % U+16F1 RUNIC LETTER K
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B1} }
-       { \cL\x{7D}\x{24} }
+       { \cL\x{7D} \cO\x{24} }
 %    \end{macrocode}
 % U+16F2 RUNIC LETTER SH
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B2} }
-       { \cL\x{7D}\x{25} }
+       { \cL\x{7D} \cO\x{25} }
 %    \end{macrocode}
 % U+16F3 RUNIC LETTER OO
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B3} }
-       { \cL\x{7D}\x{26} }
+       { \cL\x{7D} \cO\x{26} }
 %    \end{macrocode}
 % U+16F4 RUNIC LETTER FRANKS CASKET OS
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B4} }
-       { \cL\x{7D}\x{27} }
+       { \cL\x{7D} \cO\x{27} }
 %    \end{macrocode}
 % U+16F5 RUNIC LETTER FRANKS CASKET IS
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B5} }
-       { \cL\x{7D}\x{28} }
+       { \cL\x{7D} \cO\x{28} }
 %    \end{macrocode}
 % U+16F6 RUNIC LETTER FRANKS CASKET EH
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B6} }
-       { \cL\x{7D}\x{29} }
+       { \cL\x{7D} \cO\x{29} }
 %    \end{macrocode}
 % U+16F7 RUNIC LETTER FRANKS CASKET AC
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B7} }
-       { \cL\x{7D}\x{2A} }
+       { \cL\x{7D} \cO\x{2A} }
 %    \end{macrocode}
 % U+16F8 RUNIC LETTER FRANKS CASKET AESC
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B8} }
-       { \cL\x{7D}\x{2B} }
+       { \cL\x{7D} \cO\x{2B} }
 %    \end{macrocode}
 % U+16EB RUNIC SINGLE PUNCTUATION
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AB} }
-       { \cO\x{21}\x{21} }
+       { \cO\x{21} \cO\x{21} }
 %    \end{macrocode}
 % U+16EC RUNIC MULTIPLE PUNCTUATION
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AC} }
-       { \cO\x{21}\x{22} }
+       { \cO\x{21} \cO\x{22} }
 %    \end{macrocode}
 % U+16ED RUNIC CROSS PUNCTUATION
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AD} }
-       { \cO\x{21}\x{23} }
+       { \cO\x{21} \cO\x{23} }
 %    \end{macrocode}
 % Tironian et
 %    \begin{macrocode}
       { \x{E2} \x{81} \x{8A} }
         { \cL\x{7E} }
 %    \end{macrocode}
-%Any character in the punctuation class:
+%Any character in the punctuation class that has category other:
+%Version 1.1 added category code check.
 %    \begin{macrocode}
-      { ([[:punct:]]+) } { \cO\x{21}\x{24} \1 }
+      { \cO([[:punct:]]) } { \cO\x{21} \cO\x{24} \1 }
     }
     #1
    }
@@ -2022,72 +2026,72 @@
 % U+16EE RUNIC ARLAUG SYMBOL
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AE} }
-       { \cL\x{7C}\x{21} }
+       { \cL\x{7C} \cO\x{21} }
 %    \end{macrocode}
 % U+16EF RUNIC TVIMADUR SYMBOL
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AF} }
-       { \cL\x{7D}\x{22} }
+       { \cL\x{7D} \cO\x{22} }
 %    \end{macrocode}
 % U+16F0 RUNIC BELGTHOR SYMBOL
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B0} }
-       { \cL\x{7D}\x{23} }
+       { \cL\x{7D} \cO\x{23} }
 %    \end{macrocode}
 % U+16F1 RUNIC LETTER K
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B1} }
-       { \cL\x{7D}\x{24} }
+       { \cL\x{7D} \cO\x{24} }
 %    \end{macrocode}
 % U+16F2 RUNIC LETTER SH
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B2} }
-       { \cL\x{7D}\x{25} }
+       { \cL\x{7D} \cO\x{25} }
 %    \end{macrocode}
 % U+16F3 RUNIC LETTER OO
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B3} }
-       { \cL\x{7D}\x{26} }
+       { \cL\x{7D} \cO\x{26} }
 %    \end{macrocode}
 % U+16F4 RUNIC LETTER FRANKS CASKET OS
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B4} }
-       { \cL\x{7D}\x{27} }
+       { \cL\x{7D} \cO\x{27} }
 %    \end{macrocode}
 % U+16F5 RUNIC LETTER FRANKS CASKET IS
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B5} }
-       { \cL\x{7D}\x{28} }
+       { \cL\x{7D} \cO\x{28} }
 %    \end{macrocode}
 % U+16F6 RUNIC LETTER FRANKS CASKET EH
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B6} }
-       { \cL\x{7D}\x{29} }
+       { \cL\x{7D} \cO\x{29} }
 %    \end{macrocode}
 % U+16F7 RUNIC LETTER FRANKS CASKET AC
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B7} }
-       { \cL\x{7D}\x{2A} }
+       { \cL\x{7D} \cO\x{2A} }
 %    \end{macrocode}
 % U+16F8 RUNIC LETTER FRANKS CASKET AESC
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B8} }
-       { \cL\x{7D}\x{2B} }
+       { \cL\x{7D} \cO\x{2B} }
 %    \end{macrocode}
 % U+16EB RUNIC SINGLE PUNCTUATION
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AB} }
-       { \cO\x{21}\x{21} }
+       { \cO\x{21} \cO\x{21} }
 %    \end{macrocode}
 % U+16EC RUNIC MULTIPLE PUNCTUATION
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AC} }
-       { \cO\x{21}\x{22} }
+       { \cO\x{21} \cO\x{22} }
 %    \end{macrocode}
 % U+16ED RUNIC CROSS PUNCTUATION
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AD} }
-       { \cO\x{21}\x{23} }
+       { \cO\x{21} \cO\x{23} }
 %    \end{macrocode}
 % Tironian et
 %    \begin{macrocode}
@@ -2096,8 +2100,9 @@
 %    \end{macrocode}
 %Any character in the punctuation class (unlikely to occur in Runic
 %but added for completeness):
+%Version 1.1 added category code check.
 %    \begin{macrocode}
-      { ([[:punct:]]+) } { \cO\x{21}\x{24} \1 }
+      { \cO([[:punct:]]) } { \cO\x{21} \cO\x{24} \1 }
     }
     #1
    }
@@ -2491,82 +2496,83 @@
 % U+16EE RUNIC ARLAUG SYMBOL
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AE} }
-       { \cL\x{7C}\x{21} }
+       { \cL\x{7C} \cO\x{21} }
 %    \end{macrocode}
 % U+16EF RUNIC TVIMADUR SYMBOL
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AF} }
-       { \cL\x{7D}\x{22} }
+       { \cL\x{7D} \cO\x{22} }
 %    \end{macrocode}
 % U+16F0 RUNIC BELGTHOR SYMBOL
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B0} }
-       { \cL\x{7D}\x{23} }
+       { \cL\x{7D} \cO\x{23} }
 %    \end{macrocode}
 % U+16F1 RUNIC LETTER K
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B1} }
-       { \cL\x{7D}\x{24} }
+       { \cL\x{7D} \cO\x{24} }
 %    \end{macrocode}
 % U+16F2 RUNIC LETTER SH
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B2} }
-       { \cL\x{7D}\x{25} }
+       { \cL\x{7D} \cO\x{25} }
 %    \end{macrocode}
 % U+16F3 RUNIC LETTER OO
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B3} }
-       { \cL\x{7D}\x{26} }
+       { \cL\x{7D} \cO\x{26} }
 %    \end{macrocode}
 % U+16F4 RUNIC LETTER FRANKS CASKET OS
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B4} }
-       { \cL\x{7D}\x{27} }
+       { \cL\x{7D} \cO\x{27} }
 %    \end{macrocode}
 % U+16F5 RUNIC LETTER FRANKS CASKET IS
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B5} }
-       { \cL\x{7D}\x{28} }
+       { \cL\x{7D} \cO\x{28} }
 %    \end{macrocode}
 % U+16F6 RUNIC LETTER FRANKS CASKET EH
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B6} }
-       { \cL\x{7D}\x{29} }
+       { \cL\x{7D} \cO\x{29} }
 %    \end{macrocode}
 % U+16F7 RUNIC LETTER FRANKS CASKET AC
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B7} }
-       { \cL\x{7D}\x{2A} }
+       { \cL\x{7D} \cO\x{2A} }
 %    \end{macrocode}
 % U+16F8 RUNIC LETTER FRANKS CASKET AESC
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{B8} }
-       { \cL\x{7D}\x{2B} }
+       { \cL\x{7D} \cO\x{2B} }
 %    \end{macrocode}
 % Tironian et
 %    \begin{macrocode}
       { \x{E2} \x{81} \x{8A} }
-        { \cL\x{7D} \x{2C} }
+        { \cL\x{7D} \cO\x{2C} }
 %    \end{macrocode}
 % U+16EB RUNIC SINGLE PUNCTUATION
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AB} }
-       { \cO\x{7E}\x{21} }
+       { \cO\x{7E} \cO\x{21} }
 %    \end{macrocode}
 % U+16EC RUNIC MULTIPLE PUNCTUATION
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AC} }
-       { \cO\x{7E}\x{22} }
+       { \cO\x{7E} \cO\x{22} }
 %    \end{macrocode}
 % U+16ED RUNIC CROSS PUNCTUATION
 %    \begin{macrocode}
       { \x{E1} \x{9B} \x{AD} }
-       { \cO\x{7E}\x{23} }
+       { \cO\x{7E} \cO\x{23} }
 %    \end{macrocode}
 %Any character in the punctuation class (unlikely to occur in Runic
 %but added for completeness):
+%Version 1.1 added category code check.
 %    \begin{macrocode}
-      { ([[:punct:]]+) } { \cO\x{7E}\x{24} \1 }
+      { \cO([[:punct:]]) } { \cO\x{7E} \cO\x{24} \1 }
     }
     #1
    }

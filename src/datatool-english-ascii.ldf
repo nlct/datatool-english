@@ -16,7 +16,12 @@
 %prefixing them with straight double-quote. This ensures that they
 %will all be placed before any alphabetical characters.
 %    \begin{macrocode}
-  \regex_replace_all:nnN { ([[:punct:]]+) } { \cO"\1 } #1
+  \regex_replace_all:nnN
+%    \end{macrocode}
+%Version 1.1 added category code check.
+%    \begin{macrocode}
+    { \cO([[:punct:]]) } { \cO" \1 }
+   #1
  }
 %    \end{macrocode}
 %Switch off \LaTeX3 syntax.
