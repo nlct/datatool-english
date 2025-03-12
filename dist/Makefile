@@ -17,6 +17,7 @@ datatool-english.zip	: datatool-english.dtx datatool-english.ins \
 	mkdir -p datatool-english
 	cp datatool-english.{dtx,ins,pdf} README.md DEPENDS.txt CHANGES datatool-english
 	zip --exclude="*.swp" -r datatool-english.zip datatool-english
+	@grep '(pending)' CHANGES || true
 
 datatool-english.pdf	: datatool-english.dtx datatool-english.ldf
 	lualatex datatool-english.dtx
@@ -25,6 +26,7 @@ datatool-english.pdf	: datatool-english.dtx datatool-english.ldf
 	makeindex datatool-english.idx
 	lualatex datatool-english.dtx
 	lualatex datatool-english.dtx
+	@grep -E '(Warning:|unreferenced destination)' *.log || true
 
 datatool-english.ldf	: datatool-english.dtx datatool-english.ins
 	latex datatool-english.ins
