@@ -24,7 +24,7 @@ Example:
 ```latex
 \documentclass[en-GB]{article}
 \usepackage{datatool-base}% v3.0
-\newcommand{\mylist}{élan,elephant,élite,elk}
+\newcommand{\mylist}{elephant,élite,elk,élan}
 \begin{document}
 Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
 
@@ -38,21 +38,21 @@ If `datatool-english` and `datatool-regions` are both correctly installed,
 the result will be:
 
  > Currency: £1,234.56.  
- > Original list: élan, elephant, élite and elk.  
+ > Original list: elephant, élite, elk and élan.  
  > Sorted list: élan, elephant, élite and elk.
 
 If `datatool-regions` is installed but `datatool-english` isn't
 installed, then the result will be:
 
  > Currency: £1,234.56.  
- > Original list: élan, elephant, élite & elk.  
+ > Original list: elephant, élite, elk & élan.  
  > Sorted list: elephant, elk, élan & élite.
 
 If `datatool-regions` isn't installed but `datatool-english` is
 installed, then the result will be:
 
  > Currency: $1,234.56.  
- > Original list: élan, elephant, élite and elk.  
+ > Original list: elephant, élite, elk and élan.  
  > Sorted list: élan, elephant, élite and elk.
 
 The separation of region and language support means that you can mix
@@ -62,7 +62,7 @@ For example:
 ```latex
 \documentclass{article}
 \usepackage[locales={en-BE}]{datatool-base}% v3.0
-\newcommand{\mylist}{élan,elephant,élite,elk}
+\newcommand{\mylist}{elephant,élite,elk,élan}
 \begin{document}
 Currency: \DTLdecimaltocurrency{1234.56}{\result}\result.
 
@@ -78,7 +78,7 @@ If both `datatool-english.ldf` (provided with this bundle) and
 the result will be:
 
  > Currency: 1.234,56€.  
- > Original list: élan, elephant, élite and elk.  
+ > Original list: elephant, élite, elk and élan.  
  > Sorted list: élan, elephant, élite and elk.
 
 ## Old English (Anglo-Saxon)
