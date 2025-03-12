@@ -204,7 +204,7 @@
     {į} {\cL\x{53}}
     {ī} {\cL\x{54}}
     {c̄|k̄} {\cL\x{55}}
-    {⁊} {\cL\x{7E}}
+    {⁊} {\cL\~}
 %    \end{macrocode}
 %Any character in the punctuation class that has category other:
 %Version 1.1 added category code check.
