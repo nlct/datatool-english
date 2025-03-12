@@ -3,12 +3,17 @@
 \documentclass{article}
 \usepackage[locales={en},index,style=indexgroup]{glossaries}
 \makenoidxglossaries
+\newterm{zebra}
+\newterm{aardvark}
+\newterm{ætherial}
+\newterm{age}
 \newterm{élan}
 \newterm{elephant}
 \newterm{élite}
 \newterm{elk}
 \begin{document}
 \gls{elk}, \gls{élan} \gls{élite} and \gls{elephant}.
-\printnoidxglossary[type=index]
+\gls{ætherial}, \gls{aardvark}, \gls{age} and \gls{zebra}.
+\printnoidxglossary[type=index,sort=word]
 \end{document}
 
